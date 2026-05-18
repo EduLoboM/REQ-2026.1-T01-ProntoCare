@@ -23,7 +23,26 @@
         - Brainstorming de casos de uso
         - Definir tópicos para o documento de visão
 
-## Reunião 2 — 26/04/2026 - 21h
+## Reunião 2 - Elicitação e Priorização — 24/04/2026 - 21h
+
+| Participante | Presença |
+| :--- | :---: |
+| Pedro | ✅ |
+| Eduardo | ✅ |
+| Luciano | ✅ |
+| Fábio | ✅ |
+| Uires | ✅ |
+
+- **Pontos discutidos:**
+    - Fluxo do cadastro de pacientes e seus dados
+    - Registro de queixas, histórico e evolução clínica do paciente
+    - Ferramentas usadas pelo cliente: e-SUS, WhiteBook, BlackBook e TrackCare
+    - Dificuldades do cliente com prescrição eletrônica e assinatura digital
+    - Exportação de dados como requisito crítico
+    - Arquitetura cliente-servidor com modo offline
+    - Registro de documentos do paciente com exportação e histórico de controle
+
+## Reunião 3 — 26/04/2026 - 21h
 
 | Participante | Reunião |
 | :--- | :---: |
@@ -51,5 +70,8 @@
 
 ## Vídeos
 
-- Infelizmente, não foi possível gravar as cerimônias da Sprint 0.
+### Reunião 2 - Elicitação e Priorização — 24/04/2026
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QuqCF0-1avU?si=nJaAb1Uw4yFer6m1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+acesse diretamente pelo link: [https://youtu.be/QuqCF0-1avU](https://youtu.be/QuqCF0-1avU)
 

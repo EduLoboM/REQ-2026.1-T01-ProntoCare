@@ -1,7 +1,10 @@
 # Requisitos de Software
 
 ## **8 Requisitos de software**
-Esta seção descreve os requisitos necessários para o desenvolvimento do software. Ela está dividida em requisitos funcionais e não funcionais, que apresentam as funcionalidades do sistema e as qualidades que ele deve possuir para atender às expectativas dos usuários.
+
+Esta lista de requisitos foi elaborada a partir de um processo colaborativo e estruturado de construção do backlog, conduzido pela equipe ao longo da Sprint 0. Diferente de abordagens que focam apenas na listagem de funcionalidades, o processo investiu na compreensão profunda do problema a ser resolvido e das necessidades reais do usuário, garantindo que cada item do backlog contribua diretamente para a entrega de valor. No contexto do ProntoCare, a equipe utilizou um **quadro colaborativo no Figma (FigmaBoard)** como artefato central de organização — um painel visual que conecta os Objetivos Específicos (OEs) do produto às Características do Produto (CPs), e destas aos requisitos funcionais e não funcionais, user stories e critérios de aceitação. Essa cadeia de rastreabilidade (OE → CP → RF/RNF → US → critério de aceitação) assegura que nenhum requisito exista de forma isolada: cada funcionalidade listada abaixo pode ser rastreada até um objetivo de negócio concreto, validado junto ao Dr. Rogério durante as sessões de elicitação e priorização.
+
+A elicitação dos requisitos combinou múltiplas técnicas — entrevistas estruturadas com o cliente, brainstorming com a equipe, análise do domínio clínico (fluxo SOAP, protocolos do eSUS PEC, normas do CFM) e priorização MoSCoW com participação direta do stakeholder principal — para garantir que o backlog reflita tanto as necessidades operacionais reais do consultório quanto as restrições regulatórias e de segurança inerentes ao tratamento de dados clínicos sensíveis. Os requisitos foram então organizados em dois grupos complementares: **requisitos funcionais (RFs)**, que descrevem as capacidades e comportamentos que o sistema deve oferecer, e **requisitos não funcionais (RNFs)**, que estabelecem os atributos de qualidade, segurança, desempenho e conformidade que condicionam a operação do sistema. A seção 8.3 apresenta a **Matriz Síntese de Rastreabilidade**, que mapeia explicitamente a relação entre cada objetivo específico, característica do produto e requisito, permitindo verificar a cobertura completa do escopo e a consistência do backlog.
 
 
 ### **8.1 Requisitos Funcionais**
@@ -32,7 +35,7 @@ Os requisitos funcionais descrevem as ações, comportamentos e informações qu
 | **RF21** | **Gerenciar perfis de acesso:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso do sistema. |
 | **RF22** | **Consultar logs de auditoria:** O sistema deve fornecer uma interface que permita ao médico visualizar, buscar e filtrar o histórico de todas as operações realizadas sobre dados sensíveis (incluindo identificação do usuário, timestamp, registro acessado e tipo de ação executada). |
 
-### **8.2Requisitos Não Funcionais**
+### **8.2 Requisitos Não Funcionais**
 
 Os requisitos não funcionais especificam critérios que determinam a operação e restrições de segurança, desempenho, usabilidade e arquitetura do sistema.
 
@@ -52,7 +55,7 @@ Os requisitos não funcionais especificam critérios que determinam a operação
 
 | Contribuição principal | Contribuição secundária | CP | VN | RFs relacionados | RNFs relacionados |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| OE1 | OE2, OE3 | CP1 | VN1 | RF05, RF06, RF07, RF08, EF15 | \- |
+| OE1 | OE2, OE3 | CP1 | VN1 | RF05, RF06, RF07, RF08, RF15 | \- |
 | OE4 | OE1 | CP2 | VN2 | RF01, RF02, RF03, RF04, RF11, RF12, RF13, RF19 | RNF06 |
 | OE2 | OE5 | CP3 | VN3 | RF17 | RNF07 |
 | OE3 | OE5 | CP4 | VN4 | RF09 | RNF08 |
