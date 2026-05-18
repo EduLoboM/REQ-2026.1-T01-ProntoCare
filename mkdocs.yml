@@ -55,6 +55,12 @@ nav:
       - Cronograma e entregas: visao-produto/cronograma-e-entregas.md
       - Interação entre equipe e cliente: visao-produto/interacao-equipe-cliente.md
       - Lições aprendidas: visao-produto/lições-aprendidas.md
+  - Atas e Vídeos:
+      - Visão geral: atas-e-videos/index.md
+      - Sprint 0: atas-e-videos/sprint-0.md
+      - Sprint 1: atas-e-videos/sprint-1.md
+      - Sprint 2: atas-e-videos/sprint-2.md
+      - Sprint 3: atas-e-videos/sprint-3.md
   - Apresentações e Entregas:
     - Entrega 1: entregas/entrega-1.md
 

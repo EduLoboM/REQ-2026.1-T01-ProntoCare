@@ -10,21 +10,40 @@ Durante o desenvolvimento inicial do projeto do ProntoCare, várias lições imp
 
 1. **Elicitação e Validação Contínua da Interface com o Cliente**
 
-- **Desafio:** Observou-se sob a perspectiva operacional que o médico adota há anos uma rotina de atendimento fortemente apoiada em registros físicos em papel. O grande desafio era garantir que a interface do ProntoCare apresentasse uma usabilidade elevada o suficiente para que a adaptação não demandasse treinamento extensivo e nem comprometesse a fluidez das consultas.
+    - **Desafio:** Observou-se sob a perspectiva operacional que o médico adota há anos uma rotina de atendimento fortemente apoiada em registros físicos em papel. O grande desafio era garantir que a interface do ProntoCare apresentasse uma usabilidade elevada o suficiente para que a adaptação não demandasse treinamento extensivo e nem comprometesse a fluidez das consultas.
 
-- **Ação de Melhoria:** A equipe optou pela abordagem ágil ScrumXP , que permite validações frequentes com o cliente e flexibilidade de requisitos. Além disso, estabeleceu-se a criação de protótipos e wireframes na fase de Representação, assegurando o alinhamento visual e clínico da interface do prontuário SOAP antes do desenvolvimento.
+    - **Ação de Melhoria:** A equipe optou pela abordagem ágil ScrumXP , que permite validações frequentes com o cliente e flexibilidade de requisitos. Além disso, estabeleceu-se a criação de protótipos e wireframes na fase de Representação, assegurando o alinhamento visual e clínico da interface do prontuário SOAP antes do desenvolvimento.
 
 2. **Gerenciamento do Escopo Frente ao Prazo Acadêmico**
 
-- **Desafio:** O projeto possuía desafios restritivos, como um cronograma acadêmico fixo de 3 a 4 meses, equipe estudantil e a exigência de ferramentas com custo zero. Tentar abraçar todo o ciclo assistencial de imediato tornou-se inviável.
+    - **Desafio:** O projeto possuía desafios restritivos, como um cronograma acadêmico fixo de 3 a 4 meses, equipe estudantil e a exigência de ferramentas com custo zero. Tentar abraçar todo o ciclo assistencial de imediato tornou-se inviável.
 
-- **Ação de Melhoria:** Em reunião de elicitação com o Dr. Rogério, a equipe levantou as principais dores do consultório e, durante a própria conversa, aplicou a técnica de priorização MoSCoW junto com o cliente, classificando funcionalidades e delimitando o MVP de forma colaborativa. O MVP concentra-se no essencial: prontuário SOAP com folha de rosto, operação offline com sincronização e exportação de dados (JSON, PDF). A conformidade com a LGPD é tratada de forma incremental — controles básicos de acesso, privacidade de dados sensíveis e logs de auditoria fazem parte do MVP, enquanto a conformidade completa (portal de direitos do titular, consentimento granular, relatórios de impacto) fica no backlog de visão futura. Módulos como emissão de receitas médicas e telemedicina poderão ser incorporados nas sprints finais do semestre, caso o ritmo de entrega permita, ou encaminhados para evolução pós-disciplina.
+    - **Ação de Melhoria:** Em reunião de elicitação com o Dr. Rogério, a equipe levantou as principais dores do consultório e, durante a própria conversa, aplicou a técnica de priorização MoSCoW junto com o cliente, classificando funcionalidades e delimitando o MVP de forma colaborativa. Embora o encontro não tenha sido gravado em áudio ou vídeo, as evidências de sua realização e as tratativas com o cliente encontram-se devidamente registradas no histórico de conversas do WhatsApp. O MVP concentra-se no essencial: prontuário SOAP com folha de rosto, operação offline com sincronização e exportação de dados (JSON, PDF). A conformidade com a LGPD é tratada de forma incremental — controles básicos de acesso, privacidade de dados sensíveis e logs de auditoria fazem parte do MVP, enquanto a conformidade completa (portal de direitos do titular, consentimento granular, relatórios de impacto) fica no backlog de visão futura. Módulos como emissão de receitas médicas e telemedicina poderão ser incorporados nas sprints finais do semestre, caso o ritmo de entrega permita, ou encaminhados para evolução pós-disciplina. A lista de priorização resultante e a delimitação final do escopo do MVP serão validadas formalmente até a entrega da Unidade 2, momento em que a equipe apresentará os artefatos atualizados e o backlog refinado ao professor e ao cliente para verificação de aderência ao planejamento.
+
+        - **Ata de Reunião de Elicitação — 24/04/2026**
+
+        | Participante | Presença |
+        | :--- | :---: |
+        | Pedro | ✅ |
+        | Eduardo | ✅ |
+        | Luciano | ✅ |
+        | Fábio | ✅ |
+        | Uires | ✅ |
+
+        - **Pontos discutidos:**
+            - Fluxo do cadastro de pacientes e seus dados
+            - Registro de queixas, histórico e evolução clínica do paciente
+            - Ferramentas usadas pelo cliente: e-SUS, WhiteBook, BlackBook e TrackCare
+            - Dificuldades do cliente com prescrição eletrônica e assinatura digital
+            - Exportação de dados como requisito crítico
+            - Arquitetura cliente-servidor com modo offline
+            - Registro de documentos do paciente com exportação e histórico de controle
 
 3. **Adequação do Cronograma ao Modelo Ágil e Prazo Letivo**
 
-- **Desafio:** O cronograma original apresentava traços de um modelo sequencial ("mini-cascata"), com sprints finais dedicadas exclusivamente a integração e testes, além de tratar os Requisitos Não-Funcionais (RNFs) apenas como entregas isoladas. Havia também a dificuldade de encaixar as 9 sprints propostas no tempo de fato restante no semestre letivo (aproximadamente 12 semanas, encerrando por volta de 13/07/2026).
+    - **Desafio:** O cronograma original apresentava traços de um modelo sequencial ("mini-cascata"), com sprints finais dedicadas exclusivamente a integração e testes, além de tratar os Requisitos Não-Funcionais (RNFs) apenas como entregas isoladas. Havia também a dificuldade de encaixar as 9 sprints propostas no tempo de fato restante no semestre letivo (aproximadamente 12 semanas, encerrando por volta de 13/07/2026).
 
-- **Ação de Melhoria:** Com base no feedback do professor e na contagem de tempo real, o cronograma foi totalmente reestruturado. Condensamos o planejamento para 6 sprints com duração fixa e exata de 2 semanas. A abordagem sequencial foi eliminada em favor da integração contínua real: agora, cada sprint entrega um incremento funcional, testado e integrado. Além disso, todos os RNFs críticos (segurança, privacidade e auditoria) e as Características de Produto (CPs) passaram a cruzar transversalmente as sprints desde o início, garantindo rastreabilidade e qualidade ao longo de todo o desenvolvimento.
+    - **Ação de Melhoria:** Com base no feedback do professor e na contagem de tempo real, o cronograma foi totalmente reestruturado. Condensamos o planejamento para 6 sprints com duração fixa e exata de 2 semanas. A abordagem sequencial foi eliminada em favor da integração contínua real: agora, cada sprint entrega um incremento funcional, testado e integrado. Além disso, todos os RNFs críticos (segurança, privacidade e auditoria) e as Características de Produto (CPs) passaram a cruzar transversalmente as sprints desde o início, garantindo rastreabilidade e qualidade ao longo de todo o desenvolvimento.
 
 #### Histórico de Revisões
 

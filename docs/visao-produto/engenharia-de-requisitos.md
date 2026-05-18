@@ -22,7 +22,7 @@ A partir das informações apresentadas na seção 3, devem ser estabelecidas as
 
 *Declaração*
 
-- **Temas, épicos e user stories:** organização dos requisitos em temas (ex.: prontuário, autenticidade) e user stories com critérios de aceitação, seguindo a cadeia de rastreabilidade OE → CP → requisito → user story → critério de aceitação → teste → entrega (ver cadeia de rastreabilidade acima).
+- **Temas, épicos e user stories:** organização dos requisitos em temas (ex.: prontuário, autenticidade) e user stories com critérios de aceitação, seguindo a cadeia de rastreabilidade OE → CP → requisito → user story → critério de aceitação → teste → entrega.
 
 *Verificação e validação*
 
