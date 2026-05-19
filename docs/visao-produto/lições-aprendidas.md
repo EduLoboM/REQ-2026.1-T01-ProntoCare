@@ -24,7 +24,7 @@ Durante o desenvolvimento inicial do projeto do ProntoCare, várias lições imp
 
     - **Desafio:** O cronograma original apresentava traços de um modelo sequencial ("mini-cascata"), com sprints finais dedicadas exclusivamente a integração e testes, além de tratar os Requisitos Não-Funcionais (RNFs) apenas como entregas isoladas. Havia também a dificuldade de encaixar as 9 sprints propostas no tempo de fato restante no semestre letivo (aproximadamente 12 semanas, encerrando por volta de 13/07/2026).
 
-    - **Ação de Melhoria:** Com base no feedback do professor e na contagem de tempo real, o cronograma foi totalmente reestruturado. Condensamos o planejamento para 6 sprints com duração fixa e exata de 2 semanas. A abordagem sequencial foi eliminada em favor da integração contínua real: agora, cada sprint entrega um incremento funcional, testado e integrado. Além disso, todos os RNFs críticos (segurança, privacidade e auditoria) e as Características de Produto (CPs) passaram a cruzar transversalmente as sprints desde o início, garantindo rastreabilidade e qualidade ao longo de todo o desenvolvimento.
+    - **Ação de Melhoria:** Com base no feedback do professor e na contagem de tempo real, o cronograma foi totalmente reestruturado. Condensamos o planejamento para 10 sprints com duração fixa e exata de 1 semana. A abordagem sequencial foi eliminada em favor da integração contínua real: agora, cada sprint entrega um incremento funcional, testado e integrado. Além disso, todos os RNFs críticos (segurança, privacidade e auditoria) e as Características de Produto (CPs) passaram a cruzar transversalmente as sprints desde o início, garantindo rastreabilidade e qualidade ao longo de todo o desenvolvimento.
 
 #### 11.2 Unidade 2
 

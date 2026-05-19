@@ -28,8 +28,8 @@ Esta seção apresenta o **Backlog de Produto** do ProntoCare, construído como 
 | RF18 | Como médico, eu quero que o sistema analise a prescrição em tempo real, utilizando IA para alertar sobre interações medicamentosas, garantindo a segurança do paciente. | RNF03, RNF07 |
 | RF19 | Como médico, eu quero manter um log visível de todas as receitas anteriormente prescritas ao paciente, para consultar o histórico de tratamentos ao longo do tempo. | RNF01, RNF03, RNF06 |
 | RF20 | Como médico, eu quero que o sistema gere o Termo de Consentimento (TCLE) e permita sua assinatura digital (ICP-Brasil), para formalizar o aceite do paciente antes do atendimento e cumprir exigências legais. | RNF01, RNF05 |
-| RF21 | Como administrador, eu quero gerenciar os perfis de acesso de administradores, para definir permissões e garantir o controle operacional seguro. | RNF01, RNF02 |
-| RF22 | Como administrador, eu quero gerenciar os perfis de acesso de médicos (incluindo ativar/inativar contas), para manter o controle sobre quem pode acessar o prontuário. | RNF01, RNF02 |
+| RF21 | Como administrador, eu quero gerenciar os perfis de acesso de médicos, para definir permissões e garantir o controle operacional seguro. | RNF01, RNF02 |
+| RF22 | Como médico, eu quero gerenciar os perfis de acesso de pacientes (incluindo ativar/inativar contas), para manter o controle sobre quem pode acessar o prontuário. | RNF01, RNF02 |
 | RF23 | Como médico ou administrador, eu quero visualizar, buscar e filtrar o histórico de logs de auditoria sobre dados sensíveis, para rastrear todas as operações e garantir a conformidade e segurança. | RNF01 |
 
 ### **10.2 Priorização do Backlog e MVP**

@@ -32,8 +32,8 @@ Os requisitos funcionais descrevem as ações, comportamentos e informações qu
 | **RF18** | **Analisar interações medicamentosas por IA:** O sistema deve permitir analisar a prescrição do medicamento em tempo real, utilizando inteligência artificial para consultar bases farmacológicas (ex: dados da ANVISA). |
 | **RF19** | **Manter histórico de prescrições do paciente:** O sistema deve manter um log visível de todas as receitas anteriormente prescritas ao paciente. |
 | **RF20** | **Gerar e assinar Termo de Consentimento (TCLE):** O sistema deve gerar o Termo de Consentimento (TCLE), permitindo a assinatura digital ICP-Brasil pelo médico e o registro de aceite do paciente antes do atendimento. |
-| **RF21** | **Gerenciar perfis de administradores:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso de administradores do sistema. |
-| **RF22** | **Gerenciar perfis de médicos:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso de médicos do sistema. |
+| **RF21** | **Gerenciar perfis de médicos:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso de médicos do sistema. |
+| **RF22** | **Gerenciar perfis de pacientes:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso de pacientes do sistema. |
 | **RF23** | **Consultar logs de auditoria:** O sistema deve fornecer uma interface que permita ao médico visualizar, buscar e filtrar o histórico de todas as operações realizadas sobre dados sensíveis (incluindo identificação do usuário, timestamp, registro acessado e tipo de ação executada). |
 
 ### **8.2 Requisitos Não Funcionais**
