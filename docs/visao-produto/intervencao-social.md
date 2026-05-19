@@ -7,3 +7,10 @@ A prestação de serviços de saúde enfrenta desafios estruturais, como a limit
 Para superar a falta de conectividade em áreas remotas, o sistema adota uma arquitetura offline-first, permitindo que o profissional registre pacientes e anamneses continuamente, realizando backups automáticos quando houver internet. A autonomia do usuário é garantida pela portabilidade irrestrita, com exportação completa da base de dados em JSON e de prontuários em PDF, eliminando o vendor lock-in.
 
 A plataforma também expande o acesso ao cuidado médico através de um módulo de telemedicina, enquanto atua ativamente na segurança do paciente utilizando Inteligência Artificial para alertar sobre interações medicamentosas em tempo real. Todo o processo é respaldado por rigoroso controle de segurança e validade legal, exigindo assinaturas digitais padrão ICP-Brasil para prontuários, receitas e Termos de Consentimento, além de aplicar criptografia e logs rastreáveis. Dessa forma, o projeto entrega uma ferramenta resiliente e segura para qualquer contexto geográfico.
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão da intervenção social do projeto. | Prontuariantes |
+

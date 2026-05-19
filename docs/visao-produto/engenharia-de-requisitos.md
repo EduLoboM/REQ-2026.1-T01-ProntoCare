@@ -146,3 +146,10 @@ As atividades da ER, suas práticas e técnicas são mapeadas a partir das fases
 | Planejamento da próxima release | Declaração | Épicos e user stories | Criação de épicos, user stories, INVEST | User stories para objetivos da próxima release. |
 | Planejamento da próxima release | Verificação e validação | DEEP do backlog da release | DEEP (Detalhado, Estimado, Emergente, Priorizado) | Backlog verificado conforme critérios DEEP. |
 | Planejamento da próxima release | Organização e atualização | Revisão do backlog | Revisão e baseline do backlog da release | Backlog preparado com rastreabilidade atualizada. |
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão das atividades e técnicas de ER mapeadas ao ScrumXP. | Prontuariantes |
+

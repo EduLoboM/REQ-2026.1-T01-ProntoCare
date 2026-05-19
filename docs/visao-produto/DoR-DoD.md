@@ -34,3 +34,9 @@ Para garantir a estabilidade e a segurança exigidas por um sistema de saúde, a
 
 - **Rastreabilidade Verificada:** A funcionalidade entregue está vinculada ao requisito funcional (RF), à user story e aos RNFs correspondentes na cadeia de rastreabilidade do projeto (OE → CP → RF → US → critério de aceitação → teste → entrega), permitindo auditoria futura do processo de desenvolvimento.
 
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão dos critérios de DoR e DoD. | Prontuariantes |
+

@@ -8,3 +8,9 @@ Esta seção reúne as atas de reuniões e os vídeos de gravação das cerimôn
 | Sprint 1 | 03/05/2026 – 09/05/2026 | Atas e vídeos de reuniões |
 | Sprint 2 | 10/05/2026 – 16/05/2026 | Atas e vídeos de reuniões |
 | Sprint 3 | 17/05/2026 – 23/05/2026 | Atas e vídeos de reuniões |
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Criação do índice de atas e vídeos de sprints. | Prontuariantes |

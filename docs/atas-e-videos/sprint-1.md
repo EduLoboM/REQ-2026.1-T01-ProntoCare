@@ -45,3 +45,9 @@ acesse diretamente pelo link: [https://youtu.be/7K0HL413Y08](https://youtu.be/7K
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kuSMW1pVD9A?si=EEmKKii4jKpG5AHP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 acesse diretamente pelo link: [https://youtu.be/kuSMW1pVD9A](https://youtu.be/kuSMW1pVD9A)
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração das atas e vídeos da Sprint 1. | Prontuariantes |

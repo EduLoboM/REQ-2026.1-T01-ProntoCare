@@ -28,8 +28,9 @@ Esta seção apresenta o **Backlog de Produto** do ProntoCare, construído como 
 | RF18 | Como médico, eu quero que o sistema analise a prescrição em tempo real, utilizando IA para alertar sobre interações medicamentosas, garantindo a segurança do paciente. | RNF03, RNF07 |
 | RF19 | Como médico, eu quero manter um log visível de todas as receitas anteriormente prescritas ao paciente, para consultar o histórico de tratamentos ao longo do tempo. | RNF01, RNF03, RNF06 |
 | RF20 | Como médico, eu quero que o sistema gere o Termo de Consentimento (TCLE) e permita sua assinatura digital (ICP-Brasil), para formalizar o aceite do paciente antes do atendimento e cumprir exigências legais. | RNF01, RNF05 |
-| RF21 | Como administrador, eu quero gerenciar os perfis de acesso do sistema, para definir as permissões de cada usuário e garantir a segurança e o controle das informações. | RNF01, RNF02 |
-| RF22 | Como médico ou administrador, eu quero visualizar, buscar e filtrar o histórico de logs de auditoria sobre dados sensíveis, para rastrear todas as operações e garantir a conformidade e segurança. | RNF01 |
+| RF21 | Como administrador, eu quero gerenciar os perfis de acesso de administradores, para definir permissões e garantir o controle operacional seguro. | RNF01, RNF02 |
+| RF22 | Como administrador, eu quero gerenciar os perfis de acesso de médicos (incluindo ativar/inativar contas), para manter o controle sobre quem pode acessar o prontuário. | RNF01, RNF02 |
+| RF23 | Como médico ou administrador, eu quero visualizar, buscar e filtrar o histórico de logs de auditoria sobre dados sensíveis, para rastrear todas as operações e garantir a conformidade e segurança. | RNF01 |
 
 ### **10.2 Priorização do Backlog e MVP**
 
@@ -87,8 +88,9 @@ A partir disso, foi gerada a seguinte tabela.
 | US18 | Analisar interações por IA | 3 | 4 | 4 | 4.0 | 4 | Baixa |
 | US19 | Manter histórico prescrições | 4 | 3 | 2 | 2.5 | 1 | Alta |
 | US20 | Gerar/assinar TCLE | 3 | 3 | 3 | 3.0 | 4 | Baixa |
-| US21 | Gerenciar perfis de acesso | 5 | 3 | 3 | 3.0 | 2 | Média |
-| US22 | Consultar logs de auditoria | 4 | 3 | 3 | 3.0 | 2 | Média |
+| US21 | Gerenciar perfis de admins | 5 | 3 | 3 | 3.0 | 2 | Média |
+| US22 | Gerenciar perfis de médicos | 5 | 3 | 3 | 3.0 | 2 | Média |
+| US23 | Consultar logs de auditoria | 4 | 3 | 3 | 3.0 | 2 | Média |
 
 ### **10.3 Definição do MVP**
 
@@ -114,5 +116,12 @@ O MVP (Produto Mínimo Viável) do ProntoCare foi definido com base nos requisit
 | US16 | Assinar receita digital | 2 | Garante a autenticidade e a validade legal da prescrição médica via certificado ICP-Brasil. |
 | US17 | Emitir receita PDF | 1 | Viabiliza a entrega da receita ao paciente em formato digital para impressão ou envio. |
 | US19 | Manter histórico prescrições | 1 | Permite consultar tratamentos anteriores durante a consulta, evitando prescrições contraditórias. |
-| US21 | Gerenciar perfis de acesso | 2 | Requisito de segurança: garante que apenas usuários autorizados acessem funcionalidades sensíveis do sistema. |
-| US22 | Consultar logs de auditoria | 2 | Requisito de conformidade: viabiliza a rastreabilidade das operações sobre dados sensíveis (LGPD/CFM). |
+| US21 | Gerenciar perfis de admins | 2 | Requisito de segurança: garante controle estrito sobre as contas administrativas. |
+| US22 | Gerenciar perfis de médicos | 2 | Requisito de segurança: garante que apenas médicos autorizados acessem dados sensíveis. |
+| US23 | Consultar logs de auditoria | 2 | Requisito de conformidade: viabiliza a rastreabilidade das operações sobre dados sensíveis (LGPD/CFM). |
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão do backlog de produto, modelo de priorização por quadrantes e definição do MVP. | Prontuariantes |

@@ -26,6 +26,25 @@ Durante o desenvolvimento inicial do projeto do ProntoCare, várias lições imp
 
     - **Ação de Melhoria:** Com base no feedback do professor e na contagem de tempo real, o cronograma foi totalmente reestruturado. Condensamos o planejamento para 6 sprints com duração fixa e exata de 2 semanas. A abordagem sequencial foi eliminada em favor da integração contínua real: agora, cada sprint entrega um incremento funcional, testado e integrado. Além disso, todos os RNFs críticos (segurança, privacidade e auditoria) e as Características de Produto (CPs) passaram a cruzar transversalmente as sprints desde o início, garantindo rastreabilidade e qualidade ao longo de todo o desenvolvimento.
 
+#### 11.2 Unidade 2
+
+1. **Gerenciamento de escopo durante as sprints**
+
+    - **Desafio:** A funcionalidade de telemedicina via Google Meet foi inicialmente planejada, mas precisou ser retirada por não atender aos critérios de viabilidade técnica dentro do prazo.
+    - **Ação de Melhoria:** Aplicar o sistema de quadrantes de priorização de forma mais rigorosa desde o planejamento, cortando itens Q4 antes de detalhá-los em user stories.
+
+2. **Consistência de Granularidade e Qualidade dos Requisitos**
+
+    - **Desafio:** Durante a construção do backlog e a declaração dos requisitos funcionais, a equipe enfrentou dificuldades em manter um nível de granularidade uniforme entre os RFs. Alguns requisitos foram declarados com escopo amplo (ex.: RF02 originalmente abrangia tanto a edição quanto a inativação lógica de pacientes), enquanto outros foram decompostos em ações atômicas. Essa inconsistência gerou ambiguidade na derivação das user stories — uma US acabava cobrindo dois RFs implicitamente, enquanto outra cobria apenas uma operação simples — comprometendo a precisão da estimativa de esforço e a verificabilidade dos critérios de aceitação.
+
+    - **Ação de Melhoria:** A equipe estabeleceu como regra que cada RF deve representar **uma única capacidade verificável do sistema**, garantindo mapeamento 1:1 entre RFs e user stories. Requisitos que agrupavam múltiplas ações foram decompostos (ex.: separação entre "editar registros" e "excluir/inativar registros"). Além disso, passou-se a revisar a consistência de granularidade durante o grooming do backlog, verificando se cada RF possui critérios de aceitação testáveis de forma independente e se a descrição é suficientemente específica para orientar a implementação sem ambiguidade.
+
+3. **Integridade da Cadeia de Rastreabilidade entre Documentos**
+
+    - **Desafio:** A documentação do projeto é distribuída em múltiplas seções (requisitos, backlog, matriz de rastreabilidade, DoR/DoD), e durante a Unidade 2 identificou-se que alterações em um documento não eram propagadas sistematicamente para os demais. A remoção de um requisito funcional (telemedicina via Google Meet) não foi refletida na lista de RFs, e a numeração das user stories no backlog ficou deslocada em relação aos RFs da seção 8.1, quebrando silenciosamente a cadeia OE → CP → RF → US.
+
+    - **Ação de Melhoria:** Instituiu-se uma etapa de **revisão cruzada de rastreabilidade** como parte do Definition of Done de entregas documentais: qualquer alteração em um RF, US ou na matriz de rastreabilidade exige verificação de consistência em todos os artefatos relacionados antes de ser considerada concluída. A equipe também passou a utilizar a numeração idêntica entre RFs e USs (US01 = RF01, US02 = RF02, ...) para facilitar a detecção de inconsistências.
+
 #### Histórico de Revisões
 
 | Data | Versão | Descrição | Autor |

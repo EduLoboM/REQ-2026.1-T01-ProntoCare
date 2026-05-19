@@ -56,3 +56,9 @@ Com base nas características do projeto e nos desafios do ProntoCare, o ScrumXP
 
 > **Nota:** embora o ScrumXP favoreça documentação enxuta, o domínio clínico do ProntoCare impõe documentação complementar obrigatória: rastreabilidade de requisitos (OE → CP → US), registro de RNFs críticos, cadeia de autenticidade e evidências de conformidade com LGPD e normas do CFM. Essa documentação é detalhada na subseção 8.2 (Lista de Requisitos Não Funcionais).
 
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão das estratégias de engenharia de software e justificativa do ScrumXP. | Prontuariantes |
+

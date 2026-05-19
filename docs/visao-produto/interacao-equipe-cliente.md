@@ -65,3 +65,10 @@ O Dr. Rogério Sampaio, cliente e médico responsável pelo consultório, partic
 | **Durante a sprint** | Gestão de mudanças | Qualquer alteração em requisitos clínicos, fluxo SOAP ou regras de negócio passa por sua aprovação antes de ser incorporada ao backlog. |
 | **Ao final da sprint** | Aprovação de segurança, privacidade e integridade | Decisões que afetam a segurança do paciente, privacidade de dados (LGPD) e integridade da cadeia de autenticidade do prontuário requerem sua aprovação explícita. |
 | **Ao final da sprint** | Teste de aceitação | Verifica as funcionalidades entregues e confirma se atendem aos requisitos clínicos e operacionais. |
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão da composição da equipe, comunicação e processo de validação. | Prontuariantes |
+

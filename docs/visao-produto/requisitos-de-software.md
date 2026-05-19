@@ -32,8 +32,9 @@ Os requisitos funcionais descrevem as ações, comportamentos e informações qu
 | **RF18** | **Analisar interações medicamentosas por IA:** O sistema deve permitir analisar a prescrição do medicamento em tempo real, utilizando inteligência artificial para consultar bases farmacológicas (ex: dados da ANVISA). |
 | **RF19** | **Manter histórico de prescrições do paciente:** O sistema deve manter um log visível de todas as receitas anteriormente prescritas ao paciente. |
 | **RF20** | **Gerar e assinar Termo de Consentimento (TCLE):** O sistema deve gerar o Termo de Consentimento (TCLE), permitindo a assinatura digital ICP-Brasil pelo médico e o registro de aceite do paciente antes do atendimento. |
-| **RF21** | **Gerenciar perfis de acesso:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso do sistema. |
-| **RF22** | **Consultar logs de auditoria:** O sistema deve fornecer uma interface que permita ao médico visualizar, buscar e filtrar o histórico de todas as operações realizadas sobre dados sensíveis (incluindo identificação do usuário, timestamp, registro acessado e tipo de ação executada). |
+| **RF21** | **Gerenciar perfis de administradores:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso de administradores do sistema. |
+| **RF22** | **Gerenciar perfis de médicos:** O sistema deve permitir que usuários com perfil de administrador realizem a edição completa dos perfis de acesso de médicos do sistema. |
+| **RF23** | **Consultar logs de auditoria:** O sistema deve fornecer uma interface que permita ao médico visualizar, buscar e filtrar o histórico de todas as operações realizadas sobre dados sensíveis (incluindo identificação do usuário, timestamp, registro acessado e tipo de ação executada). |
 
 ### **8.2 Requisitos Não Funcionais**
 
@@ -60,7 +61,14 @@ Os requisitos não funcionais especificam critérios que determinam a operação
 | OE2 | OE5 | CP3 | VN3 | RF17 | RNF07 |
 | OE3 | OE5 | CP4 | VN4 | RF09 | RNF08 |
 | OE4 | OE3 | CP5 | VN5 | \- | RNF03, RNF04 |
-| OE3 | OE1 | CP6 | VN6 | RF21 | RNF02 |
-| OE3 | OE2 | CP7 | VN7 | RF22 | RNF01 |
+| OE3 | OE1 | CP6 | VN6 | RF21, RF22 | RNF02 |
+| OE3 | OE2 | CP7 | VN7 | RF23 | RNF01 |
 | OE3 | OE5 | CP8 | VN8 | RF20 | RNF05 |
 | OE5 | OE1, OE2 | CP9 | VN9 | RF10,RF14,RF16, RF18 | \- |
+
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração e revisão da lista de requisitos funcionais, não funcionais e Matriz Síntese de Rastreabilidade. | Prontuariantes |
+

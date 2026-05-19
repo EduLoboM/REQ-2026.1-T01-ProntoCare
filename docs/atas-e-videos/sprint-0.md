@@ -75,3 +75,8 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QuqCF0-1avU?si=nJaAb1Uw4yFer6m1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 acesse diretamente pelo link: [https://youtu.be/QuqCF0-1avU](https://youtu.be/QuqCF0-1avU)
 
+#### Histórico de Revisões
+
+| Data | Versão | Descrição | Autor |
+| :---: | :---: | :---: | :---: |
+| 2026-05-18 | 0.1 | Elaboração das atas e vídeos da Sprint 0. | Prontuariantes |
