@@ -16,7 +16,14 @@ async function req(method, path, body) {
   });
 
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.erro || data.message || 'Erro');
+  if (!res.ok) {
+    if (res.status === 401 && path !== '/auth/login') {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = '/login';
+    }
+    throw new Error(data.erro || data.message || 'Erro');
+  }
   return data;
 }
 
