@@ -14,5 +14,6 @@ router.get('/:id', autenticar, autorizar('medico', 'admin'), ctrl.buscarPorId);
 router.post('/', autenticar, autorizar('medico'), ctrl.criar);
 router.put('/:id', autenticar, autorizar('medico'), ctrl.atualizar);
 router.delete('/:id', autenticar, autorizar('medico'), ctrl.excluir);
+router.delete('/:id/permanente', autenticar, autorizar('medico'), ctrl.excluirPermanente);
 
 module.exports = router;
