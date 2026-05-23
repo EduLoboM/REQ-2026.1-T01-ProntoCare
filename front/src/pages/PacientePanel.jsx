@@ -194,9 +194,9 @@ export default function PacientePanel({ onLogout }) {
         </div>
         <div className="pd-header-actions">
           <button className="pd-btn-secundario" onClick={exportar}>
-            📥 Exportar Dados
+            Exportar Dados
           </button>
-          <button className="pd-btn-primario" onClick={onLogout} style={{ backgroundColor: 'var(--danger)' }}>
+          <button className="pd-btn-primario pd-btn-danger" onClick={onLogout}>
             Sair
           </button>
         </div>
@@ -251,9 +251,9 @@ export default function PacientePanel({ onLogout }) {
             
             <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)' }}>
               <button 
-                className="pd-btn-secundario" 
+                className="pd-btn-primario pd-btn-danger" 
                 onClick={solicitarExclusao} 
-                style={{ width: '100%', color: 'var(--danger)', borderColor: 'var(--danger)', backgroundColor: 'transparent' }}
+                style={{ width: '100%' }}
               >
                 Solicitar Exclusão da Conta
               </button>

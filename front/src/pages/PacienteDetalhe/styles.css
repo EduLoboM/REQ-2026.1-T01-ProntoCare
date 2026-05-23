@@ -94,9 +94,9 @@
 }
 
 .pd-tag-imc {
-  background: var(--primary-light);
-  color: var(--primary);
-  border-color: var(--primary-border);
+  background: var(--primary);
+  color: var(--white);
+  border-color: transparent;
   font-weight: 600;
 }
 
@@ -163,6 +163,18 @@
 .pd-btn-secundario:hover {
   background-color: var(--secondary-border);
   color: var(--text-heading);
+}
+
+.pd-btn-danger {
+  background-color: var(--danger);
+  color: var(--white);
+  border: 1px solid transparent;
+}
+
+.pd-btn-danger:hover {
+  background-color: var(--danger-hover);
+  box-shadow: var(--shadow-sm);
+  color: var(--white);
 }
 
 .pd-btn-editar {
