@@ -36,6 +36,21 @@ export default function MedicoPanel({ onLogout }) {
     } catch (e) { alert(e.message); }
   }
 
+  async function excluirPermanente(id) {
+    const confirmar = window.confirm(
+      'ATENÇÃO: Deseja realmente excluir este paciente permanentemente?\n\nEsta ação apagará o paciente e todo o seu histórico clínico (atendimentos, anamneses e logs), desde que todos os registros tenham mais de 20 anos de armazenamento. Esta ação não pode ser desfeita.'
+    );
+    if (!confirmar) return;
+
+    try {
+      await api.delete(`/pacientes/${id}/permanente`);
+      carregar();
+      alert('Paciente e seus registros associados foram excluídos permanentemente.');
+    } catch (e) {
+      alert(e.response?.data?.erro || e.message);
+    }
+  }
+
   async function exportarDados() {
     try {
       const data = await api.get('/pacientes/exportar');
@@ -102,13 +117,23 @@ export default function MedicoPanel({ onLogout }) {
                   <span className="list-title">{p.nome}</span>
                   <span className="list-subtitle">CPF: {p.cpf} • Status: {p.ativo ? 'Ativo' : 'Inativo'}</span>
                 </div>
-                <div className="list-actions">
-                  <button className="btn-primario" onClick={() => navigate(`/edit-paciente/${p.id}`)}>Editar</button>
+                <div className="list-actions" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <button className="btn-primario" onClick={() => navigate(`/paciente-detalhe/${p.id}`)}>Ver</button>
+                  <button className="btn-secundario" onClick={() => navigate(`/edit-paciente/${p.id}`)}>Editar</button>
                   <button className="btn-secundario" onClick={() => exportarPaciente(p)}>Exportar</button>
                   {p.ativo 
                     ? <button className="btn-danger" onClick={() => desativar(p.id)}>Desativar</button>
                     : <button className="btn-success" onClick={() => reativar(p.id)}>Reativar</button>
                   }
+                  {p.pode_excluir && (
+                    <button 
+                      className="btn-danger" 
+                      onClick={() => excluirPermanente(p.id)}
+                      title="Excluir paciente permanentemente (se todos os seus documentos tiverem > 20 anos)"
+                    >
+                      Excluir
+                    </button>
+                  )}
                 </div>
               </li>
             ))}
