@@ -13,3 +13,8 @@ node_modules/
 back/.env
 front/.env
 back/src/db/scripts/clear-db.js
+
+# Test coverage
+coverage/
+back/coverage/
+*/coverage/
