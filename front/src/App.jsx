@@ -18,6 +18,8 @@ function App() {
   function handleLogout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
     setRole(null);
   }
 

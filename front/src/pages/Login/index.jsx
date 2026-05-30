@@ -20,6 +20,13 @@ export default function Login({ onLogin }) {
       const data = await api.post('/auth/login', { login, senha });
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
+      // RNF08: Salvar dados do usuário para blockchain de integridade
+      if (data.nome) localStorage.setItem('userName', data.nome);
+      // Decodificar o JWT para extrair o ID do usuário
+      try {
+        const payload = JSON.parse(atob(data.token.split('.')[1]));
+        if (payload.id) localStorage.setItem('userId', String(payload.id));
+      } catch { /* ignora erros de decodificação */ }
       onLogin(data.role);
     } catch (err) {
       setErro(err.message);
