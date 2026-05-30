@@ -36,7 +36,8 @@ async function criar(req, res) {
       entidade: 'anamnese',
       entidade_id: rows[0].id,
       acao: 'criacao',
-      usuario: req.user
+      usuario: req.user,
+      req
     });
 
     return res.status(201).json(rows[0]);
@@ -190,7 +191,8 @@ async function atualizar(req, res) {
       antes,
       depois,
       campos: CAMPOS_RASTREAVEIS,
-      usuario: req.user
+      usuario: req.user,
+      req
     });
 
     return res.json(depois);
@@ -226,7 +228,8 @@ async function excluir(req, res) {
       entidade: 'anamnese',
       entidade_id: parseInt(id),
       acao: 'exclusao',
-      usuario: req.user
+      usuario: req.user,
+      req
     });
 
     await pool.query('DELETE FROM anamneses WHERE id = $1', [id]);

@@ -69,7 +69,7 @@ describe('Logs de Alterações', () => {
 
   it('200 admin gets any patient\'s logs', async () => {
     pool.query.mockResolvedValueOnce({ 
-      rows: [{ id: 1, paciente_id: 10, entidade: 'paciente', acao: 'criacao' }] 
+      rows: [{ id: 1, paciente_id: 10, entidade: 'paciente', acao: 'criacao', ip: '127.0.0.1', user_agent: 'Mozilla/5.0' }] 
     });
 
     const res = await request(app)
@@ -77,5 +77,7 @@ describe('Logs de Alterações', () => {
       .set('Authorization', `Bearer ${tokenAdmin}`);
 
     expect(res.status).toBe(200);
+    expect(res.body[0].ip).toBe('127.0.0.1');
+    expect(res.body[0].user_agent).toBe('Mozilla/5.0');
   });
 });

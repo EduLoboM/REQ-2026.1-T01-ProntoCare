@@ -55,6 +55,17 @@ async function buscarPorId(req, res) {
     if (rows.length === 0) return res.status(404).json({ erro: 'Nao encontrado.' });
     const paciente = rows[0];
     if (req.user.role === 'medico' && paciente.medico_id !== req.user.id) return res.status(403).json({ erro: 'Acesso negado.' });
+    
+    // Registra a visualização no log de auditoria (Conformidade CFM / SBIS)
+    await registrarAcao({
+      paciente_id: paciente.id,
+      entidade: 'paciente',
+      entidade_id: paciente.id,
+      acao: 'visualizacao',
+      usuario: req.user,
+      req
+    });
+
     return res.json(paciente);
   } catch (err) {
     return res.status(500).json({ erro: 'Erro interno.' });
@@ -82,7 +93,8 @@ async function criar(req, res) {
       entidade: 'paciente',
       entidade_id: rows[0].id,
       acao: 'criacao',
-      usuario: req.user
+      usuario: req.user,
+      req
     });
 
     return res.status(201).json(rows[0]);
@@ -142,7 +154,8 @@ async function atualizar(req, res) {
       antes,
       depois,
       campos: CAMPOS_RASTREAVEIS,
-      usuario: req.user
+      usuario: req.user,
+      req
     });
 
     // Remove senha_hash do retorno
@@ -170,7 +183,8 @@ async function excluir(req, res) {
       entidade: 'paciente',
       entidade_id: parseInt(id),
       acao: 'desativacao',
-      usuario: req.user
+      usuario: req.user,
+      req
     });
 
     return res.json({ mensagem: 'Desativado.', paciente: rows[0] });
@@ -183,6 +197,17 @@ async function minhasConta(req, res) {
   try {
     const { rows } = await pool.query(`SELECT id, nome, cpf, data_nascimento, sexo, nome_mae, email, telefone, cep, numero, medico_id, ativo, criado_em, atualizado_em FROM pacientes WHERE id = $1`, [req.user.id]);
     if (rows.length === 0) return res.status(404).json({ erro: 'Nao encontrado.' });
+    
+    // Registra a visualização do paciente ao próprio prontuário
+    await registrarAcao({
+      paciente_id: req.user.id,
+      entidade: 'paciente',
+      entidade_id: req.user.id,
+      acao: 'visualizacao',
+      usuario: req.user,
+      req
+    });
+
     return res.json(rows[0]);
   } catch (err) {
     return res.status(500).json({ erro: 'Erro interno.' });

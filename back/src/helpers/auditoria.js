@@ -32,12 +32,27 @@ const NOMES_CAMPOS = {
 /**
  * Registra uma entrada de ação genérica no log (criação, exclusão, etc.)
  */
-async function registrarAcao({ paciente_id, entidade, entidade_id, acao, usuario }) {
+async function registrarAcao({ paciente_id, entidade, entidade_id, acao, usuario, req, ip, user_agent }) {
+  const ipAddress = ip || (req ? (req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip) : null);
+  const userAgentString = user_agent || (req ? req.headers['user-agent'] : null);
+
   try {
+    if (acao === 'visualizacao') {
+      const recente = await pool.query(
+        `SELECT id FROM log_alteracoes 
+         WHERE paciente_id = $1 AND acao = 'visualizacao' AND usuario_id = $2 AND entidade = $3 AND entidade_id = $4 AND criado_em > NOW() - INTERVAL '5 seconds'
+         LIMIT 1`,
+        [paciente_id, usuario.id, entidade, entidade_id]
+      );
+      if (recente.rows.length > 0) {
+        return;
+      }
+    }
+
     await pool.query(
-      `INSERT INTO log_alteracoes (paciente_id, entidade, entidade_id, acao, usuario_id, usuario_nome, usuario_role)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-      [paciente_id, entidade, entidade_id, acao, usuario.id, usuario.nome || usuario.user, usuario.role]
+      `INSERT INTO log_alteracoes (paciente_id, entidade, entidade_id, acao, usuario_id, usuario_nome, usuario_role, ip, user_agent)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [paciente_id, entidade, entidade_id, acao, usuario.id, usuario.nome || usuario.user, usuario.role, ipAddress, userAgentString]
     );
   } catch (err) {
     console.error('Erro ao registrar ação no log:', err.message);
@@ -56,10 +71,16 @@ async function registrarAcao({ paciente_id, entidade, entidade_id, acao, usuario
  * @param {Object} params.depois         - Snapshot do registro depois da edição
  * @param {string[]} params.campos       - Lista de campos a verificar
  * @param {Object} params.usuario        - { id, nome/user, role } do usuário autenticado
+ * @param {Object} [params.req]          - Objeto de requisição Express
+ * @param {string} [params.ip]           - IP explícito
+ * @param {string} [params.user_agent]   - User agent explícito
  */
-async function registrarEdicao({ paciente_id, entidade, entidade_id, antes, depois, campos, usuario }) {
+async function registrarEdicao({ paciente_id, entidade, entidade_id, antes, depois, campos, usuario, req, ip, user_agent }) {
   const camposSensiveis = ['senha_hash'];
   const inserts = [];
+
+  const ipAddress = ip || (req ? (req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip) : null);
+  const userAgentString = user_agent || (req ? req.headers['user-agent'] : null);
 
   for (const campo of campos) {
     const valorAntigo = antes[campo];
@@ -73,8 +94,8 @@ async function registrarEdicao({ paciente_id, entidade, entidade_id, antes, depo
       const isSensivel = camposSensiveis.includes(campo);
       inserts.push(
         pool.query(
-          `INSERT INTO log_alteracoes (paciente_id, entidade, entidade_id, acao, campo, valor_anterior, valor_novo, usuario_id, usuario_nome, usuario_role)
-           VALUES ($1, $2, $3, 'edicao', $4, $5, $6, $7, $8, $9)`,
+          `INSERT INTO log_alteracoes (paciente_id, entidade, entidade_id, acao, campo, valor_anterior, valor_novo, usuario_id, usuario_nome, usuario_role, ip, user_agent)
+           VALUES ($1, $2, $3, 'edicao', $4, $5, $6, $7, $8, $9, $10, $11)`,
           [
             paciente_id,
             entidade,
@@ -84,7 +105,9 @@ async function registrarEdicao({ paciente_id, entidade, entidade_id, antes, depo
             isSensivel ? '***' : strNovo || null,
             usuario.id,
             usuario.nome || usuario.user,
-            usuario.role
+            usuario.role,
+            ipAddress,
+            userAgentString
           ]
         )
       );
@@ -104,7 +127,7 @@ async function registrarEdicao({ paciente_id, entidade, entidade_id, antes, depo
 async function buscarLogsPaciente(pacienteId) {
   const { rows } = await pool.query(
     `SELECT id, paciente_id, entidade, entidade_id, acao, campo, valor_anterior, valor_novo,
-            usuario_id, usuario_nome, usuario_role, criado_em
+            usuario_id, usuario_nome, usuario_role, ip, user_agent, criado_em
      FROM log_alteracoes
      WHERE paciente_id = $1
      ORDER BY criado_em DESC`,
