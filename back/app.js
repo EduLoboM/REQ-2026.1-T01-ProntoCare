@@ -8,6 +8,7 @@ const pacientesRoutes = require('./src/routes/pacientes');
 const atendimentosRoutes = require('./src/routes/atendimentos');
 const anamnesesRoutes = require('./src/routes/anamneses');
 const logsRoutes = require('./src/routes/logs');
+const blockchainRoutes = require('./src/routes/blockchain');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/api/pacientes', pacientesRoutes);
 app.use('/api/atendimentos', atendimentosRoutes);
 app.use('/api/anamneses', anamnesesRoutes);
 app.use('/api/logs', logsRoutes);
+app.use('/api/blockchain', blockchainRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ erro: 'Nao encontrada.' });
