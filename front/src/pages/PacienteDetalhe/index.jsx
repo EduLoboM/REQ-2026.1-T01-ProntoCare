@@ -907,7 +907,8 @@ export default function PacienteDetalhe() {
                     fontWeight: '600',
                     lineHeight: '1.4',
                     cursor: 'pointer',
-                    height: 'auto'
+                    height: 'auto',
+                    minWidth: '90px'
                   }}
                 >
                   {verificando ? 'Verificando...' : 'Verificar Integridade'}
@@ -958,7 +959,7 @@ export default function PacienteDetalhe() {
                         </div>
 
                         {blocosExpandidos[bloco.indice] && (
-                          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', animation: 'pd-fadeIn 0.25s ease' }}>
+                          <div className="pd-soap-detalhes" style={{ gap: '0.75rem' }}>
                             <div className="pd-blockchain-hashes">
                               <div className="pd-blockchain-hash-row">
                                 <span className="pd-blockchain-hash-label">Hash:</span>

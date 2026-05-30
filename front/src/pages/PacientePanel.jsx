@@ -536,13 +536,13 @@ export default function PacientePanel({ onLogout }) {
               className={`pd-tab ${abaAtiva === 'logs' ? 'ativa' : ''}`}
               onClick={() => setAbaAtiva('logs')}
             >
-              Histórico de Alterações ({logs.length})
+              Log de Alterações ({logs.length})
             </button>
             <button 
               className={`pd-tab ${abaAtiva === 'integridade' ? 'ativa' : ''}`}
               onClick={() => setAbaAtiva('integridade')}
             >
-              Integridade
+              Integridade ({blockchain.length})
             </button>
           </div>
 
@@ -833,7 +833,8 @@ export default function PacientePanel({ onLogout }) {
                     fontWeight: '600',
                     lineHeight: '1.4',
                     cursor: 'pointer',
-                    height: 'auto'
+                    height: 'auto',
+                    minWidth: '90px'
                   }}
                 >
                   {verificando ? 'Verificando...' : 'Verificar Integridade'}
@@ -882,7 +883,7 @@ export default function PacientePanel({ onLogout }) {
                         </div>
 
                         {blocosExpandidos[bloco.indice] && (
-                          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', animation: 'pd-fadeIn 0.25s ease' }}>
+                          <div className="pd-soap-detalhes" style={{ gap: '0.75rem' }}>
                             <div className="pd-blockchain-hashes">
                               <div className="pd-blockchain-hash-row">
                                 <span className="pd-blockchain-hash-label">Hash:</span>
