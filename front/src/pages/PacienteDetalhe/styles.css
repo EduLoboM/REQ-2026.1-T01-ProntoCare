@@ -387,6 +387,7 @@
 
 .pd-timeline-content {
   flex: 1;
+  min-width: 0;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -622,8 +623,13 @@
 .pd-log-icon.icon-lua {
   transform: translate(-50%, -52%);
 }
-.pd-log-icon.icon-antimonio {
-  transform: translate(-50%, -46%);
+.pd-log-icon.icon-enxofre {
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+}
+.pd-log-icon.icon-vitriolo {
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
 }
 
 /* Styled log/timeline dot container for alchemical icons */
@@ -1012,6 +1018,8 @@
 }
 
 .pd-blockchain-bloco {
+  flex: 1;
+  min-width: 0;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);

@@ -360,7 +360,7 @@ export default function PacienteDetalhe() {
       desativacao: { icon: '♄', label: 'Desativação', cor: 'log-desativacao' },
       reativacao: { icon: '☉', label: 'Reativação', cor: 'log-criacao' },
       visualizacao: { icon: '☽', label: 'Visualização', cor: 'log-visualizacao' },
-      verificacao: { icon: '♁', label: 'Integridade', cor: 'log-verificacao' },
+      verificacao: { icon: '🜓', label: 'Integridade', cor: 'log-verificacao' },
     };
     return map[acao] || { icon: '🜔', label: acao, cor: '' };
   }
@@ -372,7 +372,7 @@ export default function PacienteDetalhe() {
     if (simbolo === '♄') return 'icon-saturno';
     if (simbolo === '☉') return 'icon-sol';
     if (simbolo === '☽') return 'icon-lua';
-    if (simbolo === '♁') return 'icon-antimonio';
+    if (simbolo === '🜓') return 'icon-vitriolo';
     return '';
   }
 
