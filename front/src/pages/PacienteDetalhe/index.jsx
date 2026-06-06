@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../api';
 import { criarBlocoGenesis, criarBlocoExportacao, validarCadeia } from '../../services/blockchainService';
-import { exportarProntuarioPDF, exportarAnamnesePDF } from '../../services/pdfExportService';
+import { exportarProntuarioPDF, exportarAnamnesePDF, exportarReceitaPDF } from '../../services/pdfExportService';
 import './styles.css';
 
 export default function PacienteDetalhe() {
@@ -38,6 +38,17 @@ export default function PacienteDetalhe() {
   const [mostrarVisualizacoes, setMostrarVisualizacoes] = useState(false);
   const [integridadeResultado, setIntegridadeResultado] = useState(null);
 
+  // RF08: Estado de anexos do paciente
+  const [anexos, setAnexos] = useState([]);
+  const [enviandoAnexo, setEnviandoAnexo] = useState(false);
+  const [filtroAtendimentoId, setFiltroAtendimentoId] = useState('');
+  const [visualizandoAnexo, setVisualizandoAnexo] = useState(null);
+  const [carregandoArquivo, setCarregandoArquivo] = useState(false);
+
+  // RF15/RF17/RF19: Estado de receitas
+  const [receitas, setReceitas] = useState([]);
+  const [emitindoReceitaId, setEmitindoReceitaId] = useState(null);
+
   useEffect(() => {
     carregarDados();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,18 +56,22 @@ export default function PacienteDetalhe() {
 
   async function carregarDados() {
     try {
-      const [pac, hist, anams, logData, chain] = await Promise.all([
+      const [pac, hist, anams, logData, chain, anxs, recs] = await Promise.all([
         api.get(`/pacientes/${id}`),
         api.get(`/atendimentos/paciente/${id}`),
         api.get(`/anamneses/paciente/${id}`),
         api.get(`/logs/paciente/${id}`),
-        api.get(`/blockchain/paciente/${id}`)
+        api.get(`/blockchain/paciente/${id}`),
+        api.get(`/anexos/paciente/${id}`),
+        api.get(`/receitas/paciente/${id}`)
       ]);
       setPaciente(pac);
       setAtendimentos(hist);
       setAnamneses(anams);
       setLogs(logData);
       setBlockchain(chain || []);
+      setAnexos(anxs || []);
+      setReceitas(recs || []);
     } catch (err) {
       console.error(err);
       alert('Erro ao carregar dados do paciente.');
@@ -270,6 +285,243 @@ export default function PacienteDetalhe() {
     }
   }
 
+  // RF08: Fazer upload de anexo
+  async function handleUploadAnexo(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Tamanho limite excedido. O arquivo deve ter no máximo 5MB.');
+      event.target.value = '';
+      return;
+    }
+
+    setEnviandoAnexo(true);
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const base64Data = e.target.result.split(',')[1];
+        
+        await api.post('/anexos', {
+          paciente_id: parseInt(id),
+          atendimento_id: filtroAtendimentoId ? parseInt(filtroAtendimentoId) : null,
+          nome_arquivo: file.name,
+          mime_type: file.type || 'application/octet-stream',
+          tamanho_bytes: file.size,
+          dados_base64: base64Data
+        });
+
+        alert('Arquivo anexado com sucesso!');
+        setFiltroAtendimentoId('');
+        setMostrarModalAnexo(false);
+        
+        // Recarrega os dados
+        const anxs = await api.get(`/anexos/paciente/${id}`);
+        setAnexos(anxs || []);
+        
+        // Atualiza logs de auditoria
+        const logData = await api.get(`/logs/paciente/${id}`);
+        setLogs(logData);
+      } catch (err) {
+        alert('Erro ao anexar arquivo: ' + (err.message || 'Erro de conexão'));
+      } finally {
+        setEnviandoAnexo(false);
+        event.target.value = '';
+      }
+    };
+    reader.onerror = () => {
+      alert('Erro ao ler o arquivo.');
+      setEnviandoAnexo(false);
+      event.target.value = '';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // RF08: Visualizar ou baixar o anexo
+  async function visualizarAnexo(anexoId) {
+    setCarregandoArquivo(true);
+    try {
+      const detalhe = await api.get(`/anexos/${anexoId}`);
+      setVisualizandoAnexo(detalhe);
+    } catch (err) {
+      alert('Erro ao recuperar o arquivo: ' + err.message);
+    } finally {
+      setCarregandoArquivo(false);
+    }
+  }
+
+  // Baixar o arquivo do anexo como download
+  async function baixarAnexo(anexoId, nomeArquivo) {
+    setCarregandoArquivo(true);
+    try {
+      const detalhe = await api.get(`/anexos/${anexoId}`);
+      if (detalhe && detalhe.conteudo_base64) {
+        const byteCharacters = atob(detalhe.conteudo_base64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: detalhe.mime_type || 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = nomeArquivo || 'anexo';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        alert('Arquivo não encontrado ou sem conteúdo.');
+      }
+    } catch (err) {
+      alert('Erro ao baixar o arquivo: ' + err.message);
+    } finally {
+      setCarregandoArquivo(false);
+    }
+  }
+
+  // RF08: Excluir o anexo
+  async function excluirAnexo(anexoId) {
+    const confirmar = window.confirm(
+      'ATENÇÃO: Pela Lei nº 13.787/2018, documentos anexados ao histórico clínico devem ser mantidos por no mínimo 20 anos.\n\nDeseja excluir este anexo?'
+    );
+    if (!confirmar) return;
+
+    try {
+      await api.delete(`/anexos/${anexoId}`);
+      alert('Anexo excluído com sucesso.');
+      // Recarrega anexos e logs
+      const anxs = await api.get(`/anexos/paciente/${id}`);
+      setAnexos(anxs || []);
+      const logData = await api.get(`/logs/paciente/${id}`);
+      setLogs(logData);
+    } catch (err) {
+      alert(err.message || 'Erro ao excluir the anexo.');
+    }
+  }
+
+  // RF17: Emitir receita PDF com hash SHA-256 e registro na blockchain
+  async function emitirReceitaPDF(receita) {
+    if (emitindoReceitaId) return;
+    setEmitindoReceitaId(receita.id);
+    try {
+      const receitaCompleta = await api.get(`/receitas/${receita.id}`);
+      const medico = {
+        nome: receitaCompleta.medico_nome,
+        crm: receitaCompleta.medico_crm,
+        especialidade: receitaCompleta.medico_especialidade
+      };
+      const pac = {
+        nome: receitaCompleta.paciente_nome,
+        cpf: receitaCompleta.paciente_cpf,
+        data_nascimento: receitaCompleta.paciente_nascimento,
+        sexo: receitaCompleta.paciente_sexo
+      };
+
+      // 1. Buscar último bloco da cadeia (ou criar gênesis)
+      let ultimoBlocoResp = await api.get(`/blockchain/paciente/${id}/ultimo`);
+      
+      if (!ultimoBlocoResp) {
+        const genesis = await criarBlocoGenesis();
+        ultimoBlocoResp = await api.post('/blockchain', {
+          paciente_id: parseInt(id),
+          ...genesis,
+        });
+      }
+
+      // 2. Determinar versão do documento
+      const blocosDoDoc = (blockchain || []).filter(
+        b => b.entidade === 'receita' && b.entidade_id === receita.id
+      );
+      const versao = blocosDoDoc.length + 1;
+
+      // 3. Gerar dados canônicos para hash
+      const dadosReceita = {
+        id: receita.id,
+        paciente_id: receita.paciente_id,
+        medico_id: receita.medico_id,
+        medicamentos: receita.medicamentos,
+        observacoes: receita.observacoes,
+        criado_em: receita.criado_em,
+      };
+
+      // 4. Criar novo bloco na blockchain
+      const novoBloco = await criarBlocoExportacao({
+        blocoAnterior: ultimoBlocoResp,
+        entidade: 'receita',
+        entidade_id: receita.id,
+        versao,
+        dadosProntuario: dadosReceita,
+        pdfHash: null,
+        usuario: {
+          id: parseInt(localStorage.getItem('userId') || '0'),
+          nome: localStorage.getItem('userName') || 'Médico',
+          role: localStorage.getItem('role') || 'medico',
+        },
+      });
+
+      // 5. Salvar bloco no backend
+      const blocoSalvo = await api.post('/blockchain', {
+        paciente_id: parseInt(id),
+        ...novoBloco,
+      });
+
+      // 6. Exportar o PDF com hash de integridade
+      await exportarReceitaPDF({
+        receita: receitaCompleta,
+        paciente: pac,
+        medico,
+        blocoBlockchain: blocoSalvo,
+      });
+
+      // 7. Sincronizar com a cadeia local
+      setBlockchain(prev => [...prev, blocoSalvo]);
+
+      alert(`PDF da Prescrição exportado com sucesso!\n\nHash SHA-256: ${novoBloco.dados_hash.substring(0, 16)}...\nBloco #${novoBloco.indice} registrado na blockchain.`);
+    } catch (err) {
+      console.error(err);
+      // Fallback
+      try {
+        const medicoFallback = {
+          nome: localStorage.getItem('userName') || 'Médico',
+          crm: localStorage.getItem('userCrm') || '',
+          especialidade: localStorage.getItem('userEspecialidade') || ''
+        };
+        await exportarReceitaPDF({
+          receita,
+          paciente,
+          medico: medicoFallback
+        });
+      } catch (fallbackErr) {
+        console.error('Erro no fallback:', fallbackErr);
+        alert('Erro ao exportar PDF: ' + (err.message || 'Erro desconhecido'));
+      }
+    } finally {
+      setEmitindoReceitaId(null);
+    }
+  }
+
+  // Excluir receita (validação de 20 anos)
+  async function handleExcluirReceita(receitaId) {
+    const confirmar = window.confirm(
+      'ATENÇÃO: Pela Lei nº 13.787/2018, receitas médicas devem ser mantidas por no mínimo 20 anos.\n\nDeseja realmente excluir esta receita?'
+    );
+    if (!confirmar) return;
+
+    try {
+      await api.delete(`/receitas/${receitaId}`);
+      alert('Receita excluída com sucesso.');
+      const recs = await api.get(`/receitas/paciente/${id}`);
+      setReceitas(recs || []);
+      const logData = await api.get(`/logs/paciente/${id}`);
+      setLogs(logData);
+    } catch (err) {
+      alert(err.message || 'Erro ao excluir a receita.');
+    }
+  }
+
   function calcularIdade(dataNasc) {
     if (!dataNasc) return '—';
     const nascimento = new Date(dataNasc);
@@ -382,6 +634,7 @@ export default function PacienteDetalhe() {
     if (ent === 'atendimento') return 'Prontuário';
     if (ent === 'anamnese') return 'Anamnese';
     if (ent === 'blockchain') return 'Blockchain';
+    if (ent === 'receita') return 'Receita';
     return ent;
   }
 
@@ -472,12 +725,22 @@ export default function PacienteDetalhe() {
           <span className={`pd-status ${paciente.ativo ? 'ativo' : 'inativo'}`}>
             {paciente.ativo ? '● Ativo' : '● Inativo'}
           </span>
-          <button className="pd-btn-primario" onClick={() => navigate(`/anamnese/${id}`)}>
-            + Nova Anamnese
-          </button>
-          <button className="pd-btn-primario" onClick={() => navigate(`/atendimento/${id}`)}>
-            + Novo Prontuário
-          </button>
+          {localStorage.getItem('role') === 'medico' && (
+            <>
+              <button className="pd-btn-primario" onClick={() => navigate(`/atendimento/${id}`)}>
+                + Novo Prontuário
+              </button>
+              <button className="pd-btn-primario" onClick={() => navigate(`/anamnese/${id}`)}>
+                + Nova Anamnese
+              </button>
+              <button className="pd-btn-primario" onClick={() => navigate(`/prescricao/${id}`)}>
+                + Nova Prescrição
+              </button>
+              <button className="pd-btn-primario" onClick={() => navigate(`/anexo/${id}`)}>
+                + Novo Anexo
+              </button>
+            </>
+          )}
           <button className="pd-btn-secundario" onClick={() => navigate(`/edit-paciente/${id}`)}>
             Editar Cadastro
           </button>
@@ -552,16 +815,28 @@ export default function PacienteDetalhe() {
               Anamneses ({anamneses.length})
             </button>
             <button 
-              className={`pd-tab ${abaAtiva === 'logs' ? 'ativa' : ''}`}
-              onClick={() => setAbaAtiva('logs')}
+              className={`pd-tab ${abaAtiva === 'receitas' ? 'ativa' : ''}`}
+              onClick={() => setAbaAtiva('receitas')}
             >
-              Log de Alterações ({logs.length})
+              Prescrições ({receitas.length})
+            </button>
+            <button 
+              className={`pd-tab ${abaAtiva === 'anexos' ? 'ativa' : ''}`}
+              onClick={() => setAbaAtiva('anexos')}
+            >
+              Anexos ({anexos.length})
             </button>
             <button 
               className={`pd-tab ${abaAtiva === 'integridade' ? 'ativa' : ''}`}
               onClick={() => setAbaAtiva('integridade')}
             >
               Integridade ({blockchain.length})
+            </button>
+            <button 
+              className={`pd-tab ${abaAtiva === 'logs' ? 'ativa' : ''}`}
+              onClick={() => setAbaAtiva('logs')}
+            >
+              Log de Alterações ({logs.length})
             </button>
           </div>
 
@@ -588,14 +863,14 @@ export default function PacienteDetalhe() {
                     <div key={at.id} className={`pd-timeline-item ${expandido === at.id ? 'expandido' : ''}`}>
                       {/* Linha da timeline */}
                       <div className="pd-timeline-marker">
-                        <div className={`pd-timeline-dot log-icon-container prontuario ${index === 0 ? 'recente' : ''}`}>
+                        <div className={`pd-timeline-dot log-icon-container ${index === 0 ? 'prontuario recente' : ''}`}>
                           <span className="pd-log-icon icon-sal">🜔</span>
                         </div>
                         {index < atendimentos.length - 1 && <div className="pd-timeline-line"></div>}
                       </div>
 
                       {/* Conteúdo do atendimento */}
-                      <div className="pd-timeline-content prontuario" onClick={() => setExpandido(expandido === at.id ? null : at.id)}>
+                      <div className={`pd-timeline-content prontuario ${index === 0 ? 'recente' : ''}`} onClick={() => setExpandido(expandido === at.id ? null : at.id)}>
                         <div className="pd-timeline-header">
                           <div className="pd-timeline-info">
                             <span className="pd-timeline-data">{formatarDataHora(at.criado_em)}</span>
@@ -705,36 +980,20 @@ export default function PacienteDetalhe() {
                     <div key={anam.id} className={`pd-timeline-item ${expandido === 'anam_' + anam.id ? 'expandido' : ''}`}>
                       {/* Linha da timeline */}
                       <div className="pd-timeline-marker">
-                        <div className={`pd-timeline-dot log-icon-container anamnese ${index === 0 ? 'recente' : ''}`}>
-                          <span className="pd-log-icon icon-mercurio">☿</span>
+                        <div className={`pd-timeline-dot log-icon-container ${index === 0 ? 'anamnese recente' : ''}`}>
+                          <span className="pd-log-icon icon-sal">🜔</span>
                         </div>
                         {index < anamneses.length - 1 && <div className="pd-timeline-line"></div>}
                       </div>
 
                       {/* Conteúdo da anamnese */}
-                      <div className="pd-timeline-content anamnese" onClick={() => setExpandido(expandido === 'anam_' + anam.id ? null : 'anam_' + anam.id)}>
+                      <div className={`pd-timeline-content anamnese ${index === 0 ? 'recente' : ''}`} onClick={() => setExpandido(expandido === 'anam_' + anam.id ? null : 'anam_' + anam.id)}>
                         <div className="pd-timeline-header">
                           <div className="pd-timeline-info">
                             <span className="pd-timeline-data">{formatarDataHora(anam.criado_em)}</span>
                             <span className="pd-timeline-medico">Dr(a). {anam.medico_nome}</span>
                           </div>
                           <div className="pd-timeline-acoes">
-                            {podeExcluir(anam.criado_em) && (
-                              <button 
-                                className="pd-btn-excluir"
-                                onClick={(e) => excluirAnamnese(anam.id, e)}
-                                title="Excluir esta anamnese permanentemente (Legislação de 20 anos)"
-                              >
-                                Excluir
-                              </button>
-                            )}
-                            <button 
-                              className="pd-btn-editar"
-                              onClick={(e) => { e.stopPropagation(); navigate(`/anamnese/${id}?editar=${anam.id}`); }}
-                              title="Editar esta anamnese"
-                            >
-                              Editar
-                            </button>
                             <button 
                               className="pd-btn-pdf"
                               onClick={(e) => { e.stopPropagation(); exportarAnamnese(anam); }}
@@ -743,6 +1002,24 @@ export default function PacienteDetalhe() {
                             >
                               {exportandoPdf === 'anam_' + anam.id ? 'Exportando...' : 'PDF'}
                             </button>
+                            {localStorage.getItem('role') === 'medico' && (
+                              <button 
+                                className="pd-btn-editar"
+                                onClick={(e) => { e.stopPropagation(); navigate(`/anamnese/${id}?editar=${anam.id}`); }}
+                                title="Editar esta anamnese"
+                              >
+                                Editar
+                              </button>
+                            )}
+                            {localStorage.getItem('role') === 'medico' && podeExcluir(anam.criado_em) && (
+                              <button 
+                                className="pd-btn-excluir"
+                                onClick={(e) => { e.stopPropagation(); excluirAnamnese(anam.id, e); }}
+                                title="Excluir esta anamnese permanentemente (Legislação de 20 anos)"
+                              >
+                                Excluir
+                              </button>
+                            )}
                             <span className="pd-expand-icon">{expandido === 'anam_' + anam.id ? '▲' : '▼'}</span>
                           </div>
                         </div>
@@ -948,7 +1225,7 @@ export default function PacienteDetalhe() {
                             </span>
                             {bloco.entidade && (
                               <span className="pd-blockchain-entidade">
-                                {bloco.entidade === 'atendimento' ? 'Prontuário' : 'Anamnese'} #{bloco.entidade_id}
+                                {bloco.entidade === 'atendimento' ? 'Prontuário' : bloco.entidade === 'receita' ? 'Prescrição' : 'Anamnese'} #{bloco.entidade_id}
                                 {bloco.versao > 0 && ` (v${bloco.versao})`}
                               </span>
                             )}
@@ -985,6 +1262,238 @@ export default function PacienteDetalhe() {
                                 por <strong>{bloco.usuario_nome}</strong> ({bloco.usuario_role})
                               </div>
                             )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* === ABA: ANEXOS (DOCUMENTOS E EXAMES) === */}
+          {abaAtiva === 'anexos' && (
+            <div className="pd-card">
+              <div className="pd-card-header-row">
+                <h3 className="pd-card-title">
+                  Anexos e Exames do Paciente
+                </h3>
+                <span className="pd-contagem">{anexos.length} arquivo{anexos.length !== 1 ? 's' : ''}</span>
+              </div>
+
+
+
+              {/* Lista de Anexos */}
+              {anexos.length === 0 ? (
+                <div className="pd-vazio">
+                  <p>Nenhum documento anexado ao prontuário deste paciente.</p>
+                </div>
+              ) : (
+                <div className="pd-timeline">
+                  {anexos.map((anx, index) => {
+                    const isPDF = anx.mime_type.includes('pdf');
+                    const tamanhoKB = (anx.tamanho_bytes / 1024).toFixed(1);
+
+                    return (
+                      <div key={anx.id} className="pd-timeline-item">
+                        <div className="pd-timeline-marker">
+                          <div className={`pd-timeline-dot log-icon-container ${isPDF ? 'log-exclusao' : 'log-visualizacao'} ${index === 0 ? 'recente' : ''}`}>
+                            <span className={`pd-log-icon ${isPDF ? 'icon-chofre' : 'icon-lua'}`}>{isPDF ? '🜍' : '☽'}</span>
+                          </div>
+                          {index < anexos.length - 1 && <div className="pd-timeline-line"></div>}
+                        </div>
+
+                        <div className={`pd-timeline-content prontuario ${index === 0 ? 'recente' : ''}`} style={{ padding: '12px 16px' }}>
+                          <div className="pd-timeline-header" style={{ marginBottom: 0 }}>
+                            <div className="pd-timeline-info">
+                              <span className="pd-timeline-data" style={{ fontWeight: '600', color: 'var(--text-heading)', fontSize: '14.5px' }}>
+                                {anx.nome_arquivo}
+                              </span>
+                              <span className="pd-timeline-medico" style={{ fontSize: '12.5px' }}>
+                                Tamanho: {tamanhoKB} KB • Tipo: {anx.mime_type} • Enviado por Dr(a). {anx.medico_nome} em {formatarDataHora(anx.criado_em)}
+                                {anx.atendimento_data && (
+                                  <strong style={{ color: 'var(--primary)', marginLeft: '8px' }}>
+                                    (Vinculado à Consulta de {formatarDataHora(anx.atendimento_data)})
+                                  </strong>
+                                )}
+                              </span>
+                            </div>
+                            <div className="pd-timeline-acoes" style={{ gap: '8px' }}>
+                              <button 
+                                className="pd-btn-pdf" 
+                                onClick={() => baixarAnexo(anx.id, anx.nome_arquivo)}
+                                disabled={carregandoArquivo}
+                                title="Baixar este anexo"
+                              >
+                                {carregandoArquivo ? 'Baixando...' : 'Baixar'}
+                              </button>
+                              {podeExcluir(anx.criado_em) && (
+                                <button 
+                                  className="pd-btn-excluir"
+                                  onClick={() => excluirAnexo(anx.id)}
+                                  title="Excluir este anexo permanentemente (Legislação de 20 anos)"
+                                >
+                                  Excluir
+                                </button>
+                              )}
+                              <button 
+                                className="pd-btn-editar" 
+                                onClick={() => visualizarAnexo(anx.id)}
+                                disabled={carregandoArquivo}
+                                title="Visualizar este anexo"
+                              >
+                                {carregandoArquivo ? 'Carregando...' : 'Visualizar'}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Modal / Visualizador de Anexo */}
+              {visualizandoAnexo && (
+                <div style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  width: '100vw',
+                  height: '100vh',
+                  background: 'rgba(0,0,0,0.5)',
+                  zIndex: 100000,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '24px'
+                }} onClick={() => setVisualizandoAnexo(null)}>
+                  <div style={{
+                    background: 'white',
+                    width: '900px',
+                    maxWidth: '95vw',
+                    height: '80vh',
+                    borderRadius: 'var(--radius-lg)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxShadow: 'var(--shadow-lg)'
+                  }} onClick={e => e.stopPropagation()}>
+                    <header style={{
+                      padding: '16px 20px',
+                      borderBottom: '1px solid var(--border-color)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}>
+                      <h3 style={{ margin: 0 }}>Visualizando: {visualizandoAnexo.nome_arquivo}</h3>
+                      <button 
+                        className="btn-danger" 
+                        onClick={() => setVisualizandoAnexo(null)}
+                        style={{ height: '32px', padding: '0 12px' }}
+                      >
+                        Fechar
+                      </button>
+                    </header>
+                    <div style={{ flex: 1, overflow: 'auto', padding: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f8fafc' }}>
+                      {visualizandoAnexo.mime_type.includes('pdf') ? (
+                        <iframe 
+                          src={`data:${visualizandoAnexo.mime_type};base64,${visualizandoAnexo.dados_base64}`} 
+                          title={visualizandoAnexo.nome_arquivo} 
+                          style={{ width: '100%', height: '100%', border: 'none' }}
+                        />
+                      ) : (
+                        <img 
+                          src={`data:${visualizandoAnexo.mime_type};base64,${visualizandoAnexo.dados_base64}`} 
+                          alt={visualizandoAnexo.nome_arquivo} 
+                          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: 'var(--radius-sm)' }}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* === ABA: PRESCRIÇÕES === */}
+          {abaAtiva === 'receitas' && (
+            <div className="pd-card">
+              <div className="pd-card-header-row">
+                <h3 className="pd-card-title">
+                  Histórico de Prescrições
+                </h3>
+                <span className="pd-contagem">{receitas.length} receita{receitas.length !== 1 ? 's' : ''}</span>
+              </div>
+
+
+
+              {/* Lista de Receitas */}
+              {receitas.length === 0 ? (
+                <div className="pd-vazio">
+                  <p>Nenhuma receita médica prescrita para este paciente.</p>
+                </div>
+              ) : (
+                <div className="pd-timeline">
+                  {receitas.map((rec, index) => (
+                    <div key={rec.id} className={`pd-timeline-item ${expandido === 'receita_' + rec.id ? 'expandido' : ''}`}>
+                      {/* Linha da timeline */}
+                      <div className="pd-timeline-marker">
+                        <div className={`pd-timeline-dot log-icon-container ${index === 0 ? 'prontuario recente' : ''}`}>
+                          <span className="pd-log-icon icon-sal">🜔</span>
+                        </div>
+                        {index < receitas.length - 1 && <div className="pd-timeline-line"></div>}
+                      </div>
+
+                      {/* Conteúdo da receita */}
+                      <div className={`pd-timeline-content prontuario ${index === 0 ? 'recente' : ''}`} onClick={() => setExpandido(expandido === 'receita_' + rec.id ? null : 'receita_' + rec.id)}>
+                        <div className="pd-timeline-header">
+                          <div className="pd-timeline-info">
+                            <span className="pd-timeline-data">{formatarDataHora(rec.criado_em)}</span>
+                            <span className="pd-timeline-medico">Prescrito por Dr(a). {rec.medico_nome || 'Médico'}</span>
+                          </div>
+                          <div className="pd-timeline-acoes">
+                            <button
+                              className="pd-btn-pdf"
+                              onClick={(e) => { e.stopPropagation(); emitirReceitaPDF(rec); }}
+                              disabled={emitindoReceitaId === rec.id}
+                              title="Exportar prescrição como PDF com hash SHA-256"
+                            >
+                              {emitindoReceitaId === rec.id ? 'Exportando...' : 'PDF'}
+                            </button>
+                            {localStorage.getItem('role') === 'medico' && (
+                              <button
+                                className="pd-btn-editar"
+                                onClick={(e) => { e.stopPropagation(); navigate(`/prescricao/${id}?editar=${rec.id}`); }}
+                                title="Editar esta prescrição"
+                              >
+                                Editar
+                              </button>
+                            )}
+                            {localStorage.getItem('role') === 'medico' && podeExcluir(rec.criado_em) && (
+                              <button
+                                className="pd-btn-excluir"
+                                onClick={(e) => { e.stopPropagation(); handleExcluirReceita(rec.id); }}
+                                title="Excluir esta prescrição permanentemente (Legislação de 20 anos)"
+                              >
+                                Excluir
+                              </button>
+                            )}
+                            <span className="pd-expand-icon">{expandido === 'receita_' + rec.id ? '▲' : '▼'}</span>
+                          </div>
+                        </div>
+
+                        {/* Conteúdo resumido/completo */}
+                        <p className="pd-timeline-resumo" style={{ whiteSpace: 'pre-wrap' }}>
+                          {expandido === 'receita_' + rec.id ? rec.medicamentos : (rec.medicamentos.substring(0, 150) + (rec.medicamentos.length > 150 ? '...' : ''))}
+                        </p>
+
+                        {expandido === 'receita_' + rec.id && rec.observacoes && (
+                          <div className="pd-soap-detalhes">
+                            <div className="pd-soap-bloco">
+                              <h4>Observações</h4>
+                              <p style={{ whiteSpace: 'pre-wrap' }}>{rec.observacoes}</p>
+                            </div>
                           </div>
                         )}
                       </div>
