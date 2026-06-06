@@ -689,3 +689,312 @@ export async function exportarAnamnesePDF({ anamnese, paciente, blocoBlockchain 
   
   return { hashIntegridade, html };
 }
+
+/**
+ * Gera o HTML de uma receita médica para exportação em PDF.
+ */
+export function gerarHtmlReceita(receita, paciente, medico, hashIntegridade, blocoBlockchain = null) {
+  const mapSexo = (s) => {
+    if (s === 'M') return 'Masculino';
+    if (s === 'F') return 'Feminino';
+    if (s === 'O') return 'Outro';
+    return '—';
+  };
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Receita Médica #${receita.id} — ${paciente.nome || paciente.paciente_nome}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid #0d9488;
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .pdf-header-logo h1 {
+      font-size: 1.6rem;
+      color: #0d9488;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .pdf-header-logo p {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .pdf-header-meta {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .pdf-header-meta strong {
+      color: #0f172a;
+    }
+
+    .pdf-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .pdf-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #0d9488;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    .pdf-field {
+      margin-bottom: 0.5rem;
+    }
+
+    .pdf-field-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .pdf-field-value {
+      font-size: 0.95rem;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .pdf-content-box {
+      font-size: 1rem;
+      color: #1e293b;
+      background: #f8fafc;
+      border-left: 4px solid #0d9488;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 6px 6px 0;
+      white-space: pre-wrap;
+      margin-top: 0.5rem;
+      min-height: 150px;
+    }
+
+    .pdf-signature-section {
+      margin-top: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+
+    .pdf-signature-line {
+      width: 250px;
+      border-top: 1px solid #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    .pdf-signature-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .pdf-signature-crm {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .pdf-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 2px solid #e2e8f0;
+    }
+
+    .pdf-hash-section {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .pdf-hash-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pdf-hash-value {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.75rem;
+      color: #0d9488;
+      word-break: break-all;
+      font-weight: 600;
+    }
+
+    .pdf-blockchain-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .pdf-blockchain-info strong {
+      color: #0f172a;
+    }
+
+    @media print {
+      body { padding: 1rem; }
+      .pdf-signature-section { break-inside: avoid; }
+      .pdf-hash-section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="pdf-header">
+    <div class="pdf-header-logo">
+      <h1>☉ ProntoCare</h1>
+      <p>Receita Médica Digital</p>
+    </div>
+    <div class="pdf-header-meta">
+      <p><strong>Receita #${receita.id}</strong></p>
+      <p>Emitido em: ${formatarDataHora(receita.criado_em || new Date().toISOString())}</p>
+      <p>Médico: Dr(a). ${medico.nome || medico.medico_nome || '—'}</p>
+      <p>CRM: ${medico.crm || medico.medico_crm || '—'}</p>
+    </div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title">Dados do Paciente</div>
+    <div class="pdf-grid">
+      <div class="pdf-field">
+        <div class="pdf-field-label">Nome Completo</div>
+        <div class="pdf-field-value">${paciente.nome || paciente.paciente_nome || '—'}</div>
+      </div>
+      <div class="pdf-field">
+        <div class="pdf-field-label">CPF</div>
+        <div class="pdf-field-value">${paciente.cpf || paciente.paciente_cpf || '—'}</div>
+      </div>
+      <div class="pdf-field">
+        <div class="pdf-field-label">Data de Nascimento</div>
+        <div class="pdf-field-value">${formatarData(paciente.data_nascimento || paciente.paciente_nascimento)}</div>
+      </div>
+      <div class="pdf-field">
+        <div class="pdf-field-label">Sexo</div>
+        <div class="pdf-field-value">${mapSexo(paciente.sexo || paciente.paciente_sexo)}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title">Medicamentos e Instruções de Uso</div>
+    <div class="pdf-content-box">${receita.medicamentos}</div>
+  </div>
+
+  ${receita.observacoes ? `
+  <div class="pdf-section" style="margin-top: 1.5rem;">
+    <div class="pdf-section-title">Observações</div>
+    <div style="font-size: 0.9rem; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-radius: 6px; white-space: pre-wrap;">${receita.observacoes}</div>
+  </div>` : ''}
+
+  <div class="pdf-signature-section">
+    <div class="pdf-signature-line"></div>
+    <div class="pdf-signature-name">Dr(a). ${medico.nome || medico.medico_nome || '—'}</div>
+    <div class="pdf-signature-crm">CRM: ${medico.crm || medico.medico_crm || '—'}${medico.especialidade || medico.medico_especialidade ? ` - ${medico.especialidade || medico.medico_especialidade}` : ''}</div>
+  </div>
+
+  <div class="pdf-footer">
+    <div class="pdf-hash-section">
+      <div class="pdf-hash-title">
+        🜔 Hash de Integridade SHA-256 (Web Crypto API)
+      </div>
+      <div class="pdf-hash-value">${hashIntegridade}</div>
+
+      ${blocoBlockchain ? `
+      <div class="pdf-blockchain-info">
+        <div>
+          <span>Bloco #</span>
+          <strong>${blocoBlockchain.indice}</strong>
+        </div>
+        <div>
+          <span>Versão:</span>
+          <strong>${blocoBlockchain.versao}</strong>
+        </div>
+        <div>
+          <span>Tipo:</span>
+          <strong>${blocoBlockchain.tipo === 'exportacao' ? 'Exportação' : blocoBlockchain.tipo === 'edicao' ? 'Edição' : blocoBlockchain.tipo}</strong>
+        </div>
+        <div>
+          <span>Registrado em:</span>
+          <strong>${formatarDataHora(blocoBlockchain.timestamp)}</strong>
+        </div>
+      </div>
+      <div style="margin-top: 0.5rem;">
+        <div class="pdf-hash-title" style="margin-bottom: 0.25rem;">
+          🜍 Hash do Bloco Anterior
+        </div>
+        <div class="pdf-hash-value" style="font-size: 0.7rem; color: #94a3b8;">${blocoBlockchain.hash_anterior}</div>
+      </div>
+      ` : ''}
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+/**
+ * Pipeline completo para exportar receita em PDF com integridade e registro blockchain.
+ */
+export async function exportarReceitaPDF({ receita, paciente, medico, blocoBlockchain = null }) {
+  // 1. Gerar o hash de integridade a partir do conteúdo canônico da receita
+  const dadosCanonicos = JSON.stringify({
+    id: receita.id,
+    paciente_id: receita.paciente_id,
+    medico_id: receita.medico_id,
+    medicamentos: receita.medicamentos,
+    observacoes: receita.observacoes,
+    criado_em: receita.criado_em,
+  });
+  
+  const hashIntegridade = await hashTexto(dadosCanonicos);
+
+  // 2. Gerar o HTML
+  const html = gerarHtmlReceita(receita, paciente, medico, hashIntegridade, blocoBlockchain);
+  const nomeArquivo = `receita_${receita.id}_${(paciente.nome || paciente.paciente_nome || 'paciente').replace(/\s+/g, '_')}`;
+  imprimirPDF(html, nomeArquivo);
+  
+  return { hashIntegridade, html };
+}
