@@ -649,13 +649,19 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
 // SINCRONIZAÇÃO DE DADOS (REPLAY QUEUE)
 // ==========================================
 
+let isSyncingQueue = false;
+
 /**
  * Re-executa as requisições pendentes gravadas na fila offline.
  * Mapeia IDs temporários gerados offline para os IDs corretos do servidor.
  */
 export async function syncOfflineQueue(apiInstance, onProgress = null) {
-  const queue = await getQueue();
-  if (queue.length === 0) return { success: true, count: 0 };
+  if (isSyncingQueue) return { success: true, count: 0 };
+  isSyncingQueue = true;
+
+  try {
+    const queue = await getQueue();
+    if (queue.length === 0) return { success: true, count: 0 };
 
   const idMap = await getAllIdMappings();
 
@@ -724,5 +730,8 @@ export async function syncOfflineQueue(apiInstance, onProgress = null) {
     }
   }
 
-  return { success: true, count };
+    return { success: true, count };
+  } finally {
+    isSyncingQueue = false;
+  }
 }
