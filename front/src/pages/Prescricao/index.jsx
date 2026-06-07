@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { api } from '../../api';
-import { exportarReceitaPDF } from '../../services/pdfExportService';
-import { criarBlocoGenesis, criarBlocoExportacao } from '../../services/blockchainService';
 import '../Anamnese/styles.css'; // Reuse existing theme and layout styles
 import '../PacienteDetalhe/styles.css';
 
@@ -83,102 +81,19 @@ export default function Prescricao() {
     setLoading(true);
 
     try {
-      let response;
       if (editarId) {
-        response = await api.put(`/receitas/${editarId}`, {
+        await api.put(`/receitas/${editarId}`, {
           medicamentos: medicamentos.trim(),
           observacoes: observacoes.trim() || null
         });
         alert('Receita digital atualizada com sucesso!');
       } else {
-        response = await api.post('/receitas', {
+        await api.post('/receitas', {
           paciente_id: parseInt(pacienteId),
           medicamentos: medicamentos.trim(),
           observacoes: observacoes.trim() || null
         });
         alert('Receita digital elaborada com sucesso!');
-      }
-
-      // Fluxo de Emissão Automática de PDF com Blockchain
-      if (response && response.id) {
-        try {
-          const receitaCompleta = await api.get(`/receitas/${response.id}`);
-          const medico = {
-            nome: receitaCompleta.medico_nome,
-            crm: receitaCompleta.medico_crm,
-            especialidade: receitaCompleta.medico_especialidade
-          };
-          const pac = {
-            nome: receitaCompleta.paciente_nome,
-            cpf: receitaCompleta.paciente_cpf,
-            data_nascimento: receitaCompleta.paciente_nascimento,
-            sexo: receitaCompleta.paciente_sexo
-          };
-
-          // 1. Buscar último bloco da cadeia (ou criar gênesis)
-          let ultimoBlocoResp = await api.get(`/blockchain/paciente/${pacienteId}/ultimo`);
-          if (!ultimoBlocoResp) {
-            const genesis = await criarBlocoGenesis();
-            ultimoBlocoResp = await api.post('/blockchain', {
-              paciente_id: parseInt(pacienteId),
-              ...genesis,
-            });
-          }
-
-          // 2. Determinar versão para a blockchain
-          const chain = await api.get(`/blockchain/paciente/${pacienteId}`);
-          const blocosDoDoc = (chain || []).filter(
-            b => b.entidade === 'receita' && b.entidade_id === receitaCompleta.id
-          );
-          const versao = blocosDoDoc.length + 1;
-
-          // 3. Criar novo bloco de exportação
-          const novoBloco = await criarBlocoExportacao({
-            blocoAnterior: ultimoBlocoResp,
-            entidade: 'receita',
-            entidade_id: receitaCompleta.id,
-            versao,
-            dadosProntuario: {
-              id: receitaCompleta.id,
-              paciente_id: receitaCompleta.paciente_id,
-              medico_id: receitaCompleta.medico_id,
-              medicamentos: receitaCompleta.medicamentos,
-              observacoes: receitaCompleta.observacoes,
-              criado_em: receitaCompleta.criado_em,
-            },
-            pdfHash: null,
-            usuario: {
-              id: parseInt(localStorage.getItem('userId') || '0'),
-              nome: localStorage.getItem('userName') || 'Médico',
-              role: localStorage.getItem('role') || 'medico',
-            },
-          });
-
-          // 4. Salvar bloco no backend
-          const blocoSalvo = await api.post('/blockchain', {
-            paciente_id: parseInt(pacienteId),
-            ...novoBloco,
-          });
-
-          await exportarReceitaPDF({
-            receita: receitaCompleta,
-            paciente: pac,
-            medico,
-            blocoBlockchain: blocoSalvo
-          });
-        } catch (pdfErr) {
-          console.error('Erro ao buscar receita completa ou registrar na blockchain para PDF:', pdfErr);
-          const medicoFallback = {
-            nome: localStorage.getItem('userName') || 'Médico',
-            crm: localStorage.getItem('userCrm') || '',
-            especialidade: localStorage.getItem('userEspecialidade') || ''
-          };
-          await exportarReceitaPDF({
-            receita: response,
-            paciente: paciente,
-            medico: medicoFallback
-          });
-        }
       }
 
       navigate(`/paciente-detalhe/${pacienteId}`);
@@ -296,7 +211,7 @@ export default function Prescricao() {
               Cancelar
             </button>
             <button type="submit" disabled={loading} className="btn-finalizar">
-              {loading ? 'Salvando...' : (editarId ? 'Salvar Alterações e Emitir' : 'Salvar e Emitir Receita')}
+              {loading ? 'Salvando...' : (editarId ? 'Salvar Alterações' : 'Salvar Receita')}
             </button>
           </div>
         </form>
