@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../api';
 import '../Anamnese/styles.css'; // Reuse existing theme and layout styles
+import '../PacienteDetalhe/styles.css';
 
 export default function Anexo() {
   const navigate = useNavigate();
@@ -135,22 +136,65 @@ export default function Anexo() {
           <h3>Anexos Anteriores</h3>
         </div>
 
-        <div className="historico-lista">
+        <div className="historico-lista" style={{ padding: '1.5rem', backgroundColor: 'var(--bg-card)' }}>
           {historico.length === 0 ? (
             <p style={{ color: '#7f8c8d', fontSize: 14 }}>Nenhum documento anexado ainda.</p>
           ) : (
-            historico.map(anx => {
-              const isPDF = anx.mime_type.includes('pdf');
-              return (
-                <div key={anx.id} className="historico-card">
-                  <div className="timeline-dot"></div>
-                  <span className="historico-data">{formatarDataHora(anx.criado_em)}</span>
-                  <p className="historico-resumo" style={{ marginTop: '4px', fontSize: '13px' }}>
-                    {isPDF ? '🜍 PDF: ' : '☽ Imagem: '} {anx.nome_arquivo}
-                  </p>
-                </div>
-              );
-            })
+            <div className="pd-timeline">
+              {historico.map((anx, index) => {
+                const mime = (anx.mime_type || '').toLowerCase();
+                const ext = (anx.nome_arquivo || '').split('.').pop().toLowerCase();
+                const tamanhoKB = (anx.tamanho_bytes / 1024).toFixed(1);
+
+                let anxClass = 'anxo-other';
+                let anxSymbol = '🝱';
+                let anxSymbolClass = 'icon-antimonio';
+
+                const isDoc = mime.includes('pdf') || mime.includes('word') || mime.includes('text') ||
+                  ['pdf', 'docx', 'doc', 'txt', 'odt', 'rtf', 'xls', 'xlsx', 'csv', 'ppt', 'pptx'].includes(ext);
+                const isImg = mime.includes('image') || mime.includes('video') ||
+                  ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'bmp', 'mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'].includes(ext);
+
+                if (isDoc) {
+                  anxClass = 'anxo-doc';
+                  anxSymbol = '🝰';
+                  anxSymbolClass = 'icon-ar';
+                } else if (isImg) {
+                  anxClass = 'anxo-img';
+                  anxSymbol = '🝮';
+                  anxSymbolClass = 'icon-fosforo';
+                }
+
+                return (
+                  <div key={anx.id} className="pd-timeline-item">
+                    <div className="pd-timeline-marker">
+                      <div className={`pd-timeline-dot log-icon-container ${anxClass} ${index === 0 ? 'recente' : ''}`}>
+                        <span className={`pd-log-icon ${anxSymbolClass}`}>{anxSymbol}</span>
+                      </div>
+                      {index < historico.length - 1 && <div className="pd-timeline-line"></div>}
+                    </div>
+
+                    <div className={`pd-timeline-content anxo-card-${anxClass === 'anxo-doc' ? 'doc' : anxClass === 'anxo-img' ? 'img' : 'other'} ${index === 0 ? 'recente' : ''}`} style={{ padding: '12px 16px' }}>
+                      <div className="pd-timeline-header" style={{ marginBottom: 0 }}>
+                        <div className="pd-timeline-info">
+                          <span className="pd-timeline-data" style={{ fontWeight: '600', color: 'var(--text-heading)', fontSize: '14.5px' }}>
+                            {anx.nome_arquivo}
+                          </span>
+                          <span className="pd-timeline-medico" style={{ fontSize: '12.5px' }}>
+                            Tamanho: {tamanhoKB} KB • Tipo: {anx.mime_type} • Enviado por Dr(a). {anx.medico_nome || 'Médico'} em {formatarDataHora(anx.criado_em)}
+                            {anx.atendimento_data && (
+                              <strong style={{ color: 'var(--primary)', marginLeft: '8px', display: 'block', marginTop: '4px' }}>
+                                (Vinculado à Consulta de {formatarDataHora(anx.atendimento_data)})
+                              </strong>
+                            )}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           )}
         </div>
       </aside>

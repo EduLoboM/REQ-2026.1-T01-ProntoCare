@@ -67,7 +67,9 @@ export default function OfflineStatusBar() {
   }, [isSyncing, handleSync]);
 
   useEffect(() => {
-    updateQueueSize();
+    setTimeout(() => {
+      updateQueueSize();
+    }, 0);
 
     const handleOnline = () => {
       setIsOnline(true);
@@ -95,7 +97,9 @@ export default function OfflineStatusBar() {
     }, 5000);
 
     if (navigator.onLine) {
-      triggerAutoSync();
+      setTimeout(() => {
+        triggerAutoSync();
+      }, 0);
     }
 
     return () => {

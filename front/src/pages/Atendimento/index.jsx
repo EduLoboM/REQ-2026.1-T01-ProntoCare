@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { api } from '../../api';
 import './styles.css';
+import '../PacienteDetalhe/styles.css';
 
 export default function Atendimento() {
   const navigate = useNavigate();
@@ -139,23 +140,41 @@ export default function Atendimento() {
           <h3>Histórico Clínico</h3>
         </div>
 
-        <div className="historico-lista">
+        <div className="historico-lista" style={{ padding: '1.5rem', backgroundColor: 'var(--bg-card)' }}>
           {historico.length === 0 ? (
             <p style={{ color: '#7f8c8d', fontSize: 14 }}>Nenhum registro anterior.</p>
           ) : (
-            historico.map(consulta => (
-              <div key={consulta.id} className="historico-card">
-                <div className="timeline-dot"></div>
-                <span className="historico-data">{formatarDataHora(consulta.criado_em)}</span>
-                <p className="historico-resumo">
-                  {consulta.avaliacao
-                    ? consulta.avaliacao.substring(0, 100) + (consulta.avaliacao.length > 100 ? '...' : '')
-                    : consulta.subjetivo
-                      ? consulta.subjetivo.substring(0, 100) + (consulta.subjetivo.length > 100 ? '...' : '')
-                      : 'Registro clínico'}
-                </p>
-              </div>
-            ))
+            <div className="pd-timeline">
+              {historico.map((consulta, index) => (
+                <div key={consulta.id} className="pd-timeline-item">
+                  <div className="pd-timeline-marker">
+                    <div className={`pd-timeline-dot log-icon-container ${index === 0 ? 'prontuario recente' : ''}`}>
+                      <span className="pd-log-icon icon-sal">🜔</span>
+                    </div>
+                    {index < historico.length - 1 && <div className="pd-timeline-line"></div>}
+                  </div>
+                  <div className={`pd-timeline-content prontuario ${index === 0 ? 'recente' : ''}`} style={{ padding: '12px 16px' }}>
+                    <div className="pd-timeline-header" style={{ marginBottom: 0 }}>
+                      <div className="pd-timeline-info">
+                        <span className="pd-timeline-data" style={{ fontWeight: '600', color: 'var(--text-heading)', fontSize: '14.5px' }}>
+                          {formatarDataHora(consulta.criado_em)}
+                        </span>
+                        <span className="pd-timeline-medico" style={{ fontSize: '12.5px' }}>
+                          Dr(a). {consulta.medico_nome || 'Médico'}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="pd-timeline-resumo" style={{ marginTop: '8px', fontSize: '13px' }}>
+                      {consulta.avaliacao
+                        ? consulta.avaliacao.substring(0, 100) + (consulta.avaliacao.length > 100 ? '...' : '')
+                        : consulta.subjetivo
+                          ? consulta.subjetivo.substring(0, 100) + (consulta.subjetivo.length > 100 ? '...' : '')
+                          : 'Registro clínico'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </aside>

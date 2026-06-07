@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { api } from '../../api';
 import './styles.css';
+import '../PacienteDetalhe/styles.css';
 
 export default function Anamnese() {
   const navigate = useNavigate();
@@ -116,19 +117,37 @@ export default function Anamnese() {
           <h3>Histórico de Anamneses</h3>
         </div>
 
-        <div className="historico-lista">
+        <div className="historico-lista" style={{ padding: '1.5rem', backgroundColor: 'var(--bg-card)' }}>
           {historico.length === 0 ? (
             <p style={{ color: '#7f8c8d', fontSize: 14 }}>Nenhum registro anterior.</p>
           ) : (
-            historico.map(anam => (
-              <div key={anam.id} className="historico-card">
-                <div className="timeline-dot"></div>
-                <span className="historico-data">{formatarDataHora(anam.criado_em)}</span>
-                <p className="historico-resumo">
-                  {anam.conteudo.substring(0, 100) + (anam.conteudo.length > 100 ? '...' : '')}
-                </p>
-              </div>
-            ))
+            <div className="pd-timeline">
+              {historico.map((anam, index) => (
+                <div key={anam.id} className="pd-timeline-item">
+                  <div className="pd-timeline-marker">
+                    <div className={`pd-timeline-dot log-icon-container ${index === 0 ? 'anamnese recente' : ''}`}>
+                      <span className="pd-log-icon icon-sal">🜔</span>
+                    </div>
+                    {index < historico.length - 1 && <div className="pd-timeline-line"></div>}
+                  </div>
+                  <div className={`pd-timeline-content anamnese ${index === 0 ? 'recente' : ''}`} style={{ padding: '12px 16px' }}>
+                    <div className="pd-timeline-header" style={{ marginBottom: 0 }}>
+                      <div className="pd-timeline-info">
+                        <span className="pd-timeline-data" style={{ fontWeight: '600', color: 'var(--text-heading)', fontSize: '14.5px' }}>
+                          {formatarDataHora(anam.criado_em)}
+                        </span>
+                        <span className="pd-timeline-medico" style={{ fontSize: '12.5px' }}>
+                          Dr(a). {anam.medico_nome || 'Médico'}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="pd-timeline-resumo" style={{ marginTop: '8px', fontSize: '13px' }}>
+                      {anam.conteudo.substring(0, 100) + (anam.conteudo.length > 100 ? '...' : '')}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </aside>

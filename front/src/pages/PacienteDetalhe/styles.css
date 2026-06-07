@@ -395,6 +395,8 @@
   margin-bottom: 1.25rem;
   cursor: pointer;
   transition: var(--transition);
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .pd-timeline-content:hover {
