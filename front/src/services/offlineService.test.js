@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import {
-  initDB,
   cacheGetRequest,
   getCachedRequest,
   getAllCachedKeys,
@@ -145,7 +144,7 @@ class MockDB {
 }
 
 // Configura o indexedDB globalmente nos testes
-global.indexedDB = {
+globalThis.indexedDB = {
   open: () => {
     const req = new MockRequest();
     setTimeout(() => {
@@ -157,7 +156,7 @@ global.indexedDB = {
 };
 
 // Configura localStorage global
-global.localStorage = {
+globalThis.localStorage = {
   getItem: vi.fn((key) => {
     if (key === 'userId') return 'medico_123';
     return null;
@@ -167,14 +166,14 @@ global.localStorage = {
 };
 
 // Configura navigator global
-Object.defineProperty(global, 'navigator', {
+Object.defineProperty(globalThis, 'navigator', {
   value: { onLine: true },
   writable: true,
   configurable: true
 });
 
 // Configura window global
-Object.defineProperty(global, 'window', {
+Object.defineProperty(globalThis, 'window', {
   value: {
     dispatchEvent: vi.fn(),
     location: { reload: vi.fn() }

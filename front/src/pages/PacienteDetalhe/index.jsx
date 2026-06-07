@@ -40,8 +40,6 @@ export default function PacienteDetalhe() {
 
   // RF08: Estado de anexos do paciente
   const [anexos, setAnexos] = useState([]);
-  const [enviandoAnexo, setEnviandoAnexo] = useState(false);
-  const [filtroAtendimentoId, setFiltroAtendimentoId] = useState('');
   const [visualizandoAnexo, setVisualizandoAnexo] = useState(null);
   const [carregandoArquivo, setCarregandoArquivo] = useState(false);
 
@@ -283,59 +281,6 @@ export default function PacienteDetalhe() {
     } finally {
       setVerificando(false);
     }
-  }
-
-  // RF08: Fazer upload de anexo
-  async function handleUploadAnexo(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    if (file.size > 5 * 1024 * 1024) {
-      alert('Tamanho limite excedido. O arquivo deve ter no máximo 5MB.');
-      event.target.value = '';
-      return;
-    }
-
-    setEnviandoAnexo(true);
-
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      try {
-        const base64Data = e.target.result.split(',')[1];
-        
-        await api.post('/anexos', {
-          paciente_id: parseInt(id),
-          atendimento_id: filtroAtendimentoId ? parseInt(filtroAtendimentoId) : null,
-          nome_arquivo: file.name,
-          mime_type: file.type || 'application/octet-stream',
-          tamanho_bytes: file.size,
-          dados_base64: base64Data
-        });
-
-        alert('Arquivo anexado com sucesso!');
-        setFiltroAtendimentoId('');
-        setMostrarModalAnexo(false);
-        
-        // Recarrega os dados
-        const anxs = await api.get(`/anexos/paciente/${id}`);
-        setAnexos(anxs || []);
-        
-        // Atualiza logs de auditoria
-        const logData = await api.get(`/logs/paciente/${id}`);
-        setLogs(logData);
-      } catch (err) {
-        alert('Erro ao anexar arquivo: ' + (err.message || 'Erro de conexão'));
-      } finally {
-        setEnviandoAnexo(false);
-        event.target.value = '';
-      }
-    };
-    reader.onerror = () => {
-      alert('Erro ao ler o arquivo.');
-      setEnviandoAnexo(false);
-      event.target.value = '';
-    };
-    reader.readAsDataURL(file);
   }
 
   // RF08: Visualizar ou baixar o anexo

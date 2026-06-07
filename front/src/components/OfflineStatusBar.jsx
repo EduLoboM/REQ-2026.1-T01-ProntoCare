@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { api } from '../api';
 import {
   getQueueSize,
@@ -17,8 +17,62 @@ export default function OfflineStatusBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const fileInputRef = useRef(null);
 
+  const updateQueueSize = useCallback(async () => {
+    try {
+      const size = await getQueueSize();
+      setQueueSize(size);
+      if (size > 0) {
+        // Auto-expande se tiver itens pendentes
+        setIsExpanded(true);
+      }
+    } catch (e) {
+      console.error('Erro ao ler tamanho da fila offline:', e);
+    }
+  }, []);
+
+  const handleSync = useCallback(async () => {
+    if (isSyncing) return;
+    setIsSyncing(true);
+    setSyncProgress('Iniciando sincronização...');
+    setStatusMessage('');
+
+    try {
+      const result = await syncOfflineQueue(api, (current, total) => {
+        setSyncProgress(`Sincronizando: ${current + 1} de ${total} alteração(ões)...`);
+      });
+
+      if (result.success) {
+        setQueueSize(0);
+        setStatusMessage(result.count > 0 ? 'Sincronização concluída!' : '');
+        setSyncProgress('');
+        
+        // Se houve itens sincronizados, recarrega a página para atualizar os IDs e dados
+        if (result.count > 0) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        }
+      }
+    } catch (error) {
+      console.error('Falha na sincronização:', error);
+      setStatusMessage(error.message || 'Erro ao sincronizar com o servidor.');
+      setSyncProgress('');
+    } finally {
+      setIsSyncing(false);
+      updateQueueSize();
+    }
+  }, [isSyncing, updateQueueSize]);
+
+  const triggerAutoSync = useCallback(async () => {
+    const size = await getQueueSize();
+    if (size > 0 && !isSyncing) {
+      handleSync();
+    }
+  }, [isSyncing, handleSync]);
+
   useEffect(() => {
     // Atualiza o tamanho inicial da fila
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     updateQueueSize();
 
     const handleOnline = () => {
@@ -62,60 +116,7 @@ export default function OfflineStatusBar() {
       window.removeEventListener('offline-queue-changed', handleQueueChanged);
       clearInterval(interval);
     };
-  }, [isOnline]);
-
-  const updateQueueSize = async () => {
-    try {
-      const size = await getQueueSize();
-      setQueueSize(size);
-      if (size > 0) {
-        // Auto-expande se tiver itens pendentes
-        setIsExpanded(true);
-      }
-    } catch (e) {
-      console.error('Erro ao ler tamanho da fila offline:', e);
-    }
-  };
-
-  const triggerAutoSync = async () => {
-    const size = await getQueueSize();
-    if (size > 0 && !isSyncing) {
-      handleSync();
-    }
-  };
-
-  const handleSync = async () => {
-    if (isSyncing) return;
-    setIsSyncing(true);
-    setSyncProgress('Iniciando sincronização...');
-    setStatusMessage('');
-
-    try {
-      const result = await syncOfflineQueue(api, (current, total) => {
-        setSyncProgress(`Sincronizando: ${current + 1} de ${total} alteração(ões)...`);
-      });
-
-      if (result.success) {
-        setQueueSize(0);
-        setStatusMessage(result.count > 0 ? 'Sincronização concluída!' : '');
-        setSyncProgress('');
-        
-        // Se houve itens sincronizados, recarrega a página para atualizar os IDs e dados
-        if (result.count > 0) {
-          setTimeout(() => {
-            window.location.reload();
-          }, 1500);
-        }
-      }
-    } catch (error) {
-      console.error('Falha na sincronização:', error);
-      setStatusMessage(error.message || 'Erro ao sincronizar com o servidor.');
-      setSyncProgress('');
-    } finally {
-      setIsSyncing(false);
-      updateQueueSize();
-    }
-  };
+  }, [isOnline, updateQueueSize, triggerAutoSync]);
 
   const handleExportBackup = async () => {
     try {
@@ -156,6 +157,7 @@ export default function OfflineStatusBar() {
         alert('Backup offline importado com sucesso! A aplicação será recarregada.');
         window.location.reload();
       } catch (err) {
+        console.error('Erro ao importar backup:', err);
         alert('Erro ao restaurar backup: Arquivo inválido ou corrompido.');
       }
     };

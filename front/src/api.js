@@ -80,13 +80,13 @@ async function req(method, path, body) {
 
     if (isNetworkError) {
       if (path === '/auth/login') {
-        throw new Error('Erro de conexão com o servidor. Login impossível.');
+        throw new Error('Erro de conexão com o servidor. Login impossível.', { cause: error });
       }
 
       if (method === 'GET') {
         const cached = await getCachedRequest(path);
         if (cached !== null) return cached;
-        throw new Error('Erro de conexão. Recurso não disponível offline.');
+        throw new Error('Erro de conexão. Recurso não disponível offline.', { cause: error });
       } else {
         let tempId = null;
         if (method === 'POST') {

@@ -20,17 +20,17 @@ export function initDB() {
 
     request.onupgradeneeded = (e) => {
       const db = e.target.result;
-      
+
       // Store para requisições GET cacheadas
       if (!db.objectStoreNames.contains('get_cache')) {
         db.createObjectStore('get_cache', { keyPath: 'path' });
       }
-      
+
       // Store para fila de escrita offline (POST, PUT, DELETE)
       if (!db.objectStoreNames.contains('offline_queue')) {
         db.createObjectStore('offline_queue', { keyPath: 'id', autoIncrement: true });
       }
-      
+
       // Store para mapear ID temporário -> ID real do servidor
       if (!db.objectStoreNames.contains('temp_id_map')) {
         db.createObjectStore('temp_id_map', { keyPath: 'tempId' });
@@ -356,7 +356,7 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         email: body.email || '',
         historico_clinico: body.historico_clinico || '',
       };
-      
+
       // Adiciona na lista geral e suas buscas
       await updateMatchingCaches('/pacientes', (list) => {
         if (Array.isArray(list)) {
@@ -364,10 +364,10 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         }
         return list;
       });
-      
+
       // Cria detalhe individual
       await cacheGetRequest(`/pacientes/${tempId}`, newPaciente);
-    } 
+    }
     else if (path === '/atendimentos') {
       const newAtendimento = {
         id: tempId,
@@ -382,9 +382,9 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         altura: body.altura || null,
         medico_id: body.medico_id || localStorage.getItem('userId'),
       };
-      
+
       const pId = newAtendimento.paciente_id;
-      
+
       // Adiciona na lista de atendimentos do paciente
       await updateMatchingCaches(`/atendimentos/paciente/${pId}`, (list) => {
         if (Array.isArray(list)) {
@@ -407,9 +407,9 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         antecedentes_pessoais: body.antecedentesPessoais || body.antecedentes_pessoais || '',
         medico_id: body.medico_id || localStorage.getItem('userId'),
       };
-      
+
       const pId = newAnamnese.paciente_id;
-      
+
       // Adiciona na lista de anamneses do paciente
       await updateMatchingCaches(`/anamneses/paciente/${pId}`, (list) => {
         if (Array.isArray(list)) {
@@ -452,9 +452,9 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         medico_nome: localStorage.getItem('userName') || 'Médico',
         dados_base64: body.dados_base64
       };
-      
+
       const pId = newAnexo.paciente_id;
-      
+
       await updateMatchingCaches(`/anexos/paciente/${pId}`, (list) => {
         if (Array.isArray(list)) {
           return [newAnexo, ...list];
@@ -475,9 +475,9 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         medico_crm: localStorage.getItem('userCrm') || '',
         medico_especialidade: localStorage.getItem('userEspecialidade') || ''
       };
-      
+
       const pId = newReceita.paciente_id;
-      
+
       await updateMatchingCaches(`/receitas/paciente/${pId}`, (list) => {
         if (Array.isArray(list)) {
           return [newReceita, ...list];
@@ -487,14 +487,14 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
 
       await cacheGetRequest(`/receitas/${tempId}`, newReceita);
     }
-  } 
+  }
   else if (method === 'PUT') {
     if (path.startsWith('/pacientes/')) {
       const id = path.split('/')[2];
-      
+
       // Atualiza detalhe
       await updateCacheEntry(`/pacientes/${id}`, (paciente) => ({ ...paciente, ...body }));
-      
+
       // Atualiza listagens
       await updateMatchingCaches('/pacientes', (list) => {
         if (Array.isArray(list)) {
@@ -505,10 +505,10 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
     }
     else if (path.startsWith('/atendimentos/')) {
       const id = path.split('/')[2];
-      
+
       // Atualiza detalhe
       await updateCacheEntry(`/atendimentos/${id}`, (item) => ({ ...item, ...body }));
-      
+
       // Atualiza nas listas de todos os pacientes
       const keys = await getAllCachedKeys();
       for (const key of keys) {
@@ -524,10 +524,10 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
     }
     else if (path.startsWith('/anamneses/')) {
       const id = path.split('/')[2];
-      
+
       // Atualiza detalhe
       await updateCacheEntry(`/anamneses/${id}`, (item) => ({ ...item, ...body }));
-      
+
       // Atualiza nas listas de todos os pacientes
       const keys = await getAllCachedKeys();
       for (const key of keys) {
@@ -541,18 +541,18 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
         }
       }
     }
-  } 
+  }
   else if (method === 'DELETE') {
     if (path.startsWith('/pacientes/')) {
       const parts = path.split('/');
       const id = parts[2];
       const isPermanent = parts[3] === 'permanente';
-      
+
       const db = await initDB();
       if (isPermanent) {
         const tx = db.transaction('get_cache', 'readwrite');
         tx.objectStore('get_cache').delete(`/pacientes/${id}`);
-        
+
         await updateMatchingCaches('/pacientes', (list) => {
           if (Array.isArray(list)) {
             return list.filter(p => p.id != id);
@@ -575,7 +575,7 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
       const db = await initDB();
       const tx = db.transaction('get_cache', 'readwrite');
       tx.objectStore('get_cache').delete(`/atendimentos/${id}`);
-      
+
       const keys = await getAllCachedKeys();
       for (const key of keys) {
         if (key.startsWith('/atendimentos/paciente/')) {
@@ -593,7 +593,7 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
       const db = await initDB();
       const tx = db.transaction('get_cache', 'readwrite');
       tx.objectStore('get_cache').delete(`/anamneses/${id}`);
-      
+
       const keys = await getAllCachedKeys();
       for (const key of keys) {
         if (key.startsWith('/anamneses/paciente/')) {
@@ -611,7 +611,7 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
       const db = await initDB();
       const tx = db.transaction('get_cache', 'readwrite');
       tx.objectStore('get_cache').delete(`/anexos/${id}`);
-      
+
       const keys = await getAllCachedKeys();
       for (const key of keys) {
         if (key.startsWith('/anexos/paciente/')) {
@@ -629,7 +629,7 @@ export async function applyOptimisticUpdate(method, path, body, tempId) {
       const db = await initDB();
       const tx = db.transaction('get_cache', 'readwrite');
       tx.objectStore('get_cache').delete(`/receitas/${id}`);
-      
+
       const keys = await getAllCachedKeys();
       for (const key of keys) {
         if (key.startsWith('/receitas/paciente/')) {
@@ -663,7 +663,7 @@ export async function syncOfflineQueue(apiInstance, onProgress = null) {
   const replaceTempIds = (value, map) => {
     if (!value) return value;
     let serialized = JSON.stringify(value);
-    
+
     Object.keys(map).forEach(tempId => {
       const realId = map[tempId];
       // Substitui ocorrências do tempId na string JSON
@@ -707,17 +707,17 @@ export async function syncOfflineQueue(apiInstance, onProgress = null) {
       count++;
     } catch (error) {
       console.error('Erro ao reprocessar item da fila offline:', item, error);
-      
-      const isNetworkError = error.message.includes('Failed to fetch') || 
-                             error.message.includes('NetworkError') || 
-                             error.message.includes('network error') ||
-                             error.message.includes('Erro de conexão') ||
-                             error.message.includes('Failed to establish a new connection');
-                             
+
+      const isNetworkError = error.message.includes('Failed to fetch') ||
+        error.message.includes('NetworkError') ||
+        error.message.includes('network error') ||
+        error.message.includes('Erro de conexão') ||
+        error.message.includes('Failed to establish a new connection');
+
       if (isNetworkError) {
-        throw new Error('Sincronização interrompida: sem conexão com o servidor.');
+        throw new Error('Sincronização interrompida: sem conexão com o servidor.' + error, { cause: error });
       }
-      
+
       // Em caso de outro erro (Ex: validação 400 ou conflito 409), remove da fila
       // para não travar o fluxo indefinidamente, registrando o problema.
       await removeQueueItem(item.id);
