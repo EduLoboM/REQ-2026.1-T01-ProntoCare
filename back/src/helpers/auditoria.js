@@ -92,14 +92,23 @@ async function registrarEdicao({ paciente_id, entidade, entidade_id, antes, depo
 
     if (strAntigo !== strNovo) {
       const isSensivel = camposSensiveis.includes(campo);
+      let acaoFinal = 'edicao';
+      if (campo === 'ativo') {
+        if (strAntigo === 'false' && strNovo === 'true') {
+          acaoFinal = 'reativacao';
+        } else if (strAntigo === 'true' && strNovo === 'false') {
+          acaoFinal = 'desativacao';
+        }
+      }
       inserts.push(
         pool.query(
           `INSERT INTO log_alteracoes (paciente_id, entidade, entidade_id, acao, campo, valor_anterior, valor_novo, usuario_id, usuario_nome, usuario_role, ip, user_agent)
-           VALUES ($1, $2, $3, 'edicao', $4, $5, $6, $7, $8, $9, $10, $11)`,
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
           [
             paciente_id,
             entidade,
             entidade_id,
+            acaoFinal,
             NOMES_CAMPOS[campo] || campo,
             isSensivel ? '***' : strAntigo || null,
             isSensivel ? '***' : strNovo || null,
