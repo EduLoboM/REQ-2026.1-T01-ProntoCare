@@ -8,10 +8,8 @@ Como ponto de parada crítico antes do planejamento da sprint, cada História de
 
 * **Estrutura de Declaração e Glossário (INVEST - Pequena e Negociável):** O item deve seguir o formato padrão orientado a valor:
 > "Como **[perfil clínico/operacional]**, quero **[capacidade do sistema]**, para **[benefício real de negócio ou assistência]**".
-> Termos complexos do domínio de saúde ou arquitetura (ex: SOAP, Dexie.js, ICP-Brasil) devem estar previamente catalogados no Glossário do projeto para evitar divergências semânticas.
 
-
-* **Critérios de Aceitação e Testabilidade (INVEST - Testável):** Devem ser descritos por meio de condições diretamente observáveis e mensuráveis, cobrindo o fluxo nominal e as exceções da funcionalidade. **É terminantemente proibido o uso de adjetivos vagos ou subjetivos** (como *"interface amigável"*, *"carregamento rápido"* ou *"notificar regularmente"*).
+* **Critérios de Aceitação e Testabilidade (INVEST - Testável):** Devem ser descritos por meio de condições diretamente observáveis e mensuráveis, cobrindo o fluxo nominal e as exceções da funcionalidade. **Sendo proibido o uso de adjetivos vagos ou subjetivos** (como *"interface amigável"*, *"carregamento rápido"* ou *"notificar regularmente"*).
 * **Validação com o Cliente (INVEST - Valioso):** O valor assistencial ou de negócio deve estar nítido. Para itens que envolvam dados sensíveis ou fluxos clínicos (SOAP, prescrições), é obrigatória uma **evidência registrada de homologação com o cliente** (seja via tag ou comentário no backlog), atestando que o Dr. Rogério validou os critérios de aceitação.
 * **Visibilidade de Dependências e Riscos (INVEST - Independente):** Impedimentos técnicos de arquitetura (como chaves de criptografia, persistência local no PWA, ou módulos de assinatura) devem estar resolvidos ou mitigados. Os riscos principais associados ao item (como conformidade com a LGPD ou restrições do CFM) precisam estar explícitos no corpo do card.
 * **Tamanho Ajustado e Estimabilidade (INVEST - Pequeno e Estimável):** A história deve ser compacta o suficiente para ser codificada, integrada e testada dentro de uma única sprint. A equipe técnica deve ter insumos suficientes para estimar o esforço de forma fundamentada (ex: em Pontos de História), sem incertezas impeditivas.
