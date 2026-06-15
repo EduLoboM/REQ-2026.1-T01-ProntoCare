@@ -25,7 +25,7 @@ Explore as seções da documentação do projeto por meio dos painéis interativ
 
     ---
 
-    Confira todas as atas detalhadas de reuniões, rituais ágeis (Planning, Review) e as gravações em vídeo de cada Sprint (Sprints 0 a 6).
+    Confira todas as atas detalhadas de reuniões, rituais ágeis (Planning, Review) e as gravações em vídeo de cada Sprint (Sprints 0 a 7).
 
     :material-video-outline: [Acessar Histórico](atas-e-videos/index.md)
 

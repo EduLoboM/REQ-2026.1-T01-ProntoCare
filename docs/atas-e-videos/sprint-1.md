@@ -15,15 +15,22 @@
 | Fábio | ✅ | ✅ |
 | Uires | ✅ | ✅ |
 
+- **Histórias de Usuário (US) Mapeadas:**
+    - **[US01 / RF01]**: Cadastro de novos pacientes com dados cadastrais básicos e credenciais de acesso.
+    - **[US02 / RF02]**: Atualização de dados cadastrais e credenciais de acesso.
+    - **[US03 / RF03]**: Inativação lógica do registro e perfil de acesso dos pacientes.
+    - **[US04 / RF04]**: Busca e listagem de pacientes utilizando filtros (nome, CPF, status).
+
 - **Pontos principais:**
-    - Planning:
-        - Revisão do documento de visão
-        - Definição dos protótipos de baixa fidelidade
-        - Definição de tarefas para cadastro (us1, us2, us3 e us4)
-    - Review:
-        - Aprovação do documento de visão
-        - Feedback da equipe
-        - verificação de arquitetura
+    - **Planning:**
+        - **Validação Prévia de Requisitos com o Cliente:** Fica registrado que as User Stories (`US01`, `US02`, `US03`, `US04`), os requisitos funcionais associados e os protótipos de baixa fidelidade foram formalmente apresentados e validados junto ao cliente (Dr. Rogério Duarte) no início desta sprint, antes do início do desenvolvimento. Essa validação no início do ciclo garantiu o alinhamento completo do escopo a ser codificado de forma imediata.
+        - Revisão geral do documento de visão.
+        - Definição dos protótipos de baixa fidelidade.
+        - Distribuição de tarefas e planejamento do banco de dados para o módulo de cadastro.
+    - **Review:**
+        - Homologação e aprovação do documento de visão.
+        - Feedback técnico da equipe sobre a arquitetura.
+        - Verificação da persistência e rotas iniciais de cadastro.
     
 ## Daily Scrum
 
@@ -48,11 +55,14 @@ acesse diretamente pelo link: [https://youtu.be/kuSMW1pVD9A](https://youtu.be/ku
 
 ## Entrega Parcial 1 - 09/05/2026
 
-| Verificado? | Validado? |
-| --- | --- |
-| ✅ | ✅ |
+| Funcionalidade / História de Usuário | Verificado? (Equipe) | Validado? (Cliente) |
+| --- | :---: | :---: |
+| **[US01 / RF01]** - Cadastro de pacientes (dados cadastrais básicos) | ✅ | ✅ |
+| **[US02 / RF02]** - Edição e atualização cadastral de pacientes | ✅ | ✅ |
+| **[US03 / RF03]** - Inativação lógica do registro de pacientes | ✅ | ✅ |
+| **[US04 / RF04]** - Busca e filtragem de pacientes | ✅ | ✅ |
 
-Infelizmente a entrega não foi gravada e sim confirmada com prints da plataforma que estão disponíveis na reunião de review da Sprint 1.
+**Nota de Validação Clínica:** Os incrementos referentes às funcionalidades desta sprint foram validados anteriormente quanto ao escopo com o cliente Dr. Rogério Duarte, e a entrega do software foi formalmente homologada por ele através de prints e discussões na reunião de Review da Sprint 1, atestando conformidade com as regras de negócio clínicas.
 
 #### Histórico de Revisões
 

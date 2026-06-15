@@ -76,6 +76,15 @@ Acompanhe os rituais ágeis e o andamento do projeto por meio das sprints conclu
 
     :material-wifi-off: [Ata e Vídeos da Sprint 6](sprint-6.md)
 
+-   __Sprint 7__
+    *14/06/2026 – 20/06/2026*
+
+    ---
+
+    Sincronização automática de dados offline, logs de auditoria e conformidade legal com a LGPD.
+
+    :material-sync: [Ata e Vídeos da Sprint 7](sprint-7.md)
+
 </div>
 
 ---
