@@ -60,7 +60,11 @@ A partir do cruzamento de VN e PT, as User Stories são classificadas em um **gr
 - **Origem do Limiar de Valor de Negócio (VN >= 4)**: O corte em 4 garante que apenas funcionalidades classificadas como "Altas" ou "Críticas" entrem no MVP. Isso ocorre porque recursos com VN de 1 a 3 (como análises automáticas por IA ou termos secundários) representam ótimas conveniências assistenciais ou de automação, mas sua ausência não impede o médico de atender o paciente e cumprir os regulamentos básicos e mandatórios da LGPD e do CFM.
 - **Origem do Limiar de Pontuação Técnica (PT <= 2.5)**: O corte de 2.5 é o ponto médio matemático exato da escala de complexidade e esforço (1 a 5). User stories com PT > 2.5 representam tarefas que exigem alta complexidade técnica (como criptografia e processamento de assinaturas) ou que ocupam mais de metade de uma sprint inteira de desenvolvimento, configurando maior risco de atraso para o curto cronograma letivo da equipe. Apenas itens com PT <= 2.5 possuem risco técnico baixo e previsibilidade compatível com entregas rápidas.
 
-#### Matriz de Priorização disponivel no Figma JamBoard do projeto
+#### **Matriz de Priorização**
+
+![](../assets/visao-produto/matriz-de-priorizacao.png)
+
+##### **Visualização disponivel no Figma JamBoard do projeto**
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/0vnXsFutjGoQcCT6oQQ2lX/Prontuariantes?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
@@ -68,32 +72,32 @@ A partir do cruzamento de VN e PT, as User Stories são classificadas em um **gr
 
 <div class="backlog-table-container" markdown="1">
 
-| **ID (US / RF)** | **User Story Derivada** | **RNFs relacionados** | **VN** | **CT** | **EI** | **PT** | **Quadrante** | **MVP?** |
-| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **US01 / RF01** | Como médico, eu quero registrar novos pacientes com seus dados cadastrais básicos e credenciais de acesso, para que eu possa iniciar o acompanhamento de histórico clínico e conceder acesso a eles no sistema. | RNF01, RNF02 | 5 | 2 | 2 | 2.0 | 1 | Sim |
-| **US02 / RF02** | Como médico, eu quero atualizar os dados cadastrais e credenciais de acesso dos pacientes, para manter a base de dados e perfis sempre corretos e atualizados. | RNF01, RNF02 | 5 | 2 | 2 | 2.0 | 1 | Sim |
-| **US03 / RF03** | Como médico, eu quero inativar logicamente o registro e o perfil de acesso dos pacientes, para revogar seu acesso e suspender o acompanhamento sem perder o histórico clínico. | RNF01 | 4 | 2 | 1 | 1.5 | 1 | Sim |
-| **US04 / RF04** | Como médico, eu quero buscar e listar pacientes e perfis utilizando filtros (ex: nome, CPF, status de acesso), para gerenciar as credenciais e localizar o prontuário da pessoa atendida. | \- | 4 | 2 | 2 | 2.0 | 1 | Sim |
-| **US05 / RF05** | Como médico ou administrador da clínica, eu quero exportar a base de dados completa dos pacientes em formato JSON, para garantir a portabilidade das informações e evitar o aprisionamento tecnológico (vendor lock-in). | \- | 4 | 3 | 2 | 2.5 | 1 | Sim |
-| **US06 / RF06** | Como médico, eu quero registrar prontuários estruturados no padrão SOAP no histórico clínico do paciente (preenchendo dados subjetivos, objetivos, avaliação e plano, incluindo anamnese em texto livre e a anexação de exames/documentos), para centralizar e manter o registro completo das informações de atendimento. | RNF01, RNF05 | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US07 / RF07** | Como médico, eu quero visualizar uma linha do tempo cronológica com todo o histórico clínico do paciente, para compreender rapidamente a evolução do quadro de saúde e os tratamentos anteriores durante a consulta. | \- | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US08 / RF08** | Como médico, eu quero assinar digitalmente o prontuário utilizando um certificado padrão ICP-Brasil, para garantir a autoria, a integridade e a validade jurídica do atendimento médico realizado. | RNF01, RNF05 | 4 | 3 | 4 | 3.5 | 2 | Sim |
-| **US09 / RF09** | Como médico, eu quero gerar e exportar um arquivo PDF contendo o prontuário completo do paciente, para facilitar o compartilhamento físico, arquivamento ou a entrega do documento ao próprio paciente quando solicitado. | RNF08 | 4 | 3 | 3 | 3.0 | 2 | Sim |
-| **US10 / RF10** | Como médico, eu quero visualizar um calendário semanal das minhas consultas, para ter uma visão clara e organizada da minha agenda e planejar meu dia de trabalho. | \- | 5 | 2 | 2 | 2.0 | 1 | Sim |
-| **US11 / RF11** | Como médico, eu quero agendar novas consultas e/ou teleconsultas, vinculando paciente, data e horário, para gerenciar a marcação de atendimentos de forma eficiente. | RNF01 | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US12 / RF12** | Como médico, eu quero visualizar a listagem de consultas agendadas para o dia atual, para acompanhar meu fluxo de trabalho. | \- | 5 | 2 | 2 | 2.0 | 1 | Sim |
-| **US13 / RF13** | Como médico, eu quero alterar o status de uma consulta do dia atual (ex: Agendado, Em atendimento, Finalizado), para atualizar o andamento do atendimento em tempo real. | RNF01 | 5 | 2 | 2 | 2.0 | 1 | Sim |
-| **US14 / RF14** | Como médico, eu quero elaborar receitas médicas digitais no sistema, para formalizar a prescrição de medicamentos de forma clara e padronizada. | RNF01 | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US15 / RF15** | Como médico, eu quero assinar digitalmente a receita utilizando um certificado padrão ICP-Brasil, para garantir a autenticidade e a validade legal da prescrição. | RNF01, RNF05 | 4 | 3 | 3 | 3.0 | 2 | Sim |
-| **US16 / RF16** | Como médico, eu quero salvar a receita gerada em formato PDF, para imprimi-la ou enviá-la ao paciente de forma segura. | \- | 5 | 3 | 2 | 2.5 | 1 | Sim |
-| **US17 / RF17** | Como médico, eu quero que o sistema analise a prescrição em tempo real, utilizando IA para alertar sobre interações medicamentosas, garantindo a segurança do paciente. | RNF07 | 3 | 4 | 4 | 4.0 | 4 | Não |
-| **US18 / RF18** | Como médico, eu quero manter um log visível de todas as receitas anteriormente prescritas ao paciente, para consultar o histórico de tratamentos ao longo do tempo. | \- | 4 | 3 | 2 | 2.5 | 1 | Sim |
-| **US19 / RF19** | Como médico, eu quero que o sistema gere o Termo de Consentimento (TCLE) e permita sua assinatura digital (ICP-Brasil), para formalizar o aceite do paciente antes do atendimento e cumprir exigências legais. | RNF01, RNF05 | 3 | 3 | 3 | 3.0 | 4 | Não |
-| **US20 / RF20** | Como administrador, eu quero cadastrar novos perfis de acesso de médicos, para registrar novos profissionais no sistema. | RNF01, RNF02 | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US21 / RF21** | Como administrador, eu quero editar os perfis de acesso de médicos, para atualizar seus dados cadastrais e permissões. | RNF01, RNF02 | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US22 / RF22** | Como administrador, eu quero inativar logicamente perfis de acesso de médicos, para suspender o acesso de profissionais que não atuam mais no sistema. | RNF01 | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US23 / RF23** | Como administrador, eu quero buscar e listar perfis de acesso de médicos, para gerenciar as credenciais e contas de profissionais do sistema. | \- | 5 | 3 | 3 | 3.0 | 2 | Sim |
-| **US24 / RF24** | Como médico ou administrador, eu quero visualizar, buscar e filtrar o histórico de logs de auditoria sobre dados sensíveis, para rastrear todas as operações e garantir a conformidade e segurança. | \- | 4 | 3 | 3 | 3.0 | 2 | Sim |
+| **ID (US / RF)** | **User Story Derivada** | **RNFs relacionados** | **VN** | **CT** | **EI** | **PT** | **Quadrante** |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **US01 / RF01** | Como médico, eu quero registrar novos pacientes com seus dados cadastrais básicos e credenciais de acesso, para que eu possa iniciar o acompanhamento de histórico clínico e conceder acesso a eles no sistema. | RNF01, RNF02 | 5 | 2 | 2 | 2.0 | 1 |
+| **US02 / RF02** | Como médico, eu quero atualizar os dados cadastrais e credenciais de acesso dos pacientes, para manter a base de dados e perfis sempre corretos e atualizados. | RNF01, RNF02 | 5 | 2 | 2 | 2.0 | 1 |
+| **US03 / RF03** | Como médico, eu quero inativar logicamente o registro e o perfil de acesso dos pacientes, para revogar seu acesso e suspender o acompanhamento sem perder o histórico clínico. | RNF01 | 4 | 2 | 1 | 1.5 | 1 |
+| **US04 / RF04** | Como médico, eu quero buscar e listar pacientes e perfis utilizando filtros (ex: nome, CPF, status de acesso), para gerenciar as credenciais e localizar o prontuário da pessoa atendida. | \- | 4 | 2 | 2 | 2.0 | 1 |
+| **US05 / RF05** | Como médico ou administrador da clínica, eu quero exportar a base de dados completa dos pacientes em formato JSON, para garantir a portabilidade das informações e evitar o aprisionamento tecnológico (vendor lock-in). | \- | 4 | 3 | 2 | 2.5 | 1 |
+| **US06 / RF06** | Como médico, eu quero registrar prontuários estruturados no padrão SOAP no histórico clínico do paciente (preenchendo dados subjetivos, objetivos, avaliação e plano, incluindo anamnese em texto livre e a anexação de exames/documentos), para centralizar e manter o registro completo das informações de atendimento. | RNF01, RNF05 | 5 | 3 | 3 | 3.0 | 2 |
+| **US07 / RF07** | Como médico, eu quero visualizar uma linha do tempo cronológica com todo o histórico clínico do paciente, para compreender rapidamente a evolução do quadro de saúde e os tratamentos anteriores durante a consulta. | \- | 5 | 3 | 3 | 3.0 | 2 |
+| **US08 / RF08** | Como médico, eu quero assinar digitalmente o prontuário utilizando um certificado padrão ICP-Brasil, para garantir a autoria, a integridade e a validade jurídica do atendimento médico realizado. | RNF01, RNF05 | 4 | 3 | 4 | 3.5 | 2 |
+| **US09 / RF09** | Como médico, eu quero gerar e exportar um arquivo PDF contendo o prontuário completo do paciente, para facilitar o compartilhamento físico, arquivamento ou a entrega do documento ao próprio paciente quando solicitado. | RNF08 | 4 | 3 | 3 | 3.0 | 2 |
+| **US10 / RF10** | Como médico, eu quero visualizar um calendário semanal das minhas consultas, para ter uma visão clara e organizada da minha agenda e planejar meu dia de trabalho. | \- | 5 | 2 | 2 | 2.0 | 1 |
+| **US11 / RF11** | Como médico, eu quero agendar novas consultas e/ou teleconsultas, vinculando paciente, data e horário, para gerenciar a marcação de atendimentos de forma eficiente. | RNF01 | 5 | 3 | 3 | 3.0 | 2 |
+| **US12 / RF12** | Como médico, eu quero visualizar a listagem de consultas agendadas para o dia atual, para acompanhar meu fluxo de trabalho. | \- | 5 | 2 | 2 | 2.0 | 1 |
+| **US13 / RF13** | Como médico, eu quero alterar o status de uma consulta do dia atual (ex: Agendado, Em atendimento, Finalizado), para atualizar o andamento do atendimento em tempo real. | RNF01 | 5 | 2 | 2 | 2.0 | 1 |
+| **US14 / RF14** | Como médico, eu quero elaborar receitas médicas digitais no sistema, para formalizar a prescrição de medicamentos de forma clara e padronizada. | RNF01 | 5 | 3 | 3 | 3.0 | 2 |
+| **US15 / RF15** | Como médico, eu quero assinar digitalmente a receita utilizando um certificado padrão ICP-Brasil, para garantir a autenticidade e a validade legal da prescrição. | RNF01, RNF05 | 4 | 3 | 3 | 3.0 | 2 |
+| **US16 / RF16** | Como médico, eu quero salvar a receita gerada em formato PDF, para imprimi-la ou enviá-la ao paciente de forma segura. | \- | 5 | 3 | 2 | 2.5 | 1 |
+| **US17 / RF17** | Como médico, eu quero que o sistema analise a prescrição em tempo real, utilizando IA para alertar sobre interações medicamentosas, garantindo a segurança do paciente. | RNF07 | 3 | 4 | 4 | 4.0 | 4 |
+| **US18 / RF18** | Como médico, eu quero manter um log visível de todas as receitas anteriormente prescritas ao paciente, para consultar o histórico de tratamentos ao longo do tempo. | \- | 4 | 3 | 2 | 2.5 | 1 |
+| **US19 / RF19** | Como médico, eu quero que o sistema gere o Termo de Consentimento (TCLE) e permita sua assinatura digital (ICP-Brasil), para formalizar o aceite do paciente antes do atendimento e cumprir exigências legais. | RNF01, RNF05 | 3 | 3 | 3 | 3.0 | 4 |
+| **US20 / RF20** | Como administrador, eu quero cadastrar novos perfis de acesso de médicos, para registrar novos profissionais no sistema. | RNF01, RNF02 | 5 | 3 | 3 | 3.0 | 2 |
+| **US21 / RF21** | Como administrador, eu quero editar os perfis de acesso de médicos, para atualizar seus dados cadastrais e permissões. | RNF01, RNF02 | 5 | 3 | 3 | 3.0 | 2 |
+| **US22 / RF22** | Como administrador, eu quero inativar logicamente perfis de acesso de médicos, para suspender o acesso de profissionais que não atuam mais no sistema. | RNF01 | 5 | 3 | 3 | 3.0 | 2 |
+| **US23 / RF23** | Como administrador, eu quero buscar e listar perfis de acesso de médicos, para gerenciar as credenciais e contas de profissionais do sistema. | \- | 5 | 3 | 3 | 3.0 | 2 |
+| **US24 / RF24** | Como médico, administrador ou paciente, eu quero visualizar, buscar e filtrar o histórico de logs de auditoria sobre dados sensíveis, para rastrear todas as operações e garantir a conformidade e segurança. | \- | 4 | 3 | 3 | 3.0 | 2 |
 
 </div>
 
@@ -104,32 +108,36 @@ A partir do cruzamento de VN e PT, as User Stories são classificadas em um **gr
 
 ### **10.2 Definição do MVP**
 
-O MVP (Produto Mínimo Viável) do ProntoCare foi definido com base nos requisitos essenciais para o funcionamento básico da solução, correspondendo a todas as user stories com status **Sim** na coluna "MVP?" da tabela de backlog (Seção 10.1). O foco foi garantir que o médico realize o ciclo assistencial completo de forma autônoma e segura.
+O MVP (Produto Mínimo Viável) do ProntoCare foi definido com base nos requisitos essenciais para o funcionamento básico da solução, correspondendo a todas as user stories nos quadrantes 1 e 2 da matriz de priorização. O foco foi garantir que o médico realize o ciclo assistencial completo de forma autônoma e segura.
 
-| **ID da US** | **Justificativa de inclusão no MVP** |
-| :---: | :--- |
-| **US01** | Funcionalidade fundamental: sem cadastro e perfil de acesso do paciente, nenhum fluxo clínico ou de controle de privacidade pode ser iniciado. |
-| **US02** | Essencial para manter a base de dados e credenciais de acesso do paciente corretas e atualizadas. |
-| **US03** | Necessária para inativar pacientes e revogar seu acesso ao sistema sem perda de histórico clínico. |
-| **US04** | Necessária para localizar o paciente e gerenciar o status de seu perfil de acesso durante o atendimento; viabiliza o acesso ao prontuário. |
-| **US05** | Garante a portabilidade dos dados e evita aprisionamento tecnológico, requisito explícito do cliente. |
-| **US06** | Núcleo funcional do produto: o prontuário estruturado com anamnese e exames anexos é a base do histórico clínico do paciente. |
-| **US07** | Indispensável para a continuidade do cuidado: o médico precisa visualizar a evolução do paciente na linha do tempo. |
-| **US08** | Garante a autoria, a integridade e a validade jurídica do atendimento via certificado ICP-Brasil. |
-| **US09** | Permite o compartilhamento físico e arquivamento do prontuário completo quando solicitado pelo paciente. |
-| **US10** | Permite ao médico organizar sua agenda e planejar os atendimentos da semana. |
-| **US11** | Completa o fluxo de agenda; sem agendamento, o calendário semanal (US10) fica inoperante. |
-| **US12** | Permite ao médico visualizar a lista de atendimentos do dia em tempo real. |
-| **US13** | Permite acompanhar o fluxo de atendimento do dia em tempo real (Agendado → Em atendimento → Finalizado). |
-| **US14** | Parte essencial do fluxo assistencial: a prescrição é uma das saídas principais de toda consulta médica. |
-| **US15** | Garante a autenticidade e a validade legal da prescrição médica via certificado ICP-Brasil. |
-| **US16** | Viabiliza a entrega da receita ao paciente em formato digital para impressão ou envio. |
-| **US18** | Permite consultar tratamentos anteriores durante a consulta, evitando prescrições contraditórias. |
-| **US20** | Requisito de segurança: garante o cadastro controlado de médicos autorizados no sistema. |
-| **US21** | Requisito de segurança: garante a edição e ajuste de permissões de perfis de médicos. |
-| **US22** | Requisito de segurança: permite revogar o acesso de médicos inativos ou desligados. |
-| **US23** | Requisito de segurança: permite ao administrador buscar e listar médicos cadastrados no sistema. |
-| **US24** | Requisito de conformidade: viabiliza a rastreabilidade das operações sobre dados sensíveis (LGPD/CFM). |
+### Tabela de Definição do MVP
+
+| ID da US | Está no MVP? | Critério Técnico de Margem de Corte e Risco |
+| --- | --- | --- |
+| **US01** | **Sim** | **Elegibilidade Direta (Q1):** Alto valor (VN=5) com entrega rápida e previsível (PT=2.0). Risco zero para o cronograma. |
+| **US02** | **Sim** | **Elegibilidade Direta (Q1):** CRUD básico com baixo custo técnico (PT=2.0), necessário para consistência da base. |
+| **US03** | **Sim** | **Elegibilidade Direta (Q1):** Baixíssimo esforço de código (PT=1.5) para mitigar um risco crítico de segurança de acesso. |
+| **US04** | **Sim** | **Elegibilidade Direta (Q1):** Indexação elementar na camada de persistência com baixo impacto no cronograma (PT=2.0). |
+| **US05** | **Sim** | **Elegibilidade Direta (Q1):** Resolução do requisito de portabilidade dentro do teto do limite técnico aceitável (PT=2.5). |
+| **US06** | **Sim** | **Acompanhamento Crítico (Q2):** Core business do sistema (SOAP). Inclusão obrigatória pelo valor (VN=5), exigindo monitoramento estrito devido ao risco técnico elevado (PT=3.0). |
+| **US07** | **Sim** | **Acompanhamento Crítico (Q2):** Linha do tempo possui alta complexidade de interface (PT=3.0), mas é indispensável para a tomada de decisão clínica do MVP. |
+| **US08** | **Sim** | **Restrição Regulatória Mandatória (Q2):** Retém o maior risco técnico da sprint (PT=3.5), porém mantido por ser barreira legal intransponível (ICP-Brasil). |
+| **US09** | **Sim** | **Fatiamento de Escopo (Q2):** Geração de PDF (PT=3.0) necessária para a saída de dados, com escopo restrito ao layout estruturado padrão. |
+| **US10** | **Sim** | **Elegibilidade Direta (Q1):** Módulo temporal base com desenvolvimento previsível (PT=2.0) para viabilizar a jornada do médico. |
+| **US11** | **Sim** | **Acompanhamento Crítico (Q2):** Lógica de agendamento e conflito de horários eleva o custo (PT=3.0), mas é o motor que alimenta as visões da agenda. |
+| **US12** | **Sim** | **Elegibilidade Direta (Q1):** Visão diária simples com alto impacto operacional e baixo esforço de implementação (PT=2.0). |
+| **US13** | **Sim** | **Elegibilidade Direta (Q1):** Máquina de estados elementar para controle de fluxo da consulta com desenvolvimento rápido (PT=2.0). |
+| **US14** | **Sim** | **Acompanhamento Crítico (Q2):** Principal artefato de saída assistencial. Complexidade (PT=3.0) mitigada através do uso de esquemas de dados fixos. |
+| **US15** | **Sim** | **Restrição Regulatória Mandatória (Q2):** Par dependente da US14. Alta complexidade de criptografia (PT=3.0) aceita para garantir a validade jurídica das receitas. |
+| **US16** | **Sim** | **Elegibilidade Direta (Q1):** Exportação local simplificada da receita dentro do limiar técnico seguro (PT=2.5). |
+| **US17** | **Não** | **Exclusão por Ponto de Corte (Q4):** Reprovado nos dois limiares. Valor de negócio secundário (VN=3) e altíssimo risco de atraso (PT=4.0) para o prazo letivo. |
+| **US18** | **Sim** | **Elegibilidade Direta (Q1):** Histórico de receitas baseado em leitura de persistência local, com baixo esforço e alta segurança assistencial (PT=2.5). |
+| **US19** | **Não** | **Exclusão por Ponto de Corte (Q4):** Complexidade incompatível (PT=3.0) com o baixo valor imediato do recurso (VN=3). Substituído por processo manual fora do software. |
+| **US20** | **Sim** | **Fatiamento de Escopo (Q2):** Cadastro de médicos (PT=3.0) restrito estritamente à criação de credenciais básicas de segurança para a clínica piloto. |
+| **US21** | **Sim** | **Acompanhamento Crítico (Q2):** Alteração de permissões monitorada de perto para evitar furos na lógica de controle de acesso (RBAC). |
+| **US22** | **Sim** | **Acompanhamento Crítico (Q2):** Inativação de contas com custo técnico moderado (PT=3.0), mas essencial para a segurança de dados sensíveis. |
+| **US23** | **Sim** | **Fatiamento de Escopo (Q2):** Busca e listagem de profissionais limitada aos filtros essenciais para o controle administrativo inicial. |
+| **US24** | **Sim** | **Restrição de Compliance (Q2):** Registro de trilha de auditoria complexo (PT=3.0), mas compulsório para conformidade legal imediata com a LGPD. |
 
 #### Histórico de Revisões
 

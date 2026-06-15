@@ -6,7 +6,11 @@ Esta lista de requisitos foi elaborada a partir de um processo colaborativo e es
 
 A elicitação dos requisitos combinou múltiplas técnicas — entrevistas estruturadas com o cliente, brainstorming com a equipe, análise do domínio clínico (fluxo SOAP, protocolos do eSUS PEC, normas do CFM) e priorização MoSCoW com participação direta do stakeholder principal — para garantir que o backlog reflita tanto as necessidades operacionais reais do consultório quanto as restrições regulatórias e de segurança inerentes ao tratamento de dados clínicos sensíveis. Os requisitos foram então organizados em dois grupos complementares: **requisitos funcionais (RFs)**, que descrevem as capacidades e comportamentos que o sistema deve oferecer, e **requisitos não funcionais (RNFs)**, que estabelecem os atributos de qualidade, segurança, desempenho e conformidade que condicionam a operação do sistema. A seção 8.3 apresenta a **Matriz Síntese de Rastreabilidade**, que mapeia explicitamente a relação entre cada objetivo específico, característica do produto e requisito, permitindo verificar a cobertura completa do escopo e a consistência do backlog.
 
-#### Matriz de Rastreabilidade disponivel no Figma JamBoard do Projeto
+#### **Matriz de Rastreabilidade**
+
+![](../../assets/visao-produto/matriz-de-rastreabilidade.png)
+
+##### **Visualização disponivel no Figma JamBoard do projeto**
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/0vnXsFutjGoQcCT6oQQ2lX/Prontuariantes?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
