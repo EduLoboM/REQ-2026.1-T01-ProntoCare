@@ -23,6 +23,7 @@ Para solucionar a ineficiência operacional e os riscos de segurança gerados pe
 
 A solução proposta deverá contemplar, de forma preliminar, as seguintes características:
 
+<div class="caracteristicas-table-container" markdown="1">
 | ID | Característica do produto | Descrição resumida | ID | Valor de negócio principal | Contribuição principal | Contribuição secundária |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | CP1 | Prontuário eletrônico estruturado (SOAP) | Registro de atendimentos em campos padronizados (Subjetivo, Objetivo, Avaliação, Plano), com busca e recuperação do histórico clínico por paciente. | VN1 | Padronização e recuperação rápida dos registros clínicos. | OE1 | OE2 |
@@ -34,6 +35,7 @@ A solução proposta deverá contemplar, de forma preliminar, as seguintes carac
 | CP7 | Auditoria e rastreabilidade de acessos | Log automático de todas as operações sobre dados sensíveis (quem acessou, quando, qual registro, qual ação), consultável pelo médico. | VN7 | Rastreabilidade das operações para responsabilização e auditoria. | OE3 | OE2 |
 | CP8 | Conformidade regulatória (LGPD/CFM) | Implementação dos controles exigidos pela LGPD (consentimento, direitos do titular, proteção de dados sensíveis) e pelas resoluções do CFM sobre prontuário eletrônico. | VN8 | Aderência às normas de proteção de dados e do exercício médico. | OE3 | OE5 |
 | CP9 | Emissão padronizada de documentos clínicos | Geração automatizada de prescrições, atestados, encaminhamentos e relatórios a partir dos dados do prontuário, com modelos padronizados que eliminam erros de redação manual. | VN9 | Eliminação de erros e legibilidade garantida na emissão de documentos. | OE5 | OE2 |
+</div>
 
 #### 2.4 Tecnologias a Serem Utilizadas
 

@@ -191,3 +191,44 @@ iframe {
 .scrumxp-table-container td:nth-child(4) { width: 30% !important; } /* Técnica */
 .scrumxp-table-container th:nth-child(5),
 .scrumxp-table-container td:nth-child(5) { width: 25% !important; } /* Resultado */
+
+/* Caracteristicas Table Container */
+.caracteristicas-table-container {
+  width: 100%;
+  overflow-x: hidden !important;
+  margin: 20px 0;
+}
+
+.caracteristicas-table-container table {
+  display: table !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: collapse;
+}
+
+.caracteristicas-table-container th,
+.caracteristicas-table-container td {
+  padding: 8px 6px !important;
+  font-size: 0.82em !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  vertical-align: middle !important;
+}
+
+/* Column widths for Caracteristicas table (7 columns) */
+.caracteristicas-table-container th:nth-child(1),
+.caracteristicas-table-container td:nth-child(1) { width: 6% !important; font-weight: bold; text-align: center !important; } /* ID CP */
+.caracteristicas-table-container th:nth-child(2),
+.caracteristicas-table-container td:nth-child(2) { width: 22% !important; } /* Característica */
+.caracteristicas-table-container th:nth-child(3),
+.caracteristicas-table-container td:nth-child(3) { width: 34% !important; } /* Descrição */
+.caracteristicas-table-container th:nth-child(4),
+.caracteristicas-table-container td:nth-child(4) { width: 6% !important; font-weight: bold; text-align: center !important; } /* ID VN */
+.caracteristicas-table-container th:nth-child(5),
+.caracteristicas-table-container td:nth-child(5) { width: 20% !important; } /* Valor de negócio */
+.caracteristicas-table-container th:nth-child(6),
+.caracteristicas-table-container td:nth-child(6) { width: 6% !important; text-align: center !important; } /* Contribuição principal */
+.caracteristicas-table-container th:nth-child(7),
+.caracteristicas-table-container td:nth-child(7) { width: 6% !important; text-align: center !important; } /* Contribuição secundária */
+

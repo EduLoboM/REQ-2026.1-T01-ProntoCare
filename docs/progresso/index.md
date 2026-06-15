@@ -5,7 +5,7 @@ icon: material/progress-check
 
 Esta página é dedicada ao acompanhamento do estado atual do projeto ProntoCare através do nosso quadro colaborativo (Figma JamBoard). O quadro é utilizado pela equipe como artefato central para a elicitação de requisitos, mapeamento de objetivos específicos, definição de características do produto (CPs), modelagem do backlog e dinâmicas de priorização, as telas e features podem ser acompanhadas pelas reuniões de review e também pelas entregas parciais na sprint 1, 3 e 6.
 
-![](../../assets/visao-produto/matriz-de-progresso.png)
+![](../assets/visao-produto/matriz-de-progresso.png)
 
 ## :material-bulletin-board: **Quadro Colaborativo do Figma**
 

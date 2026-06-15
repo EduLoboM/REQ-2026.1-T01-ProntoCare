@@ -8,7 +8,7 @@ A elicitação dos requisitos combinou múltiplas técnicas — entrevistas estr
 
 #### **Matriz de Rastreabilidade**
 
-![](../../assets/visao-produto/matriz-de-rastreabilidade.png)
+![](../assets/visao-produto/matriz-de-rastreabilidade.png)
 
 ##### **Visualização disponivel no Figma JamBoard do projeto**
 
