@@ -31,6 +31,15 @@ Navegue pelos vídeos de apresentação do projeto ProntoCare:
 
     :material-presentation-play: [Assistir Vídeo da Entrega 2](entrega-2.md)
 
+-   __Entrega 3__
+    *Concluído*
+
+    ---
+
+    Apresentação do refinamento dos requisitos do sistema, do backlog priorizado e o app no estado atual faltando 6 dos 22 requisitos que fazem parte do MVP.
+
+    :material-presentation-play: [Assistir Vídeo da Entrega 3](entrega-3.md)
+
 </div>
 
 ---
