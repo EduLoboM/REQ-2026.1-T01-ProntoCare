@@ -159,3 +159,22 @@ CREATE TABLE IF NOT EXISTS receitas (
 );
 
 CREATE INDEX IF NOT EXISTS idx_receitas_paciente ON receitas (paciente_id, criado_em DESC);
+
+-- RF10, RF11, RF12, RF13: Tabela de consultas/agenda
+CREATE TABLE IF NOT EXISTS consultas (
+  id SERIAL PRIMARY KEY,
+  paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+  medico_id INT NOT NULL REFERENCES medicos(id) ON DELETE CASCADE,
+  data_hora TIMESTAMPTZ NOT NULL,
+  status VARCHAR(30) NOT NULL DEFAULT 'Agendado', -- 'Agendado', 'Em atendimento', 'Finalizado'
+  criado_em TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  atualizado_em TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_consultas_paciente ON consultas (paciente_id, data_hora DESC);
+CREATE INDEX IF NOT EXISTS idx_consultas_medico ON consultas (medico_id, data_hora DESC);
+
+DROP TRIGGER IF EXISTS trg_consultas_atualizado ON consultas;
+CREATE TRIGGER trg_consultas_atualizado
+  BEFORE UPDATE ON consultas
+  FOR EACH ROW EXECUTE FUNCTION set_atualizado_em();

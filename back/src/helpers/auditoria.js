@@ -27,7 +27,11 @@ const NOMES_CAMPOS = {
   plano: 'Plano (P)',
   finalizado: 'Finalizado',
   conteudo: 'Conteúdo da Anamnese',
+  // Consulta
+  status: 'Status da Consulta',
+  data_hora: 'Data e Hora da Consulta',
 };
+
 
 /**
  * Registra uma entrada de ação genérica no log (criação, exclusão, etc.)
