@@ -19,6 +19,12 @@ async function registrarBloco(req, res) {
     hash_anterior,
     hash,
     bloco_original_id,
+    assinado,
+    assinatura_provedor,
+    assinatura_nome,
+    assinatura_cpf,
+    assinatura_data,
+    assinatura_token
   } = req.body;
 
   if (!paciente_id || indice === undefined || !tipo || !dados_hash || !hash_anterior || !hash) {
@@ -60,8 +66,9 @@ async function registrarBloco(req, res) {
 
     const { rows } = await pool.query(
       `INSERT INTO prontuario_blockchain 
-        (paciente_id, indice, timestamp, tipo, entidade, entidade_id, versao, dados_hash, pdf_hash, hash_anterior, hash, bloco_original_id, usuario_id, usuario_nome, usuario_role)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+        (paciente_id, indice, timestamp, tipo, entidade, entidade_id, versao, dados_hash, pdf_hash, hash_anterior, hash, bloco_original_id, usuario_id, usuario_nome, usuario_role,
+         assinado, assinatura_provedor, assinatura_nome, assinatura_cpf, assinatura_data, assinatura_token)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
        RETURNING *`,
       [
         paciente_id,
@@ -79,6 +86,12 @@ async function registrarBloco(req, res) {
         req.user.id,
         req.user.nome || req.user.user,
         req.user.role,
+        assinado || false,
+        assinatura_provedor || null,
+        assinatura_nome || null,
+        assinatura_cpf || null,
+        assinatura_data || null,
+        assinatura_token || null
       ]
     );
 
@@ -112,7 +125,8 @@ async function listarCadeia(req, res) {
     const { rows } = await pool.query(
       `SELECT id, paciente_id, indice, timestamp, tipo, entidade, entidade_id, versao,
               dados_hash, pdf_hash, hash_anterior, hash, bloco_original_id,
-              usuario_id, usuario_nome, usuario_role, criado_em
+              usuario_id, usuario_nome, usuario_role, criado_em,
+              assinado, assinatura_provedor, assinatura_nome, assinatura_cpf, assinatura_data, assinatura_token
        FROM prontuario_blockchain
        WHERE paciente_id = $1
        ORDER BY indice ASC`,
@@ -150,7 +164,8 @@ async function ultimoBloco(req, res) {
     const { rows } = await pool.query(
       `SELECT id, paciente_id, indice, timestamp, tipo, entidade, entidade_id, versao,
               dados_hash, pdf_hash, hash_anterior, hash, bloco_original_id,
-              usuario_id, usuario_nome, usuario_role, criado_em
+              usuario_id, usuario_nome, usuario_role, criado_em,
+              assinado, assinatura_provedor, assinatura_nome, assinatura_cpf, assinatura_data, assinatura_token
        FROM prontuario_blockchain
        WHERE paciente_id = $1
        ORDER BY indice DESC LIMIT 1`,
@@ -234,4 +249,58 @@ async function verificarIntegridade(req, res) {
   }
 }
 
-module.exports = { registrarBloco, listarCadeia, ultimoBloco, verificarIntegridade };
+/**
+ * Assina digitalmente um bloco de prontuário na blockchain utilizando certificado A3 em nuvem.
+ */
+async function assinarBloco(req, res) {
+  const { id } = req.params;
+  const { provedor, cpf, pin, otp } = req.body;
+
+  if (!provedor || !cpf || !pin || !otp) {
+    return res.status(400).json({ erro: 'Provedor, CPF, PIN e OTP são obrigatórios para assinatura em nuvem.' });
+  }
+
+  try {
+    const { rows } = await pool.query('SELECT * FROM prontuario_blockchain WHERE id = $1', [id]);
+    if (rows.length === 0) return res.status(404).json({ erro: 'Bloco não encontrado.' });
+    const bloco = rows[0];
+
+    // Check doctor permission
+    const paciente = await pool.query('SELECT id, medico_id FROM pacientes WHERE id = $1', [bloco.paciente_id]);
+    if (req.user.role === 'medico' && paciente.rows[0].medico_id !== req.user.id) {
+      return res.status(403).json({ erro: 'Acesso negado.' });
+    }
+
+    const tokenAssinatura = `ICP-Brasil-A3-Cloud:${provedor}:${cpf}:${bloco.hash.substring(0, 20)}:${Date.now()}`;
+
+    const result = await pool.query(
+      `UPDATE prontuario_blockchain 
+       SET assinado = true,
+           assinatura_provedor = $1,
+           assinatura_nome = $2,
+           assinatura_cpf = $3,
+           assinatura_data = NOW(),
+           assinatura_token = $4
+       WHERE id = $5
+       RETURNING *`,
+      [provedor, req.user.nome || 'Médico', cpf, tokenAssinatura, id]
+    );
+
+    // Registra a assinatura no log de auditoria
+    await registrarAcao({
+      paciente_id: bloco.paciente_id,
+      entidade: 'blockchain',
+      entidade_id: parseInt(id),
+      acao: 'assinatura',
+      usuario: req.user,
+      req
+    });
+
+    return res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Erro ao assinar bloco:', err.message);
+    return res.status(500).json({ erro: 'Erro interno.' });
+  }
+}
+
+module.exports = { registrarBloco, listarCadeia, ultimoBloco, verificarIntegridade, assinarBloco };

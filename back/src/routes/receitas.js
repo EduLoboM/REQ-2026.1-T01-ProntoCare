@@ -19,4 +19,7 @@ router.delete('/:id', autenticar, autorizar('medico'), ctrl.excluir);
 // Editar receita (apenas médicos)
 router.put('/:id', autenticar, autorizar('medico'), ctrl.atualizar);
 
+// Assinar receita (apenas médicos)
+router.post('/:id/assinar', autenticar, autorizar('medico'), ctrl.assinar);
+
 module.exports = router;

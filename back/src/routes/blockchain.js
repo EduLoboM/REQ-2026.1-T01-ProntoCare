@@ -16,4 +16,7 @@ router.get('/paciente/:pacienteId/ultimo', autenticar, autorizar('medico', 'admi
 // Verificar integridade da cadeia
 router.get('/paciente/:pacienteId/verificar', autenticar, autorizar('medico', 'admin', 'paciente'), ctrl.verificarIntegridade);
 
+// Assinar bloco da blockchain (apenas médicos)
+router.post('/:id/assinar', autenticar, autorizar('medico'), ctrl.assinarBloco);
+
 module.exports = router;
