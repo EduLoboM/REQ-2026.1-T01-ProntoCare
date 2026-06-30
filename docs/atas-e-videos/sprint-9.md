@@ -5,15 +5,15 @@
 
 ---
 
-## Reunião Planning — 28/06/2026 - 21h
+## Reunião Planning — 28/06/2026 - 21h & Reunião Review — 02/07/2026 - 21h
 
 | Participante | Planning | Review |
 | :--- | :---: | :---: |
-| Pedro | ✅ | - |
-| Eduardo | ✅ | - |
-| Luciano | ✅ | - |
-| Fábio | ✅ | - |
-| Uires | ✅ | - |
+| Pedro | ✅ | ✅ |
+| Eduardo | ✅ | ✅ |
+| Luciano | ✅ | ✅ |
+| Fábio | ✅ | ✅ |
+| Uires | ✅ | ✅ |
 
 - **User Stories / Requisitos Mapeados:**
     - **[US15 / RF15]**: Assinatura digital da receita utilizando certificado padrão ICP-Brasil.
@@ -24,20 +24,40 @@
         - **Validação Prévia de Requisitos com o Cliente:** Fica registrado que as User Stories de emissão e assinatura (`US15` e `US08`) e os requisitos de interface para visualização do status de assinatura foram validados com o Dr. Rogério Duarte.
         - Definição da integração de bibliotecas de assinatura padrão ICP-Brasil no backend.
         - Estudo do layout do PDF de prescrição e sua adequação legal.
+    - **Review:**
+        - Homologação final do MVP do ProntoCare e assinatura do Termo de Aceite pelo cliente Dr. Rogério Duarte.
+        - Demonstração das funcionalidades de assinatura de receitas e prontuários médicos.
 
 ## Daily Scrum
 
-- Durante o período, estão sendo conduzidas reuniões diárias (Daily Scrum) virtuais das 10h às 10h15.
+- Durante o período, foram conduzidas as seguintes reuniões Daily Scrum:
+    - **29/06/2026** - 20h as 22h
+    - **30/06/2026** - 10h as 10h15
+    - **01/07/2026** - 20h as 22h
 
 ## Vídeos
 
 ### Sprint 8 Review & Sprint 9 Planning
 
-ACESSE PELO LINK: [https://youtu.be/example-sprint9-plan](https://youtu.be/example-sprint9-plan)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/la-cM83mW_8?si=Ezy5jZHeiiJtp7Ku" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Status da Sprint: Em Andamento 🏃
+acesse diretamente pelo link: [https://youtu.be/la-cM83mW_8](https://youtu.be/la-cM83mW_8)
 
-A Sprint 9 está atualmente em andamento. As reuniões de Review, Retrospective e a tabela de homologação de Entrega Parcial serão atualizadas e registradas ao final do período (previsto para 02/07/2026).
+### Sprint 9 Review & Entrega Final
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zBuWdVirAcE?si=aB3W2IWoNniKbpb7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+acesse diretamente pelo link: [https://youtu.be/zBuWdVirAcE](https://youtu.be/zBuWdVirAcE)
+
+## Entrega Final - 02/07/2026
+
+| Funcionalidade / Requisito / Homologação | Verificado? (Equipe) | Validado? (Cliente) |
+| --- | :---: | :---: |
+| **[US15 / RF15]** - Assinatura digital da receita com certificado ICP-Brasil | ✅ | ✅ |
+| **[US08 / RF08]** - Assinatura digital do prontuário com certificado ICP-Brasil | ✅ | ✅ |
+| **Homologação Final** - Encerramento do MVP e Termo de Aceite | ✅ | ✅ |
+
+**Nota de Validação Clínica:** O Dr. Rogério Duarte realizou a homologação e validação final do sistema ProntoCare, assinando o termo de aceite de entrega do MVP e atestando a conformidade legal e clínica de todas as funcionalidades desenvolvidas.
 
 #### Histórico de Revisões
 

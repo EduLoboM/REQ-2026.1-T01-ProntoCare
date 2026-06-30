@@ -34,19 +34,28 @@
 
 ## Daily Scrum
 
-- Durante o período, foram conduzidas reuniões diárias (Daily Scrum) virtuais das 10h às 10h15.
+- Durante o período, foram conduzidas as seguintes reuniões Daily Scrum:
+    - **22/06/2026** - 20h as 22h
+    - **23/06/2026** - 10h as 10h15
+    - **24/06/2026** - 20h as 22h
+    - **25/06/2026** - 10h as 10h15
+    - **27/06/2026** - 20h as 22h
 
 ## Vídeos
 
 ### Sprint 7 Review & Sprint 8 Planning
 
-ACESSE PELO LINK: [https://youtu.be/example-sprint8-plan](https://youtu.be/example-sprint8-plan)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kc-yVsL0lOg?si=sBOItCt3nU16H5ZF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+acesse diretamente pelo link: [https://youtu.be/kc-yVsL0lOg](https://youtu.be/kc-yVsL0lOg)
 
 ### Sprint 8 Review & Sprint 9 Planning
 
-ACESSE PELO LINK: [https://youtu.be/example-sprint8-rev](https://youtu.be/example-sprint8-rev)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/la-cM83mW_8?si=Ezy5jZHeiiJtp7Ku" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Entrega Parcial (Consultas, Segurança e Conformidade) - 27/06/2026
+acesse diretamente pelo link: [https://youtu.be/la-cM83mW_8](https://youtu.be/la-cM83mW_8)
+
+## Validação e Homologação - 27/06/2026
 
 | Funcionalidade / Requisito / Conformidade | Verificado? (Equipe) | Validado? (Cliente) |
 | --- | :---: | :---: |

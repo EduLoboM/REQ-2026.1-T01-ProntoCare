@@ -52,7 +52,7 @@ acesse diretamente pelo link: [https://youtu.be/kuSMW1pVD9A](https://youtu.be/ku
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hed-WqOa3yY?si=CCyZ2m5NVvPWKmFS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 acesse diretamente pelo link: [https://youtu.be/hed-WqOa3yY](https://youtu.be/hed-WqOa3yY)
 
-## Entrega Parcial (Homologação de Protótipos e Estrutura de Perfis) - 16/05/2026
+## Validação e Homologação (Protótipos e Estrutura de Perfis) - 16/05/2026
 
 | Funcionalidade / Artefato | Verificado? (Equipe) | Validado? (Cliente) |
 | --- | :---: | :---: |

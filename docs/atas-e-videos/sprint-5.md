@@ -51,7 +51,7 @@ acesse diretamente pelo link: [https://youtu.be/cl_W_ZMp95g](https://youtu.be/cl
 
 Infelizmente, a gravação da reunião Sprint 5 Review & Sprint 6 Planning foi corrompida, resultando na perda do arquivo.
 
-## Entrega Parcial (Offline e Assinatura) - 06/06/2026
+## Validação e Homologação (Offline e Assinatura) - 06/06/2026
 
 | Requisito / História de Usuário | Verificado? (Equipe) | Validado? (Cliente) |
 | --- | :---: | :---: |

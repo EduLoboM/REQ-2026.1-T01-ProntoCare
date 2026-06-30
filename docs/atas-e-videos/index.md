@@ -20,7 +20,7 @@ Acompanhe os rituais ágeis e o andamento do projeto por meio das sprints conclu
 
     Consolidação de feedbacks clínicos e de conformidade legal de todas as Sprints validadas com o Dr. Rogério.
 
-    :octicons-link-external-16: [Acessar Tabela de Feedback](../progresso/progresso-do-projeto.md)
+    :octicons-link-external-16: [Acessar Tabela de Feedback](../planejamento-organizacao/progresso-do-projeto.md)
 
 -   __Sprint 0__
     *19/04/2026 – 02/05/2026*

@@ -56,7 +56,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us01"></span>
 ??? success "US01 — Cadastrar Pacientes (Sprint 1)"
 
-    * **Identificador:** [US01 / RF01](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US01 / RF01](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -97,7 +97,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us02"></span>
 ??? success "US02 — Editar Registros de Pacientes (Sprint 1)"
 
-    * **Identificador:** [US02 / RF02](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US02 / RF02](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -137,7 +137,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us03"></span>
 ??? success "US03 — Inativar Registros de Pacientes (Sprint 1)"
 
-    * **Identificador:** [US03 / RF03](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US03 / RF03](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -177,7 +177,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us04"></span>
 ??? success "US04 — Buscar Pacientes (Sprint 3)"
 
-    * **Identificador:** [US04 / RF04](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US04 / RF04](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -219,7 +219,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us05"></span>
 ??? success "US05 — Exportar Base de Dados Completa (Sprint 5)"
 
-    * **Identificador:** [US05 / RF05](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US05 / RF05](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -259,7 +259,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us06"></span>
 ??? success "US06 — Registrar Prontuário Estruturado SOAP (Sprint 3)"
 
-    * **Identificador:** [US06 / RF06](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US06 / RF06](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -299,7 +299,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us07"></span>
 ??? success "US07 — Histórico Clínico / Linha do Tempo (Sprint 3)"
 
-    * **Identificador:** [US07 / RF07](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US07 / RF07](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -339,7 +339,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us08"></span>
 ??? success "US08 — Assinar Digitalmente o Prontuário (Sprint 9/10)"
 
-    * **Identificador:** [US08 / RF08](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US08 / RF08](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -382,7 +382,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us09"></span>
 ??? success "US09 — Exportar Prontuário em PDF (Sprint 5)"
 
-    * **Identificador:** [US09 / RF09](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US09 / RF09](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -422,7 +422,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us10"></span>
 ??? success "US10 — Visualizar Calendário Semanal (Sprint 8)"
 
-    * **Identificador:** [US10 / RF10](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US10 / RF10](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -462,7 +462,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us11"></span>
 ??? success "US11 — Agendar Consultas / Teleconsultas (Sprint 8)"
 
-    * **Identificador:** [US11 / RF11](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US11 / RF11](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -502,7 +502,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us12"></span>
 ??? success "US12 — Listar Consultas do Dia (Sprint 8)"
 
-    * **Identificador:** [US12 / RF12](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US12 / RF12](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -542,7 +542,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us13"></span>
 ??? success "US13 — Alterar Status da Consulta (Sprint 8)"
 
-    * **Identificador:** [US13 / RF13](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US13 / RF13](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -582,7 +582,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us14"></span>
 ??? success "US14 — Elaborar Receita Digital (Sprint 9)"
 
-    * **Identificador:** [US14 / RF14](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US14 / RF14](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -622,7 +622,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us15"></span>
 ??? success "US15 — Assinar Digitalmente a Receita (Sprint 9/10)"
 
-    * **Identificador:** [US15 / RF15](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US15 / RF15](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -662,7 +662,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us16"></span>
 ??? success "US16 — Emitir Receita Digital / PDF (Sprint 9)"
 
-    * **Identificador:** [US16 / RF16](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US16 / RF16](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -702,7 +702,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us17"></span>
 ??? danger "US17 — Analisar Prescrição por IA (Fora do MVP)"
 
-    * **Identificador:** [US17 / RF17](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US17 / RF17](backlog-de-produto.md)
     * **Status:** Fora do MVP :material-close-circle:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -741,7 +741,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us18"></span>
 ??? success "US18 — Histórico de Receitas do Paciente (Sprint 9)"
 
-    * **Identificador:** [US18 / RF18](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US18 / RF18](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -781,7 +781,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us19"></span>
 ??? danger "US19 — Gerar e Assinar TCLE (Fora do MVP)"
 
-    * **Identificador:** [US19 / RF19](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US19 / RF19](backlog-de-produto.md)
     * **Status:** Fora do MVP :material-close-circle:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -820,7 +820,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us20"></span>
 ??? success "US20 — Cadastrar Médicos (Sprint 3)"
 
-    * **Identificador:** [US20 / RF20](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US20 / RF20](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -862,7 +862,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us21"></span>
 ??? success "US21 — Editar Perfis de Médicos (Sprint 1)"
 
-    * **Identificador:** [US21 / RF21](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US21 / RF21](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -902,7 +902,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us22"></span>
 ??? success "US22 — Inativar Perfis de Médicos (Sprint 1)"
 
-    * **Identificador:** [US22 / RF22](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US22 / RF22](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -942,7 +942,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us23"></span>
 ??? success "US23 — Buscar Perfis de Médicos (Sprint 1)"
 
-    * **Identificador:** [US23 / RF23](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US23 / RF23](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -982,7 +982,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 <span id="us24"></span>
 ??? success "US24 — Consultar Logs de Auditoria (Sprint 5)"
 
-    * **Identificador:** [US24 / RF24](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [US24 / RF24](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Declaração INVEST
@@ -1028,7 +1028,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf01"></span>
 ??? success "RNF01 — Logs de Auditoria com Hashing (Sprint 7)"
 
-    * **Identificador:** [RNF01](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF01](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1061,7 +1061,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf02"></span>
 ??? success "RNF02 — Criptografia de Credenciais com bcrypt (Sprint 8)"
 
-    * **Identificador:** [RNF02](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF02](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1093,7 +1093,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf03"></span>
 ??? success "RNF03 — Usabilidade / Operação Offline (Sprint 6)"
 
-    * **Identificador:** [RNF03](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF03](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1126,7 +1126,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf04"></span>
 ??? success "RNF04 — Sincronização e Backup Diário (Sprint 6)"
 
-    * **Identificador:** [RNF04](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF04](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1158,7 +1158,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf05"></span>
 ??? success "RNF05 — Conformidade SBIS / CFM (Sprint 8)"
 
-    * **Identificador:** [RNF05](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF05](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1192,7 +1192,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf06"></span>
 ??? success "RNF06 — Responsividade de Interface (Sprint 1)"
 
-    * **Identificador:** [RNF06](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF06](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1224,7 +1224,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf08"></span>
 ??? success "RNF08 — Hash SHA-256 no PDF do Prontuário (Sprint 5)"
 
-    * **Identificador:** [RNF08](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF08](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição
@@ -1257,7 +1257,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 <span id="rnf09"></span>
 ??? success "RNF09 — Infraestrutura de Assinatura ICP-Brasil (Sprint 9/10)"
 
-    * **Identificador:** [RNF09](file:///home/eduradolm/Documents/Atividades/requisitos/docs/visao-produto/backlog-de-produto.md)
+    * **Identificador:** [RNF09](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
 
     #### :material-lightbulb-outline: Descrição

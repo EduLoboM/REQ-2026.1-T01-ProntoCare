@@ -3,40 +3,39 @@ icon: material/file-tree
 ---
 # :material-file-tree: **Planejamento e Organização**
 
-Gerencie e visualize a organização estratégica, o andamento das entregas do MVP e a especificação do backlog do ProntoCare por meio dos painéis abaixo:
+Gerencie e apresente a organização estratégica, a governança ágil e o controle de progresso do ProntoCare através dos três pilares estruturais recomendados:
 
 <div class="grid cards" markdown>
 
--   __:material-table-clock: Acompanhamento de US e RNF__
+-   __:material-card-search-outline: 1. Rastreabilidade__
 
     ---
 
-    Consulte o estado de conclusão e a verificação técnica detalhada de cada User Story (US) e Requisito Não Funcional (RNF) do MVP.
+    Acompanhamento detalhado das **User Stories (US)** e **Requisitos Não Funcionais (RNFs)** transversais implementados.
 
-    :material-link: [Acessar Acompanhamento](../progresso/progresso-do-projeto.md)
+    :material-link: [Ver Rastreabilidade](progresso-do-projeto.md)
 
--   __:material-bulletin-board: Planejamento e Quadro Figma__
-
-    ---
-
-    Visualize o quadro colaborativo de planejamento da equipe no Figma, legenda de selos de homologação e justificativas regulatórias.
-
-    :material-link: [Acessar Planejamento](../progresso/planejamento.md)
-
--   __:material-clipboard-list-outline: Backlog do Produto__
+-   __:material-chart-timeline-variant: 2. Planejamento__
 
     ---
 
-    Consulte o backlog de produto completo, as métricas de priorização, estimativas de esforço e detalhamento de regras de negócio.
+    Visualização da linha do tempo das sprints (0 a 9), cumprimento de metas e o quadro Figma colaborativo da equipe.
 
-    :material-link: [Acessar Backlog](../visao-produto/backlog-de-produto.md)
+    :material-link: [Ver Planejamento](planejamento.md)
+
+-   __:material-toy-brick-outline: 3. Quadro MVP__
+
+    ---
+
+    Backlog do produto priorizado quantitativamente por quadrantes e a definição clara do escopo do MVP.
+
+    :material-link: [Ver Quadro MVP](backlog-de-produto.md)
 
 </div>
-
----
 
 ## :material-calendar-month: **Histórico de Revisões**
 
 | Data | Versão | Descrição | Autor |
 | :---: | :---: | :---: | :---: |
 | 2026-06-30 | 1.0 | Criação da central de Planejamento e Organização com painéis interativos de redirecionamento. | Prontuariantes |
+| 2026-06-30 | 1.1 | Alinhamento com a estrutura sugerida de Rastreabilidade, Planejamento e MVP e inclusão de guia rápido de apresentação. | Prontuariantes |

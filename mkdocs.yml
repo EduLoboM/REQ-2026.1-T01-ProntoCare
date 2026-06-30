@@ -77,7 +77,7 @@ nav:
       - Especificação e Backlog:
           - Requisitos de software: visao-produto/requisitos-de-software.md
           - DoR e DoD: visao-produto/DoR-DoD.md
-          - Backlog de produto: visao-produto/backlog-de-produto.md
+          - Backlog de produto: planejamento-organizacao/backlog-de-produto.md
           - Lições aprendidas: visao-produto/lições-aprendidas.md
   - Atas e Vídeos:
       - atas-e-videos/index.md
@@ -93,10 +93,9 @@ nav:
       - Sprint 9: atas-e-videos/sprint-9.md
   - Planejamento e Organização:
       - planejamento-organizacao/index.md
-  - Progresso do projeto:
-      - progresso/index.md
-      - Acompanhamento de US e RNF: progresso/progresso-do-projeto.md
-      - Planejamento e Quadro Figma: progresso/planejamento.md
+      - Acompanhamento de US e RNF: planejamento-organizacao/progresso-do-projeto.md
+      - Planejamento e Quadro Figma: planejamento-organizacao/planejamento.md
+      - Backlog de produto: planejamento-organizacao/backlog-de-produto.md
   - Entregas de Unidade:
       - entregas/index.md
       - Entrega 1: entregas/entrega-1.md

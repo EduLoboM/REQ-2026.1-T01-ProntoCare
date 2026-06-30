@@ -59,7 +59,7 @@ Acesse os documentos de planejamento do projeto organizados de acordo com sua ca
 
     :material-file-code-outline: [Requisitos de Software](requisitos-de-software.md)<br>
     :material-check-decagram-outline: [DoR e DoD](DoR-DoD.md)<br>
-    :material-format-list-bulleted-type: [Backlog de Produto](backlog-de-produto.md)<br>
+    :material-format-list-bulleted-type: [Backlog de Produto](../planejamento-organizacao/backlog-de-produto.md)<br>
     :material-school-outline: [Lições Aprendidas](lições-aprendidas.md)
 
 </div>

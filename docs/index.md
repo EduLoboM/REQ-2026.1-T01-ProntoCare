@@ -29,13 +29,13 @@ Explore as seções da documentação do projeto por meio dos painéis interativ
 
     :material-video-outline: [Acessar Histórico](atas-e-videos/index.md)
 
--   __Progresso do Projeto__
+-   __Planejamento e Organização__
 
     ---
 
-    Consulte o estado atual dos requisitos no quadro colaborativo, contendo a sinalização visual de progresso e homologação.
+    Gerencie e visualize a organização estratégica, o andamento das entregas do MVP, o backlog de produto e o quadro figma colaborativo.
 
-    :fontawesome-brands-figma: [Acessar Progresso](progresso/index.md)
+    :material-file-tree: [Acessar Planejamento e Organização](planejamento-organizacao/index.md)
 
 -   __Entregas de Unidade__
 

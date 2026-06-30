@@ -44,7 +44,13 @@
 
 acesse diretamente pelo link: [https://youtu.be/thvReTFckLQ](https://youtu.be/thvReTFckLQ)
 
-## Entrega Parcial (Segurança e Conformidade) - 20/06/2026
+### Sprint 7 Review & Sprint 8 Planning
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kc-yVsL0lOg?si=sBOItCt3nU16H5ZF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+acesse diretamente pelo link: [https://youtu.be/kc-yVsL0lOg](https://youtu.be/kc-yVsL0lOg)
+
+## Entrega Parcial 3 - 20/06/2026
 
 | Requisito / Conformidade | Verificado? (Equipe) | Validado? (Cliente) |
 | --- | :---: | :---: |

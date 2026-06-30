@@ -51,7 +51,7 @@ Infelizmente, a gravação da reunião Sprint 5 Review & Sprint 6 Planning foi c
 
 acesse diretamente pelo link: [https://youtu.be/thvReTFckLQ](https://youtu.be/thvReTFckLQ)
 
-## Entrega Parcial 3 (Consolidada UA3) - 14/06/2026
+## Validação e Homologação (Consolidada UA3) - 14/06/2026
 
 | Funcionalidade / Requisito | Verificado? (Equipe) | Validado? (Cliente) |
 | --- | :---: | :---: |

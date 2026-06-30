@@ -51,7 +51,7 @@ acesse diretamente pelo link: [https://youtu.be/pgax0OPZzBo](https://youtu.be/pg
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cl_W_ZMp95g?si=zdoS123dwDSSb2Ri" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 acesse diretamente pelo link: [https://youtu.be/cl_W_ZMp95g](https://youtu.be/cl_W_ZMp95g)
 
-## Entrega Parcial (Homologação de Requisitos Não Funcionais) - 30/05/2026
+## Validação e Homologação (Requisitos Não Funcionais) - 30/05/2026
 
 | Requisito Não Funcional / Conformidade | Verificado? (Equipe) | Validado? (Cliente) |
 | --- | :---: | :---: |
