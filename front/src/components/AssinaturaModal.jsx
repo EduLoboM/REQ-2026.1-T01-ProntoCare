@@ -18,19 +18,6 @@ export default function AssinaturaModal({ isOpen, onClose, onSign, docType }) {
     'Finalizando registro com validade jurídica...'
   ];
 
-  // Pre-fill fields if user info is available (not strictly required, but great UX)
-  useEffect(() => {
-    if (isOpen) {
-      setPin('');
-      setOtp('');
-      setLoading(false);
-      setStatusStep(0);
-      
-      // Auto-prefill CPF if patient cpf exists in localStorage or can default
-      const storedUserName = localStorage.getItem('userName') || '';
-      // We will let them input their CPF manually but they can use a placeholder
-    }
-  }, [isOpen]);
 
   // Handle keyboard events (ESC to close)
   useEffect(() => {

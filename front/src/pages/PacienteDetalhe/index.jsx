@@ -52,7 +52,6 @@ export default function PacienteDetalhe() {
   // RF08/RF15: Estados da Assinatura Digital
   const [sigModalOpen, setSigModalOpen] = useState(false);
   const [sigDocType, setSigDocType] = useState(null);
-  const [sigDocTarget, setSigDocTarget] = useState(null);
   const [sigCallback, setSigCallback] = useState(null);
 
   useEffect(() => {
@@ -242,7 +241,6 @@ export default function PacienteDetalhe() {
 
     if (assinarDoc) {
       setSigDocType('prontuario');
-      setSigDocTarget(atendimento);
       setSigCallback(() => async (signatureData) => {
         await exportarPDFComAssinatura(atendimento, signatureData);
       });
@@ -395,7 +393,6 @@ export default function PacienteDetalhe() {
 
     if (assinarDoc) {
       setSigDocType('anamnese');
-      setSigDocTarget(anamnese);
       setSigCallback(() => async (signatureData) => {
         await exportarAnamneseComAssinatura(anamnese, signatureData);
       });
@@ -521,7 +518,6 @@ export default function PacienteDetalhe() {
 
   function iniciarAssinaturaReceita(receita, autoPrint = false) {
     setSigDocType('receita');
-    setSigDocTarget(receita);
     setSigCallback(() => async (signatureData) => {
       try {
         const result = await api.post(`/receitas/${receita.id}/assinar`, {
@@ -1748,23 +1744,23 @@ export default function PacienteDetalhe() {
         </main>
       </div>
 
-      <AssinaturaModal
-        isOpen={sigModalOpen}
-        onClose={() => {
-          setSigModalOpen(false);
-          setSigDocTarget(null);
-          setSigCallback(null);
-        }}
-        onSign={async (signatureData) => {
-          if (sigCallback) {
-            await sigCallback(signatureData);
-          }
-          setSigModalOpen(false);
-          setSigDocTarget(null);
-          setSigCallback(null);
-        }}
-        docType={sigDocType}
-      />
+      {sigModalOpen && (
+        <AssinaturaModal
+          isOpen={sigModalOpen}
+          onClose={() => {
+            setSigModalOpen(false);
+            setSigCallback(null);
+          }}
+          onSign={async (signatureData) => {
+            if (sigCallback) {
+              await sigCallback(signatureData);
+            }
+            setSigModalOpen(false);
+            setSigCallback(null);
+          }}
+          docType={sigDocType}
+        />
+      )}
     </div>
   );
 }
