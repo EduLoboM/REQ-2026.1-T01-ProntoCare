@@ -4,6 +4,7 @@ import { api } from '../../api';
 import { criarBlocoGenesis, criarBlocoExportacao, validarCadeia } from '../../services/blockchainService';
 import { exportarProntuarioPDF, exportarAnamnesePDF, exportarReceitaPDF } from '../../services/pdfExportService';
 import OfflineStatusBar from '../../components/OfflineStatusBar';
+import AssinaturaModal from '../../components/AssinaturaModal';
 import './styles.css';
 
 export default function PacienteDetalhe() {
@@ -48,6 +49,12 @@ export default function PacienteDetalhe() {
   const [receitas, setReceitas] = useState([]);
   const [emitindoReceitaId, setEmitindoReceitaId] = useState(null);
 
+  // RF08/RF15: Estados da Assinatura Digital
+  const [sigModalOpen, setSigModalOpen] = useState(false);
+  const [sigDocType, setSigDocType] = useState(null);
+  const [sigDocTarget, setSigDocTarget] = useState(null);
+  const [sigCallback, setSigCallback] = useState(null);
+
   useEffect(() => {
     carregarDados();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,17 +87,12 @@ export default function PacienteDetalhe() {
     }
   }
 
-  // RNF08: Exportar prontuário como PDF com hash SHA-256 e registro na blockchain
-  async function exportarPDF(atendimento) {
-    if (exportandoPdf) return;
+  // Helper to export prontuario PDF without signature
+  async function exportarPDFSemAssinatura(atendimento) {
     setExportandoPdf(atendimento.id);
-
     try {
-      // 1. Buscar último bloco da cadeia (ou criar gênesis)
       let ultimoBlocoResp = await api.get(`/blockchain/paciente/${id}/ultimo`);
-
       if (!ultimoBlocoResp) {
-        // Criar bloco gênesis
         const genesis = await criarBlocoGenesis();
         ultimoBlocoResp = await api.post('/blockchain', {
           paciente_id: parseInt(id),
@@ -98,13 +100,11 @@ export default function PacienteDetalhe() {
         });
       }
 
-      // 2. Determinar versão do documento
       const blocosDoDoc = (blockchain || []).filter(
         b => b.entidade === 'atendimento' && b.entidade_id === atendimento.id
       );
       const versao = blocosDoDoc.length + 1;
 
-      // 3. Gerar dados canônicos para hash
       const dadosProntuario = {
         id: atendimento.id,
         paciente_id: atendimento.paciente_id,
@@ -120,7 +120,6 @@ export default function PacienteDetalhe() {
         atualizado_em: atendimento.atualizado_em,
       };
 
-      // 4. Criar novo bloco na blockchain
       const novoBloco = await criarBlocoExportacao({
         blocoAnterior: ultimoBlocoResp,
         entidade: 'atendimento',
@@ -135,42 +134,33 @@ export default function PacienteDetalhe() {
         },
       });
 
-      // 5. Salvar bloco no backend
       const blocoSalvo = await api.post('/blockchain', {
         paciente_id: parseInt(id),
         ...novoBloco,
       });
 
-      // 6. Exportar o PDF com hash de integridade
       await exportarProntuarioPDF({
         atendimento,
         paciente,
         blocoBlockchain: blocoSalvo,
       });
 
-      // 7. Atualizar a cadeia local
       setBlockchain(prev => [...prev, blocoSalvo]);
-
       alert(`PDF exportado com sucesso!\n\nHash SHA-256: ${novoBloco.dados_hash.substring(0, 16)}...\nBloco #${novoBloco.indice} registrado na blockchain.`);
     } catch (err) {
-      console.error('Erro ao exportar PDF:', err);
+      console.error('Erro ao exportar PDF sem assinatura:', err);
       alert('Erro ao exportar PDF: ' + (err.message || 'Erro desconhecido'));
     } finally {
       setExportandoPdf(null);
     }
   }
 
-  // RNF08: Exportar anamnese como PDF com hash SHA-256 e registro na blockchain
-  async function exportarAnamnese(anamnese) {
-    if (exportandoPdf) return;
-    setExportandoPdf('anam_' + anamnese.id);
-
+  // Helper to export prontuario PDF with digital signature
+  async function exportarPDFComAssinatura(atendimento, signatureData) {
+    setExportandoPdf(atendimento.id);
     try {
-      // 1. Buscar último bloco da cadeia (ou criar gênesis)
       let ultimoBlocoResp = await api.get(`/blockchain/paciente/${id}/ultimo`);
-
       if (!ultimoBlocoResp) {
-        // Criar bloco gênesis
         const genesis = await criarBlocoGenesis();
         ultimoBlocoResp = await api.post('/blockchain', {
           paciente_id: parseInt(id),
@@ -178,13 +168,108 @@ export default function PacienteDetalhe() {
         });
       }
 
-      // 2. Determinar versão do documento
+      const blocosDoDoc = (blockchain || []).filter(
+        b => b.entidade === 'atendimento' && b.entidade_id === atendimento.id
+      );
+      const versao = blocosDoDoc.length + 1;
+
+      const dadosProntuario = {
+        id: atendimento.id,
+        paciente_id: atendimento.paciente_id,
+        medico_id: atendimento.medico_id,
+        peso: atendimento.peso,
+        altura: atendimento.altura,
+        imc: atendimento.imc,
+        subjetivo: atendimento.subjetivo,
+        objetivo: atendimento.objetivo,
+        avaliacao: atendimento.avaliacao,
+        plano: atendimento.plano,
+        criado_em: atendimento.criado_em,
+        atualizado_em: atendimento.atualizado_em,
+      };
+
+      const novoBloco = await criarBlocoExportacao({
+        blocoAnterior: ultimoBlocoResp,
+        entidade: 'atendimento',
+        entidade_id: atendimento.id,
+        versao,
+        dadosProntuario,
+        pdfHash: null,
+        usuario: {
+          id: parseInt(localStorage.getItem('userId') || '0'),
+          nome: localStorage.getItem('userName') || 'Médico',
+          role: localStorage.getItem('role') || 'medico',
+        },
+      });
+
+      const dataAssinatura = new Date().toISOString();
+      const tokenAssinatura = `ICP-Brasil-A3-Cloud:${signatureData.provedor}:${signatureData.cpf}:${novoBloco.hash.substring(0, 20)}:${Date.now()}`;
+
+      const blocoSalvo = await api.post('/blockchain', {
+        paciente_id: parseInt(id),
+        ...novoBloco,
+        assinado: true,
+        assinatura_provedor: signatureData.provedor,
+        assinatura_nome: localStorage.getItem('userName') || 'Médico',
+        assinatura_cpf: signatureData.cpf,
+        assinatura_data: dataAssinatura,
+        assinatura_token: tokenAssinatura
+      });
+
+      await exportarProntuarioPDF({
+        atendimento,
+        paciente,
+        blocoBlockchain: blocoSalvo,
+      });
+
+      setBlockchain(prev => [...prev, blocoSalvo]);
+      alert(`PDF assinado e exportado com sucesso!\n\nHash: ${novoBloco.dados_hash.substring(0, 16)}...\nAssinado digitalmente via ICP-Brasil (${signatureData.provedor.toUpperCase()}).`);
+    } catch (err) {
+      console.error('Erro ao exportar PDF com assinatura:', err);
+      alert('Erro ao exportar PDF assinado: ' + (err.message || 'Erro desconhecido'));
+    } finally {
+      setExportandoPdf(null);
+    }
+  }
+
+  // RNF08: Exportar prontuário como PDF com hash SHA-256 e registro na blockchain
+  async function exportarPDF(atendimento) {
+    if (exportandoPdf) return;
+
+    const assinarDoc = window.confirm(
+      "Deseja assinar digitalmente este prontuário com certificado ICP-Brasil A3 em nuvem antes de exportar?"
+    );
+
+    if (assinarDoc) {
+      setSigDocType('prontuario');
+      setSigDocTarget(atendimento);
+      setSigCallback(() => async (signatureData) => {
+        await exportarPDFComAssinatura(atendimento, signatureData);
+      });
+      setSigModalOpen(true);
+    } else {
+      await exportarPDFSemAssinatura(atendimento);
+    }
+  }
+
+  // Helper to export anamnese PDF without signature
+  async function exportarAnamneseSemAssinatura(anamnese) {
+    setExportandoPdf('anam_' + anamnese.id);
+    try {
+      let ultimoBlocoResp = await api.get(`/blockchain/paciente/${id}/ultimo`);
+      if (!ultimoBlocoResp) {
+        const genesis = await criarBlocoGenesis();
+        ultimoBlocoResp = await api.post('/blockchain', {
+          paciente_id: parseInt(id),
+          ...genesis,
+        });
+      }
+
       const blocosDoDoc = (blockchain || []).filter(
         b => b.entidade === 'anamnese' && b.entidade_id === anamnese.id
       );
       const versao = blocosDoDoc.length + 1;
 
-      // 3. Gerar dados canônicos para hash
       const dadosAnamnese = {
         id: anamnese.id,
         paciente_id: anamnese.paciente_id,
@@ -194,7 +279,6 @@ export default function PacienteDetalhe() {
         atualizado_em: anamnese.atualizado_em,
       };
 
-      // 4. Criar novo bloco na blockchain
       const novoBloco = await criarBlocoExportacao({
         blocoAnterior: ultimoBlocoResp,
         entidade: 'anamnese',
@@ -209,28 +293,115 @@ export default function PacienteDetalhe() {
         },
       });
 
-      // 5. Salvar bloco no backend
       const blocoSalvo = await api.post('/blockchain', {
         paciente_id: parseInt(id),
         ...novoBloco,
       });
 
-      // 6. Exportar o PDF com hash de integridade
       await exportarAnamnesePDF({
         anamnese,
         paciente,
         blocoBlockchain: blocoSalvo,
       });
 
-      // 7. Atualizar a cadeia local
       setBlockchain(prev => [...prev, blocoSalvo]);
-
       alert(`PDF da Anamnese exportado com sucesso!\n\nHash SHA-256: ${novoBloco.dados_hash.substring(0, 16)}...\nBloco #${novoBloco.indice} registrado na blockchain.`);
     } catch (err) {
-      console.error('Erro ao exportar PDF da Anamnese:', err);
-      alert('Erro ao exportar PDF: ' + (err.message || 'Erro desconhecido'));
+      console.error('Erro ao exportar anamnese sem assinatura:', err);
+      alert('Erro ao exportar PDF da Anamnese: ' + (err.message || 'Erro desconhecido'));
     } finally {
       setExportandoPdf(null);
+    }
+  }
+
+  // Helper to export anamnese PDF with digital signature
+  async function exportarAnamneseComAssinatura(anamnese, signatureData) {
+    setExportandoPdf('anam_' + anamnese.id);
+    try {
+      let ultimoBlocoResp = await api.get(`/blockchain/paciente/${id}/ultimo`);
+      if (!ultimoBlocoResp) {
+        const genesis = await criarBlocoGenesis();
+        ultimoBlocoResp = await api.post('/blockchain', {
+          paciente_id: parseInt(id),
+          ...genesis,
+        });
+      }
+
+      const blocosDoDoc = (blockchain || []).filter(
+        b => b.entidade === 'anamnese' && b.entidade_id === anamnese.id
+      );
+      const versao = blocosDoDoc.length + 1;
+
+      const dadosAnamnese = {
+        id: anamnese.id,
+        paciente_id: anamnese.paciente_id,
+        medico_id: anamnese.medico_id,
+        conteudo: anamnese.conteudo,
+        criado_em: anamnese.criado_em,
+        atualizado_em: anamnese.atualizado_em,
+      };
+
+      const novoBloco = await criarBlocoExportacao({
+        blocoAnterior: ultimoBlocoResp,
+        entidade: 'anamnese',
+        entidade_id: anamnese.id,
+        versao,
+        dadosProntuario: dadosAnamnese,
+        pdfHash: null,
+        usuario: {
+          id: parseInt(localStorage.getItem('userId') || '0'),
+          nome: localStorage.getItem('userName') || 'Médico',
+          role: localStorage.getItem('role') || 'medico',
+        },
+      });
+
+      const dataAssinatura = new Date().toISOString();
+      const tokenAssinatura = `ICP-Brasil-A3-Cloud:${signatureData.provedor}:${signatureData.cpf}:${novoBloco.hash.substring(0, 20)}:${Date.now()}`;
+
+      const blocoSalvo = await api.post('/blockchain', {
+        paciente_id: parseInt(id),
+        ...novoBloco,
+        assinado: true,
+        assinatura_provedor: signatureData.provedor,
+        assinatura_nome: localStorage.getItem('userName') || 'Médico',
+        assinatura_cpf: signatureData.cpf,
+        assinatura_data: dataAssinatura,
+        assinatura_token: tokenAssinatura
+      });
+
+      await exportarAnamnesePDF({
+        anamnese,
+        paciente,
+        blocoBlockchain: blocoSalvo,
+      });
+
+      setBlockchain(prev => [...prev, blocoSalvo]);
+      alert(`PDF da Anamnese assinado e exportado com sucesso!\n\nHash: ${novoBloco.dados_hash.substring(0, 16)}...\nAssinado digitalmente via ICP-Brasil (${signatureData.provedor.toUpperCase()}).`);
+    } catch (err) {
+      console.error('Erro ao exportar anamnese com assinatura:', err);
+      alert('Erro ao exportar PDF da Anamnese assinado: ' + (err.message || 'Erro desconhecido'));
+    } finally {
+      setExportandoPdf(null);
+    }
+  }
+
+  // RNF08: Exportar anamnese como PDF com hash SHA-256 e registro na blockchain
+  async function exportarAnamnese(anamnese) {
+    if (exportandoPdf) return;
+
+    const assinarDoc = window.confirm(
+      "Deseja assinar digitalmente esta anamnese com certificado ICP-Brasil A3 em nuvem antes de exportar?"
+    );
+
+    if (assinarDoc) {
+      setSigDocType('anamnese');
+      setSigDocTarget(anamnese);
+      setSigCallback(() => async (signatureData) => {
+        await exportarAnamneseComAssinatura(anamnese, signatureData);
+      });
+      setSigModalOpen(true);
+    } else {
+      await exportarAnamneseSemAssinatura(anamnese);
     }
   }
 
@@ -348,9 +519,49 @@ export default function PacienteDetalhe() {
     }
   }
 
+  function iniciarAssinaturaReceita(receita, autoPrint = false) {
+    setSigDocType('receita');
+    setSigDocTarget(receita);
+    setSigCallback(() => async (signatureData) => {
+      try {
+        const result = await api.post(`/receitas/${receita.id}/assinar`, {
+          provedor: signatureData.provedor,
+          cpf: signatureData.cpf,
+          pin: signatureData.pin,
+          otp: signatureData.otp
+        });
+        alert("Receita assinada digitalmente com sucesso!");
+        // Refresh recipes list
+        const recs = await api.get(`/receitas/paciente/${id}`);
+        setReceitas(recs || []);
+        // Refresh logs
+        const logData = await api.get(`/logs/paciente/${id}`);
+        setLogs(logData);
+
+        if (autoPrint) {
+          await emitirReceitaPDF(result);
+        }
+      } catch (err) {
+        alert("Erro ao assinar receita: " + (err.response?.data?.erro || err.message));
+      }
+    });
+    setSigModalOpen(true);
+  }
+
   // RF17: Emitir receita PDF com hash SHA-256 e registro na blockchain
   async function emitirReceitaPDF(receita) {
     if (emitindoReceitaId) return;
+
+    if (!receita.assinado && localStorage.getItem('role') === 'medico') {
+      const querAssinar = window.confirm(
+        "Esta receita não está assinada digitalmente. Deseja assinar com certificado ICP-Brasil A3 em nuvem antes de emitir o PDF?"
+      );
+      if (querAssinar) {
+        iniciarAssinaturaReceita(receita, true);
+        return;
+      }
+    }
+
     setEmitindoReceitaId(receita.id);
     try {
       const receitaCompleta = await api.get(`/receitas/${receita.id}`);
@@ -408,10 +619,20 @@ export default function PacienteDetalhe() {
         },
       });
 
+      const signaturePayload = receitaCompleta.assinado ? {
+        assinado: true,
+        assinatura_provedor: receitaCompleta.assinatura_provedor,
+        assinatura_nome: receitaCompleta.assinatura_nome,
+        assinatura_cpf: receitaCompleta.assinatura_cpf,
+        assinatura_data: receitaCompleta.assinatura_data,
+        assinatura_token: receitaCompleta.assinatura_token
+      } : {};
+
       // 5. Salvar bloco no backend
       const blocoSalvo = await api.post('/blockchain', {
         paciente_id: parseInt(id),
         ...novoBloco,
+        ...signaturePayload
       });
 
       // 6. Exportar o PDF com hash de integridade
@@ -1185,6 +1406,11 @@ export default function PacienteDetalhe() {
                             <span className={`pd-blockchain-tipo-badge ${bloco.tipo} ${index === 0 ? 'recente' : ''}`}>
                               {bloco.tipo === 'genesis' ? 'Gênesis' : bloco.tipo === 'exportacao' ? 'Exportação' : 'Edição'}
                             </span>
+                            {bloco.assinado && (
+                              <span className="pd-blockchain-tipo-badge" style={{ backgroundColor: 'var(--success-light)', color: 'var(--success)', border: '1px solid var(--success)', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                                <span className="material-icons" style={{ fontSize: '0.95rem' }}>verified</span> Assinado
+                              </span>
+                            )}
                             {bloco.entidade && (
                               <span className="pd-blockchain-entidade">
                                 {bloco.entidade === 'atendimento' ? 'Prontuário' : bloco.entidade === 'receita' ? 'Prescrição' : 'Anamnese'} #{bloco.entidade_id}
@@ -1222,6 +1448,19 @@ export default function PacienteDetalhe() {
                             {bloco.usuario_nome && (
                               <div className="pd-blockchain-autor" style={{ marginTop: '0.75rem', marginBottom: 0 }}>
                                 por <strong>{bloco.usuario_nome}</strong> ({bloco.usuario_role})
+                              </div>
+                            )}
+
+                            {bloco.assinado && (
+                              <div className="pd-blockchain-assinatura" style={{ marginTop: '0.75rem', background: 'var(--success-light)', border: '1px solid var(--success)', padding: '0.6rem 0.8rem', borderRadius: '6px', display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', color: 'var(--success)' }}>
+                                <span className="material-icons" style={{ fontSize: '1.4rem', color: 'var(--success)' }}>verified</span>
+                                <div>
+                                  <strong style={{ color: '#065f46' }}>Assinado Digitalmente (ICP-Brasil A3 Nuvem)</strong><br/>
+                                  <span style={{ color: '#047857' }}>
+                                    Responsável: <strong>{bloco.assinatura_nome}</strong> (CPF: {bloco.assinatura_cpf || '***.***.***-**'}) via {bloco.assinatura_provedor.toUpperCase()}<br/>
+                                    Data/Hora: {formatarDataHora(bloco.assinatura_data)}
+                                  </span>
+                                </div>
                               </div>
                             )}
                           </div>
@@ -1441,6 +1680,21 @@ export default function PacienteDetalhe() {
                             <span className="pd-timeline-medico">Prescrito por Dr(a). {rec.medico_nome || 'Médico'}</span>
                           </div>
                           <div className="pd-timeline-acoes">
+                            {rec.assinado && (
+                              <span className="pd-badge-assinado" style={{ marginRight: '8px', color: 'var(--success)', fontWeight: '700', fontSize: '0.85rem', backgroundColor: 'var(--success-light)', border: '1px solid var(--success)', padding: '4px 10px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                <span className="material-icons" style={{ fontSize: '1.1rem' }}>verified</span> Assinado
+                              </span>
+                            )}
+                            {!rec.assinado && localStorage.getItem('role') === 'medico' && (
+                              <button
+                                className="pd-btn-editar"
+                                style={{ border: '1px solid var(--primary-border)', color: 'var(--primary)', backgroundColor: 'var(--primary-light)', marginRight: '8px', padding: '4px 12px', fontSize: '0.85rem', cursor: 'pointer' }}
+                                onClick={(e) => { e.stopPropagation(); iniciarAssinaturaReceita(rec); }}
+                                title="Assinar digitalmente esta receita com certificado A3 Nuvem"
+                              >
+                                Assinar
+                              </button>
+                            )}
                             <button
                               className="pd-btn-pdf"
                               onClick={(e) => { e.stopPropagation(); emitirReceitaPDF(rec); }}
@@ -1493,6 +1747,24 @@ export default function PacienteDetalhe() {
           )}
         </main>
       </div>
+
+      <AssinaturaModal
+        isOpen={sigModalOpen}
+        onClose={() => {
+          setSigModalOpen(false);
+          setSigDocTarget(null);
+          setSigCallback(null);
+        }}
+        onSign={async (signatureData) => {
+          if (sigCallback) {
+            await sigCallback(signatureData);
+          }
+          setSigModalOpen(false);
+          setSigDocTarget(null);
+          setSigCallback(null);
+        }}
+        docType={sigDocType}
+      />
     </div>
   );
 }

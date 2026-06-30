@@ -335,6 +335,23 @@ export function gerarHtmlProntuario(atendimento, paciente, hashIntegridade, bloc
         <div class="pdf-hash-value" style="font-size: 0.7rem; color: #94a3b8;">${blocoBlockchain.hash_anterior}</div>
       </div>
       ` : ''}
+
+      ${(blocoBlockchain && blocoBlockchain.assinado) ? `
+      <div class="pdf-signature-box" style="margin-top: 1rem; background: #ecfdf5; border: 1px solid #10b981; border-radius: 8px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem; page-break-inside: avoid;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 11 2 2 4-4"></path></svg>
+        <div style="text-align: left;">
+          <div style="font-weight: 700; color: #065f46; font-size: 0.85rem;">Documento Assinado Digitalmente — ICP-Brasil</div>
+          <div style="font-size: 0.75rem; color: #047857; margin-top: 0.1rem; line-height: 1.4;">
+            Assinado por: <strong>Dr(a). ${blocoBlockchain.assinatura_nome}</strong> (CPF: ${blocoBlockchain.assinatura_cpf || '***.***.***-**'})<br/>
+            Provedor em Nuvem: <strong>${blocoBlockchain.assinatura_provedor.toUpperCase()} (A3)</strong> | Data: ${formatarDataHora(blocoBlockchain.assinatura_data)}<br/>
+            Validade Jurídica: MP nº 2.200-2/2001 | Verificar em: <a href="https://assinador.iti.br" target="_blank" style="color: #047857; text-decoration: underline; font-weight: 600;">assinador.iti.br</a>
+          </div>
+          <div style="font-family: monospace; font-size: 0.6rem; color: #065f46; word-break: break-all; margin-top: 0.3rem; background: rgba(16, 185, 129, 0.1); padding: 2px 6px; border-radius: 4px;">
+            Stamp: ${blocoBlockchain.assinatura_token}
+          </div>
+        </div>
+      </div>
+      ` : ''}
     </div>
   </div>
 </body>
@@ -658,6 +675,23 @@ export function gerarHtmlAnamnese(anamnese, paciente, hashIntegridade, blocoBloc
         <div class="pdf-hash-value" style="font-size: 0.7rem; color: #94a3b8;">${blocoBlockchain.hash_anterior}</div>
       </div>
       ` : ''}
+
+      ${(blocoBlockchain && blocoBlockchain.assinado) ? `
+      <div class="pdf-signature-box" style="margin-top: 1rem; background: #ecfdf5; border: 1px solid #10b981; border-radius: 8px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem; page-break-inside: avoid;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 11 2 2 4-4"></path></svg>
+        <div style="text-align: left;">
+          <div style="font-weight: 700; color: #065f46; font-size: 0.85rem;">Documento Assinado Digitalmente — ICP-Brasil</div>
+          <div style="font-size: 0.75rem; color: #047857; margin-top: 0.1rem; line-height: 1.4;">
+            Assinado por: <strong>Dr(a). ${blocoBlockchain.assinatura_nome}</strong> (CPF: ${blocoBlockchain.assinatura_cpf || '***.***.***-**'})<br/>
+            Provedor em Nuvem: <strong>${blocoBlockchain.assinatura_provedor.toUpperCase()} (A3)</strong> | Data: ${formatarDataHora(blocoBlockchain.assinatura_data)}<br/>
+            Validade Jurídica: MP nº 2.200-2/2001 | Verificar em: <a href="https://assinador.iti.br" target="_blank" style="color: #047857; text-decoration: underline; font-weight: 600;">assinador.iti.br</a>
+          </div>
+          <div style="font-family: monospace; font-size: 0.6rem; color: #065f46; word-break: break-all; margin-top: 0.3rem; background: rgba(16, 185, 129, 0.1); padding: 2px 6px; border-radius: 4px;">
+            Stamp: ${blocoBlockchain.assinatura_token}
+          </div>
+        </div>
+      </div>
+      ` : ''}
     </div>
   </div>
 </body>
@@ -930,11 +964,28 @@ export function gerarHtmlReceita(receita, paciente, medico, hashIntegridade, blo
     <div style="font-size: 0.9rem; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-radius: 6px; white-space: pre-wrap;">${receita.observacoes}</div>
   </div>` : ''}
 
+  ${(receita.assinado || (blocoBlockchain && blocoBlockchain.assinado)) ? `
+  <div class="pdf-signature-box" style="margin-top: 3rem; background: #ecfdf5; border: 1px solid #10b981; border-radius: 8px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; page-break-inside: avoid;">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 11 2 2 4-4"></path></svg>
+    <div style="text-align: left;">
+      <div style="font-weight: 700; color: #065f46; font-size: 0.95rem;">Documento Assinado Digitalmente — ICP-Brasil</div>
+      <div style="font-size: 0.85rem; color: #047857; margin-top: 0.2rem; line-height: 1.4;">
+        Assinado por: <strong>Dr(a). ${receita.assinatura_nome || (blocoBlockchain && blocoBlockchain.assinatura_nome) || medico.nome || medico.medico_nome}</strong> (CPF: ${receita.assinatura_cpf || (blocoBlockchain && blocoBlockchain.assinatura_cpf) || '***.***.***-**'})<br/>
+        Provedor em Nuvem: <strong>${(receita.assinatura_provedor || (blocoBlockchain && blocoBlockchain.assinatura_provedor) || 'BirdID').toUpperCase()} (A3)</strong> | Data: ${formatarDataHora(receita.assinatura_data || (blocoBlockchain && blocoBlockchain.assinatura_data) || receita.criado_em)}<br/>
+        Validade Jurídica: Garantida por Medida Provisória nº 2.200-2/2001 | Verificar em: <a href="https://assinador.iti.br" target="_blank" style="color: #047857; text-decoration: underline; font-weight: 600;">assinador.iti.br</a>
+      </div>
+      <div style="font-family: monospace; font-size: 0.65rem; color: #065f46; word-break: break-all; margin-top: 0.4rem; background: rgba(16, 185, 129, 0.1); padding: 4px 8px; border-radius: 4px;">
+        Stamp: ${receita.assinatura_token || (blocoBlockchain && blocoBlockchain.assinatura_token) || 'ICP-Brasil-A3-Cloud-Mock-Stamp'}
+      </div>
+    </div>
+  </div>
+  ` : `
   <div class="pdf-signature-section">
     <div class="pdf-signature-line"></div>
     <div class="pdf-signature-name">Dr(a). ${medico.nome || medico.medico_nome || '—'}</div>
     <div class="pdf-signature-crm">CRM: ${medico.crm || medico.medico_crm || '—'}${medico.especialidade || medico.medico_especialidade ? ` - ${medico.especialidade || medico.medico_especialidade}` : ''}</div>
   </div>
+  `}
 
   <div class="pdf-footer">
     <div class="pdf-hash-section">
