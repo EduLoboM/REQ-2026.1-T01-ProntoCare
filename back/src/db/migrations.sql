@@ -123,7 +123,13 @@ CREATE TABLE IF NOT EXISTS prontuario_blockchain (
   usuario_id INT,
   usuario_nome VARCHAR(150),
   usuario_role VARCHAR(20),
-  criado_em TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  criado_em TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  assinado BOOLEAN NOT NULL DEFAULT false,
+  assinatura_provedor VARCHAR(50),
+  assinatura_nome VARCHAR(150),
+  assinatura_cpf VARCHAR(14),
+  assinatura_data TIMESTAMPTZ,
+  assinatura_token TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_blockchain_paciente ON prontuario_blockchain (paciente_id, indice);
@@ -155,7 +161,13 @@ CREATE TABLE IF NOT EXISTS receitas (
   medico_id INT NOT NULL REFERENCES medicos(id) ON DELETE CASCADE,
   medicamentos TEXT NOT NULL,
   observacoes TEXT,
-  criado_em TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  criado_em TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  assinado BOOLEAN NOT NULL DEFAULT false,
+  assinatura_provedor VARCHAR(50),
+  assinatura_nome VARCHAR(150),
+  assinatura_cpf VARCHAR(14),
+  assinatura_data TIMESTAMPTZ,
+  assinatura_token TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_receitas_paciente ON receitas (paciente_id, criado_em DESC);
@@ -178,3 +190,18 @@ DROP TRIGGER IF EXISTS trg_consultas_atualizado ON consultas;
 CREATE TRIGGER trg_consultas_atualizado
   BEFORE UPDATE ON consultas
   FOR EACH ROW EXECUTE FUNCTION set_atualizado_em();
+
+-- Alterações para RF08 e RF15: Colunas de assinatura digital nas tabelas receitas e prontuario_blockchain
+ALTER TABLE receitas ADD COLUMN IF NOT EXISTS assinado BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE receitas ADD COLUMN IF NOT EXISTS assinatura_provedor VARCHAR(50);
+ALTER TABLE receitas ADD COLUMN IF NOT EXISTS assinatura_nome VARCHAR(150);
+ALTER TABLE receitas ADD COLUMN IF NOT EXISTS assinatura_cpf VARCHAR(14);
+ALTER TABLE receitas ADD COLUMN IF NOT EXISTS assinatura_data TIMESTAMPTZ;
+ALTER TABLE receitas ADD COLUMN IF NOT EXISTS assinatura_token TEXT;
+
+ALTER TABLE prontuario_blockchain ADD COLUMN IF NOT EXISTS assinado BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE prontuario_blockchain ADD COLUMN IF NOT EXISTS assinatura_provedor VARCHAR(50);
+ALTER TABLE prontuario_blockchain ADD COLUMN IF NOT EXISTS assinatura_nome VARCHAR(150);
+ALTER TABLE prontuario_blockchain ADD COLUMN IF NOT EXISTS assinatura_cpf VARCHAR(14);
+ALTER TABLE prontuario_blockchain ADD COLUMN IF NOT EXISTS assinatura_data TIMESTAMPTZ;
+ALTER TABLE prontuario_blockchain ADD COLUMN IF NOT EXISTS assinatura_token TEXT;
