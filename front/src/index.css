@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+:root {
+  /* Brand Colors */
+  --primary: #0d9488; /* Teal 600 */
+  --primary-hover: #0f766e; /* Teal 700 */
+  --primary-light: #f0fdfa; /* Teal 50 */
+  --primary-border: #99f6e4; /* Teal 200 */
+  
+  --secondary: #64748b; /* Slate 500 */
+  --secondary-hover: #475569; /* Slate 600 */
+  --secondary-light: #f8fafc; /* Slate 50 */
+  --secondary-border: #cbd5e1; /* Slate 300 */
+  
+  --success: #10b981; /* Emerald 500 */
+  --success-hover: #059669; /* Emerald 600 */
+  --success-light: #ecfdf5;
+  
+  --danger: #ef4444; /* Red 500 */
+  --danger-hover: #dc2626; /* Red 600 */
+  --danger-light: #fef2f2;
+  
+  --warning: #f59e0b; /* Amber 500 */
+  --warning-hover: #d97706; /* Amber 600 */
+  --warning-light: #fffbeb;
+  
+  /* Background and Text */
+  --bg-app: #f1f5f9; /* Soft slate/blue background */
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --border-color: #cbd5e1;
+  --border-hover: #94a3b8;
+  
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --text-heading: #0f172a;
+  --white: #ffffff;
+  
+  /* Dimensions & Spacings */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Global standard heights */
+  --btn-height: 42px;
+  --input-height: 42px;
+  
+  font-family: var(--sans);
+  color: var(--text-main);
+  background-color: var(--bg-app);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force light color scheme for consistent clinical system look */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  background-image: radial-gradient(var(--border-color) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  color: var(--text-main);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  scrollbar-gutter: stable;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading);
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,335 @@
+.atendimento-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* Evita scroll duplo, permitindo rolagem apenas nas áreas de conteúdo */
+  background-color: transparent;
+}
+
+/* --- Barra Lateral (Sidebar) --- */
+.historico-sidebar {
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  border-right: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  white-space: normal;
+}
+
+/* Classes dinâmicas para o Modo Foco */
+.historico-sidebar.aberta { width: 340px; min-width: 340px; }
+.historico-sidebar.fechada { width: 0; min-width: 0; border-right: none; }
+
+.sidebar-header {
+  background: var(--primary);
+  padding: 1.5rem;
+  color: var(--white);
+}
+
+.btn-voltar {
+  background: none; 
+  border: none; 
+  color: var(--white);
+  font-weight: 600; 
+  cursor: pointer; 
+  padding: 0;
+  margin-bottom: 1rem; 
+  font-size: 0.95rem;
+  font-family: var(--sans);
+  transition: var(--transition);
+  opacity: 0.9;
+}
+
+.btn-voltar:hover { 
+  opacity: 1;
+  text-decoration: underline; 
+}
+
+.sidebar-header h3 { 
+  margin: 0; 
+  font-size: 1.3rem; 
+  font-weight: 700; 
+}
+
+/* Linha do tempo (Timeline) para o histórico de consultas */
+.historico-lista {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  background-color: var(--bg-card);
+}
+
+.historico-card {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 2px solid var(--border-color); 
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -6px; 
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.historico-data {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.historico-resumo { 
+  font-size: 0.9rem; 
+  color: var(--text-main); 
+  margin: 0; 
+  line-height: 1.5; 
+}
+
+/* --- Área Principal de Digitação --- */
+.atendimento-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: transparent;
+}
+
+/* Cabeçalho fixo contendo os dados do paciente ativo */
+.patient-banner {
+  background: var(--bg-card);
+  padding: 1.25rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  box-shadow: var(--shadow-sm);
+}
+
+.patient-info-container { display: flex; align-items: center; gap: 1rem; }
+
+.btn-toggle-sidebar {
+  width: 44px; 
+  height: 44px;
+  border-radius: var(--radius-md); 
+  border: 1px solid var(--border-color);
+  background: var(--bg-app); 
+  color: var(--text-main);
+  font-size: 22px; 
+  cursor: pointer; 
+  transition: var(--transition);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.btn-toggle-sidebar:hover { 
+  background: var(--border-color); 
+  color: var(--text-heading);
+}
+
+.patient-info h2 { 
+  margin: 0 0 4px 0; 
+  font-size: 1.5rem; 
+  color: var(--text-heading); 
+  font-weight: 700; 
+  letter-spacing: -0.5px;
+}
+
+.patient-info span { 
+  font-size: 0.9rem; 
+  color: var(--text-muted); 
+}
+
+.status-badge { 
+  background: var(--primary-light); 
+  color: var(--primary); 
+  border: 1px solid var(--primary-border);
+  padding: 6px 14px; 
+  border-radius: var(--radius-full); 
+  font-size: 0.85rem; 
+  font-weight: 700; 
+}
+
+/* --- Formulário SOAP --- */
+.soap-form {
+  padding: 2.5rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-header h3 { 
+  font-size: 1.6rem; 
+  color: var(--text-heading); 
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Estrutura flexível para alinhar os campos textuais em uma única coluna (um em cima do outro) */
+.soap-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.soap-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.soap-group label {
+  font-weight: 600; 
+  font-size: 0.95rem; 
+  color: var(--text-heading);
+  display: block; 
+  margin-bottom: 8px;
+}
+
+.soap-group label span { 
+  font-weight: 400; 
+  font-size: 0.8rem; 
+  color: var(--text-muted); 
+}
+
+.soap-group textarea {
+  width: 100%; 
+  min-height: 160px; 
+  padding: 1rem;
+  border: 1px solid var(--border-color); 
+  border-radius: var(--radius-md);
+  font-family: var(--sans); 
+  font-size: 0.95rem; 
+  color: var(--text-main);
+  resize: vertical; 
+  box-sizing: border-box;
+  background-color: var(--bg-card);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  flex: 1; /* Garante alinhamento das caixas de texto independentemente do tamanho do label */
+}
+
+.soap-group textarea:focus { 
+  outline: none; 
+  border-color: var(--primary); 
+  box-shadow: 0 0 0 3px var(--primary-light); 
+}
+
+/* Entradas estruturadas para sinais vitais (Peso e Altura) */
+.sinais-vitais-row { 
+  display: flex; 
+  gap: 1.25rem; 
+  margin-bottom: 1rem; 
+}
+
+.input-group-pequeno { flex: 1; }
+
+.input-group-pequeno input {
+  width: 100%; 
+  height: var(--input-height);
+  padding: 0 1rem; 
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md); 
+  font-size: 0.95rem; 
+  box-sizing: border-box;
+  background-color: var(--bg-card); 
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+.input-group-pequeno input:focus { 
+  outline: none; 
+  border-color: var(--primary); 
+  box-shadow: 0 0 0 3px var(--primary-light); 
+}
+
+/* Área de botões e finalização */
+.form-actions-bottom {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-color); 
+}
+
+.btn-cancelar {
+  background-color: var(--secondary-light); 
+  color: var(--secondary-text); 
+  border: 1px solid var(--secondary-border);
+  border-radius: var(--radius-md); 
+  height: var(--btn-height);
+  padding: 0 2rem; 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  cursor: pointer; 
+  transition: var(--transition); 
+  margin-right: 1rem;
+  font-family: var(--sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cancelar:hover {
+  background-color: var(--secondary-border);
+  color: var(--text-heading);
+}
+
+.btn-finalizar {
+  background-color: var(--primary); 
+  color: var(--white); 
+  border: none; 
+  border-radius: var(--radius-md);
+  height: var(--btn-height);
+  padding: 0 2.5rem; 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  cursor: pointer; 
+  transition: var(--transition); 
+  white-space: nowrap;
+  font-family: var(--sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-finalizar:hover:not(:disabled) { 
+  background-color: var(--primary-hover); 
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-finalizar:disabled { 
+  background-color: var(--border-color); 
+  color: var(--text-muted);
+  cursor: not-allowed; 
+  box-shadow: none; 
+}
+
+@media (max-width: 768px) {
+  .soap-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .sinais-vitais-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .soap-form {
+    padding: 1.5rem 1rem;
+  }
+  .patient-banner {
+    padding: 1rem 1.5rem;
+  }
+}

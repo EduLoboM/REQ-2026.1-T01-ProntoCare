@@ -6,3 +6,15 @@ __pycache__/
 *.pyc
 .DS_Store
 .pdf_extract_tmp.txt
+
+node_modules/
+*.env
+.env
+back/.env
+front/.env
+back/src/db/scripts/clear-db.js
+
+# Test coverage
+coverage/
+back/coverage/
+*/coverage/

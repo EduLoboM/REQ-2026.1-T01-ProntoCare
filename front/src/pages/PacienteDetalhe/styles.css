@@ -1,0 +1,1314 @@
+/* ======================== */
+/*  Página: Detalhe do Paciente  */
+/* ======================== */
+
+/* --- Loading --- */
+.pd-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--text-muted);
+  gap: 1.5rem;
+}
+
+.pd-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: pd-spin 0.8s linear infinite;
+}
+
+@keyframes pd-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Container Principal --- */
+.pd-container {
+  min-height: 100vh;
+  background-color: transparent;
+}
+
+/* --- Header / Banner do Paciente --- */
+.pd-header {
+  background: var(--bg-card);
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.pd-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-direction: column;
+}
+
+.pd-btn-voltar {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0;
+  transition: var(--transition);
+  font-family: var(--sans);
+}
+
+.pd-btn-voltar:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.pd-header-info h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  color: var(--text-heading);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.pd-header-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pd-tag {
+  background: var(--secondary-light);
+  color: var(--secondary-text);
+  border: 1px solid var(--border-color);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.pd-tag-imc {
+  background: var(--primary);
+  color: var(--white);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.pd-header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pd-status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+}
+
+.pd-status.ativo {
+  background: var(--success-light);
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.pd-status.inativo {
+  background: var(--danger-light);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* --- Botões (Standardized heights and typography) --- */
+.pd-btn-primario, .pd-btn-secundario {
+  height: var(--btn-height);
+  padding: 0 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: var(--sans);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pd-btn-primario {
+  background-color: var(--primary);
+  color: var(--white);
+  border: 1px solid transparent;
+}
+
+.pd-btn-primario:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.pd-btn-secundario {
+  background-color: var(--secondary-light);
+  color: var(--secondary-text);
+  border: 1px solid var(--secondary-border);
+}
+
+.pd-btn-secundario:hover {
+  background-color: var(--secondary-border);
+  color: var(--text-heading);
+}
+
+.pd-btn-danger {
+  background-color: var(--danger);
+  color: var(--white);
+  border: 1px solid transparent;
+}
+
+.pd-btn-danger:hover {
+  background-color: var(--danger-hover);
+  box-shadow: var(--shadow-sm);
+  color: var(--white);
+}
+
+.pd-btn-editar {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: var(--sans);
+}
+
+.pd-btn-editar:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.pd-btn-excluir {
+  background: var(--danger);
+  color: var(--white);
+  border: 1px solid transparent;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: var(--sans);
+  margin-right: 8px;
+}
+
+.pd-btn-excluir:hover {
+  background: var(--danger-hover);
+  color: #ffffff;
+}
+
+/* --- Layout de Conteúdo (2 colunas) --- */
+.pd-content {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* --- Card Genérico --- */
+.pd-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.pd-card-title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.2rem;
+  color: var(--text-heading);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pd-card-icon {
+  font-size: 1.25rem;
+}
+
+.pd-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.pd-card-header-row .pd-card-title {
+  margin: 0;
+}
+
+.pd-contagem {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-app);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  min-width: 90px;
+  text-align: center;
+}
+
+/* --- Dados Cadastrais (Sidebar) --- */
+.pd-dados-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-dado {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pd-dado:last-child {
+  border-bottom: none;
+}
+
+.pd-dado-meta {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--border-color);
+  border-bottom: none;
+}
+
+.pd-dado-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.pd-dado-valor {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* --- Histórico Vazio --- */
+.pd-vazio {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  color: var(--text-muted);
+}
+
+.pd-vazio-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.pd-vazio p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* --- Timeline de Prontuários --- */
+.pd-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-timeline-item {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.pd-timeline-marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 24px;
+}
+
+.pd-timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--border-color);
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 0 0 1px var(--border-color);
+  z-index: 2;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.pd-timeline-dot.recente {
+  background: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+  animation: pd-pulse 2s ease-in-out infinite;
+}
+
+@keyframes pd-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px var(--primary); }
+  50% { box-shadow: 0 0 0 4px var(--primary-light); }
+}
+
+.pd-timeline-line {
+  width: 2px;
+  background: var(--border-color);
+  position: absolute;
+  top: 32px;
+  bottom: -1.35rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.pd-timeline-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.pd-timeline-content:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.pd-timeline-content.prontuario,
+.pd-timeline-content.anamnese {
+  border-left: 4px solid #94a3b8;
+}
+
+.pd-timeline-content.prontuario.recente,
+.pd-timeline-content.anamnese.recente {
+  border-left: 4px solid var(--primary);
+}
+
+.pd-timeline-item.expandido .pd-timeline-content {
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.pd-timeline-item.expandido .pd-timeline-content.prontuario,
+.pd-timeline-item.expandido .pd-timeline-content.prontuario:hover,
+.pd-timeline-item.expandido .pd-timeline-content.anamnese,
+.pd-timeline-item.expandido .pd-timeline-content.anamnese:hover {
+  border-left: 4px solid #94a3b8;
+}
+
+.pd-timeline-item.expandido .pd-timeline-content.prontuario.recente,
+.pd-timeline-item.expandido .pd-timeline-content.prontuario.recente:hover,
+.pd-timeline-item.expandido .pd-timeline-content.anamnese.recente,
+.pd-timeline-item.expandido .pd-timeline-content.anamnese.recente:hover {
+  border-left: 4px solid var(--primary);
+}
+
+.pd-timeline-item.expandido .pd-blockchain-bloco.genesis,
+.pd-timeline-item.expandido .pd-blockchain-bloco.genesis:hover {
+  border-left: 4px solid #cbd5e1;
+}
+
+.pd-timeline-item.expandido .pd-blockchain-bloco.exportacao,
+.pd-timeline-item.expandido .pd-blockchain-bloco.exportacao:hover,
+.pd-timeline-item.expandido .pd-blockchain-bloco.edicao,
+.pd-timeline-item.expandido .pd-blockchain-bloco.edicao:hover {
+  border-left: 4px solid #94a3b8;
+}
+
+.pd-timeline-item.expandido .pd-blockchain-bloco.exportacao.recente,
+.pd-timeline-item.expandido .pd-blockchain-bloco.exportacao.recente:hover {
+  border-left: 4px solid var(--primary);
+}
+
+.pd-timeline-item.expandido .pd-blockchain-bloco.edicao.recente,
+.pd-timeline-item.expandido .pd-blockchain-bloco.edicao.recente:hover {
+  border-left: 4px solid var(--warning);
+}
+
+.pd-timeline-item.expandido .pd-timeline-content:hover {
+  border-color: var(--border-hover);
+}
+
+.pd-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.pd-timeline-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pd-timeline-data {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.pd-timeline-medico {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.pd-timeline-acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pd-expand-icon {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.pd-timeline-resumo {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* --- Sinais Vitais (badges inline) --- */
+.pd-sinais-vitais {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.pd-sinal {
+  font-size: 0.8rem;
+  background: var(--secondary-light);
+  color: var(--text-main);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+/* --- Detalhes SOAP (Expansível) --- */
+.pd-soap-detalhes {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: pd-fadeIn 0.25s ease;
+}
+
+@keyframes pd-fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pd-soap-bloco h4 {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pd-soap-bloco p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  background: var(--bg-app);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+}
+
+.pd-soap-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: right;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+/* --- Abas de Navegação --- */
+.pd-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.pd-tab {
+  flex: 1;
+  padding: 0.9rem 1.25rem;
+  background: var(--bg-card);
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  font-family: var(--sans);
+}
+
+.pd-tab:not(:last-child) {
+  border-right: 1px solid var(--border-color);
+}
+
+.pd-tab:hover {
+  background: var(--bg-app);
+  color: var(--text-heading);
+}
+
+.pd-tab.ativa {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* --- Log de Alterações --- */
+.pd-log-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-log-item {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.pd-log-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  padding-top: 8px;
+}
+
+.pd-log-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.15rem;
+  z-index: 2;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Micro-nudge for vertical alignment since unicode glyph shapes differ */
+.pd-log-icon.icon-sol {
+  transform: translate(-50%, -50%);
+}
+.pd-log-icon.icon-mercurio {
+  transform: translate(-50%, -50%);
+}
+.pd-log-icon.icon-sal {
+  transform: translate(-50%, -50%);
+}
+.pd-log-icon.icon-chofre {
+  transform: translate(-50%, -50%);
+}
+.pd-log-icon.icon-saturno {
+  transform: translate(-50%, -50%);
+}
+.pd-log-icon.icon-lua {
+  transform: translate(-50%, -50%);
+}
+.pd-log-icon.icon-enxofre {
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+}
+.pd-log-icon.icon-jupiter {
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+}
+
+/* Styled log/timeline dot container for alchemical icons */
+.pd-timeline-dot.log-icon-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--secondary-border);
+  color: var(--secondary);
+  z-index: 2;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+  margin-top: 8px;
+  --pulse-color: rgba(100, 116, 139, 0.2);
+}
+
+.pd-timeline-dot.log-icon-container.prontuario,
+.pd-timeline-dot.log-icon-container.anamnese {
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.4);
+  --pulse-color: rgba(148, 163, 184, 0.2);
+}
+
+.pd-timeline-dot.log-icon-container.prontuario.recente,
+.pd-timeline-dot.log-icon-container.anamnese.recente {
+  color: var(--primary);
+  border-color: var(--primary-border);
+  --pulse-color: rgba(13, 148, 136, 0.2);
+}
+
+.pd-timeline-dot.log-icon-container.log-criacao { color: var(--success); border-color: rgba(16, 185, 129, 0.4); --pulse-color: rgba(16, 185, 129, 0.2); }
+.pd-timeline-dot.log-icon-container.log-edicao { color: var(--warning); border-color: rgba(245, 158, 11, 0.4); --pulse-color: rgba(245, 158, 11, 0.2); }
+.pd-timeline-dot.log-icon-container.log-exclusao { color: var(--danger); border-color: rgba(239, 68, 68, 0.4); --pulse-color: rgba(239, 68, 68, 0.2); }
+.pd-timeline-dot.log-icon-container.log-desativacao { color: #0f172a; border-color: rgba(15, 23, 42, 0.4); --pulse-color: rgba(15, 23, 42, 0.2); }
+.pd-timeline-dot.log-icon-container.log-reativacao { color: #cbd5e1; border-color: rgba(203, 213, 225, 0.8); --pulse-color: rgba(203, 213, 225, 0.4); }
+.pd-timeline-dot.log-icon-container.log-visualizacao { color: #0ea5e9; border-color: rgba(14, 165, 233, 0.4); --pulse-color: rgba(14, 165, 233, 0.2); }
+.pd-timeline-dot.log-icon-container.log-verificacao { color: #a78bfa; border-color: rgba(167, 139, 250, 0.4); --pulse-color: rgba(167, 139, 250, 0.2); }
+
+.pd-timeline-dot.log-icon-container.genesis { color: #cbd5e1; border-color: rgba(203, 213, 225, 0.8); --pulse-color: rgba(203, 213, 225, 0.4); }
+.pd-timeline-dot.log-icon-container.exportacao,
+.pd-timeline-dot.log-icon-container.edicao {
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.4);
+  --pulse-color: rgba(148, 163, 184, 0.2);
+}
+.pd-timeline-dot.log-icon-container.exportacao.recente { color: var(--primary); border-color: var(--primary-border); --pulse-color: rgba(13, 148, 136, 0.2); }
+.pd-timeline-dot.log-icon-container.edicao.recente { color: var(--warning); border-color: rgba(245, 158, 11, 0.4); --pulse-color: rgba(245, 158, 11, 0.2); }
+
+/* Pulse animation for alchemical icon containers */
+.pd-timeline-dot.log-icon-container.recente {
+  animation: pd-pulse-icon 2s ease-in-out infinite;
+}
+@keyframes pd-pulse-icon {
+  0%, 100% { box-shadow: var(--shadow-sm), 0 0 0 0px var(--pulse-color); }
+  50% { box-shadow: var(--shadow-sm), 0 0 0 4px var(--pulse-color); }
+}
+
+/* Preserve action color on expanded logs — only reset top/right/bottom borders, keep left border */
+.pd-timeline-item.expandido .pd-log-content {
+  border-color: var(--border-color);
+}
+.pd-timeline-item.expandido .pd-log-content.log-criacao { border-left-color: var(--success); }
+.pd-timeline-item.expandido .pd-log-content.log-edicao { border-left-color: var(--warning); }
+.pd-timeline-item.expandido .pd-log-content.log-exclusao { border-left-color: var(--danger); }
+.pd-timeline-item.expandido .pd-log-content.log-desativacao { border-left-color: #0f172a; }
+.pd-timeline-item.expandido .pd-log-content.log-reativacao { border-left-color: #cbd5e1; }
+.pd-timeline-item.expandido .pd-log-content.log-visualizacao { border-left-color: #0ea5e9; }
+.pd-timeline-item.expandido .pd-log-content.log-verificacao { border-left-color: #a78bfa; }
+
+.pd-timeline-item.expandido .pd-log-content:hover {
+  border-color: var(--border-hover);
+}
+.pd-timeline-item.expandido .pd-log-content.log-criacao:hover { border-left-color: var(--success); }
+.pd-timeline-item.expandido .pd-log-content.log-edicao:hover { border-left-color: var(--warning); }
+.pd-timeline-item.expandido .pd-log-content.log-exclusao:hover { border-left-color: var(--danger); }
+.pd-timeline-item.expandido .pd-log-content.log-desativacao:hover { border-left-color: #0f172a; }
+.pd-timeline-item.expandido .pd-log-content.log-reativacao:hover { border-left-color: #cbd5e1; }
+.pd-timeline-item.expandido .pd-log-content.log-visualizacao:hover { border-left-color: #0ea5e9; }
+.pd-timeline-item.expandido .pd-log-content.log-verificacao:hover { border-left-color: #a78bfa; }
+
+/* Cores de borda por tipo de ação */
+.pd-log-content.log-criacao { border-left: 4px solid var(--success); }
+.pd-log-content.log-edicao { border-left: 4px solid var(--warning); }
+.pd-log-content.log-exclusao { border-left: 4px solid var(--danger); }
+.pd-log-content.log-desativacao { border-left: 4px solid #0f172a; }
+.pd-log-content.log-reativacao { border-left: 4px solid #cbd5e1; }
+.pd-log-content.log-visualizacao { border-left: 4px solid #0ea5e9; }
+.pd-log-content.log-verificacao { border-left: 4px solid #a78bfa; }
+
+.pd-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.pd-log-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pd-log-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-app);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.log-criacao .pd-log-badge { background: var(--success-light); color: var(--success); border-color: var(--success); }
+.log-edicao .pd-log-badge { background: var(--warning-light); color: var(--warning); border-color: var(--warning); }
+.log-exclusao .pd-log-badge { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
+.log-desativacao .pd-log-badge { background: #f1f5f9; color: #0f172a; border-color: #0f172a; }
+.log-reativacao .pd-log-badge { background: #f8fafc; color: #475569; border-color: #cbd5e1; }
+.log-visualizacao .pd-log-badge { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
+.log-verificacao .pd-log-badge { background: #ede9fe; color: #7c3aed; border-color: #a78bfa; }
+
+.pd-log-entidade {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.pd-log-data {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pd-log-autor {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.pd-log-autor strong {
+  color: var(--text-heading);
+}
+
+.pd-log-meta-item {
+  color: var(--text-muted);
+}
+
+.pd-log-meta-item code {
+  background: var(--bg-app);
+  padding: 1px 4px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--primary);
+}
+
+.pd-log-meta-item em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--text-heading);
+}
+
+/* --- Campos Alterados (Diff) --- */
+.pd-log-campos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.pd-log-campo {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.pd-log-campo-nome {
+  font-weight: 700;
+  color: var(--text-main);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.pd-log-diff {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.pd-log-antigo {
+  background: var(--danger-light);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  text-decoration: line-through;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.pd-log-seta {
+  color: var(--text-muted);
+  font-weight: bold;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.pd-log-novo {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 900px) {
+  .pd-content {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .pd-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pd-header-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .pd-log-campo {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .pd-log-campo-nome {
+    min-width: auto;
+  }
+
+  .pd-blockchain-info-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pd-blockchain-bloco-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pd-blockchain-hash-value {
+    font-size: 0.6rem;
+  }
+}
+
+/* ======================== */
+/*  RNF08: Botão Exportar PDF  */
+/* ======================== */
+
+.pd-btn-pdf {
+  background: linear-gradient(135deg, #0d9488, #14b8a6);
+  color: #ffffff;
+  border: 1px solid transparent;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: var(--sans);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pd-btn-pdf:hover {
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+}
+
+.pd-btn-pdf:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ======================== */
+/*  RNF08: Aba de Integridade / Blockchain  */
+/* ======================== */
+
+/* --- Status da Verificação --- */
+.pd-integridade-status {
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid;
+  animation: pd-fadeIn 0.3s ease;
+}
+
+.pd-integridade-status.valida {
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  border-color: #86efac;
+}
+
+.pd-integridade-status.invalida {
+  background: linear-gradient(135deg, #fef2f2, #fff1f2);
+  border-color: #fca5a5;
+}
+
+.pd-integridade-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pd-integridade-icon {
+  font-size: 2rem;
+}
+
+.pd-integridade-header strong {
+  font-size: 1.1rem;
+  color: var(--text-heading);
+}
+
+.pd-integridade-detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.pd-integridade-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+/* --- Estatísticas da Blockchain --- */
+.pd-blockchain-info-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-app);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.pd-blockchain-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pd-blockchain-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--mono);
+}
+
+.pd-blockchain-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Cadeia de Blocos --- */
+.pd-blockchain-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pd-blockchain-bloco {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.pd-blockchain-bloco:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.pd-blockchain-bloco.genesis {
+  border-left: 4px solid #cbd5e1;
+}
+
+.pd-blockchain-bloco.exportacao,
+.pd-blockchain-bloco.edicao {
+  border-left: 4px solid #94a3b8;
+}
+
+.pd-blockchain-bloco.exportacao.recente {
+  border-left: 4px solid var(--primary);
+}
+
+.pd-blockchain-bloco.edicao.recente {
+  border-left: 4px solid var(--warning);
+}
+
+.pd-blockchain-bloco-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.pd-blockchain-bloco-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pd-blockchain-bloco-indice {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  background: var(--bg-app);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.pd-blockchain-tipo-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.pd-blockchain-tipo-badge.genesis {
+  background: #f8fafc;
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+.pd-blockchain-tipo-badge.exportacao,
+.pd-blockchain-tipo-badge.edicao {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #94a3b8;
+}
+
+.pd-blockchain-tipo-badge.exportacao.recente {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+.pd-blockchain-tipo-badge.edicao.recente {
+  background: var(--warning-light);
+  color: var(--warning);
+  border-color: var(--warning);
+}
+
+.pd-log-badge.prontuario,
+.pd-log-badge.anamnese {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #94a3b8;
+}
+
+.pd-log-badge.prontuario.recente,
+.pd-log-badge.anamnese.recente {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+.pd-blockchain-entidade {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.pd-blockchain-data {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --- Hashes --- */
+.pd-blockchain-hashes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.pd-blockchain-hash-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.pd-blockchain-hash-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.pd-blockchain-hash-value {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--primary);
+  word-break: break-all;
+  font-weight: 500;
+  background: var(--bg-app);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+}
+
+.pd-blockchain-hash-value.anterior {
+  color: #94a3b8;
+}
+
+.pd-blockchain-hash-value.dados {
+  color: #8b5cf6;
+}
+
+.pd-blockchain-autor {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.pd-blockchain-autor strong {
+  color: var(--text-heading);
+}
+
+/* --- Conector entre blocos --- */
+.pd-blockchain-conector {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.pd-blockchain-conector::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-color);
+  z-index: 0;
+}
+
+.pd-blockchain-conector span {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-card);
+  padding: 0 4px;
+}
+
+/* --- Cores Pastéis Inéditas e Ícones de Alquimia para Anexos --- */
+
+.pd-timeline-dot.log-icon-container.anxo-doc {
+  background-color: #fff0f5 !important; /* Pastel Pink / LavenderBlush */
+  color: #c2185b !important;
+  border-color: #f8bbd0 !important;
+  --pulse-color: rgba(244, 143, 177, 0.25);
+}
+
+.pd-timeline-dot.log-icon-container.anxo-img {
+  background-color: #e8eaf6 !important; /* Pastel Indigo */
+  color: #3f51b5 !important;
+  border-color: #c5cae9 !important;
+  --pulse-color: rgba(159, 168, 218, 0.25);
+}
+
+.pd-timeline-dot.log-icon-container.anxo-other {
+  background-color: #efebe9 !important; /* Pastel Clay Brown */
+  color: #5d4037 !important;
+  border-color: #d7ccc8 !important;
+  --pulse-color: rgba(188, 170, 164, 0.25);
+}
+
+.pd-timeline-content.anxo-card-doc {
+  border-left: 4px solid #e91e63 !important;
+}
+
+.pd-timeline-content.anxo-card-img {
+  border-left: 4px solid #5c6bc0 !important;
+}
+
+.pd-timeline-content.anxo-card-other {
+  border-left: 4px solid #8d6e63 !important;
+}
+
+/* Specific micro-nudge alignments for the new alchemy symbols */
+.pd-log-icon.icon-ar {
+  transform: translate(-50%, -50%);
+}
+
+.pd-log-icon.icon-fosforo {
+  transform: translate(-50%, -50%);
+}
+
+.pd-log-icon.icon-antimonio {
+  transform: translate(-50%, -50%);
+}
+
