@@ -49,7 +49,8 @@ router.post('/login', async (req, res) => {
 
     return res.status(401).json({ erro: 'Credenciais invalidas.' });
   } catch (err) {
-    return res.status(500).json({ erro: 'Erro interno.' });
+    console.error('Erro no login:', err);
+    return res.status(500).json({ erro: 'Erro interno.', detalhes: err.message });
   }
 });
 
