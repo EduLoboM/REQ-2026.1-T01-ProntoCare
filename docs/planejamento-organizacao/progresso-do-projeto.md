@@ -12,7 +12,7 @@ Durante o ciclo de desenvolvimento iterativo (ScrumXP), superamos os desafios de
 - **Total Entregue (DoD Completo e Funcional no prazo oficial):** 22 User Stories
 - **Total Pendente:** 0 User Stories
 
-> **Percentual de Conclusão do MVP:** Das 22 USs planejadas, atingimos **100% de conclusão do MVP letivo** com software validado funcionalmente pelo Product Owner (Dr. Rogério Duarte). Deste montante, apenas 6 USs seguiram o fluxo formal obrigatório de Issues/PRs (US08, 10, 11, 12, 13 e 15), enquanto as demais 16 USs foram entregues via *commits diretos (main)* justificados na Matriz de Dívida Técnica ([ver seção 9.4 do DoD](../visao-produto/DoR-DoD.md#94-matriz-operacional-de-entregas-sem-pull-request)).
+> **Percentual de Conclusão do MVP:** Das 22 USs planejadas, atingimos **100% de conclusão do MVP letivo** com software validado funcionalmente pelo Product Owner (Dr. Rogério Duarte). Deste montante, apenas 6 USs seguiram o fluxo formal obrigatório de Issues/PRs (US08, 10, 11, 12, 13 e 15), enquanto as demais 16 USs foram desenvolvidas em branches próprias e integradas na branch dev após notificação de conclusão ao grupo, conforme justificado na Matriz de Dívida Técnica ([ver seção 9.4 do DoD](../visao-produto/DoR-DoD.md#94-matriz-operacional-de-entregas-sem-pull-request)).
 
 ---
 
@@ -23,28 +23,28 @@ A tabela abaixo exibe a relação detalhada do status de homologação de todos 
 
 | US | RF Relacionado | Sprint | Status | Teste | DoD | Feedback |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| <span id="ref-us01"></span>[**US01**](#us01) | RF01 - Cadastrar pacientes | Sprint 1 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us02"></span>[**US02**](#us02) | RF02 - Editar registros | Sprint 1 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us03"></span>[**US03**](#us03) | RF03 - Excluir registros | Sprint 1 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us04"></span>[**US04**](#us04) | RF04 - Buscar pacientes | Sprint 3 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us05"></span>[**US05**](#us05) | RF05 - Exportar base JSON | Sprint 5 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us06"></span>[**US06**](#us06) | RF06 - Registrar prontuário SOAP | Sprint 3 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us07"></span>[**US07**](#us07) | RF07 - Histórico clínico | Sprint 3 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us08"></span>[**US08**](#us08) | RF08 - Assinar prontuário | Sprint 9| ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us09"></span>[**US09**](#us09) | RF09 - Exportar prontuário PDF | Sprint 5 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us10"></span>[**US10**](#us10) | RF10 - Visualizar calendário | Sprint 8 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us11"></span>[**US11**](#us11) | RF11 - Agendar consultas | Sprint 8 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us12"></span>[**US12**](#us12) | RF12 - Listar consultas do dia | Sprint 8 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us13"></span>[**US13**](#us13) | RF13 - Alterar status da consulta | Sprint 8 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us14"></span>[**US14**](#us14) | RF14 - Elaborar receita digital | Sprint 9 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us15"></span>[**US15**](#us15) | RF15 - Assinar receita | Sprint 9 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us16"></span>[**US16**](#us16) | RF16 - Emitir receita PDF | Sprint 9 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us18"></span>[**US18**](#us18) | RF18 - Histórico de receitas | Sprint 9 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us20"></span>[**US20**](#us20) | RF20 - Cadastrar médicos | Sprint 3 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us21"></span>[**US21**](#us21) | RF21 - Editar perfis de médicos | Sprint 1 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us22"></span>[**US22**](#us22) | RF22 - Inativar perfis de médicos | Sprint 1 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us23"></span>[**US23**](#us23) | RF23 - Buscar perfis de médicos | Sprint 1 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
-| <span id="ref-us24"></span>[**US24**](#us24) | RF24 - Consultar logs auditoria | Sprint 5 | ✅ Concluído | Aprovado | 100% | Validado com cliente |
+| <span id="ref-us01"></span>[**US01**](#us01) | RF01 - Cadastrar pacientes | Sprint 1 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us02"></span>[**US02**](#us02) | RF02 - Editar registros | Sprint 1 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us03"></span>[**US03**](#us03) | RF03 - Excluir registros | Sprint 1 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us04"></span>[**US04**](#us04) | RF04 - Buscar pacientes | Sprint 2 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us05"></span>[**US05**](#us05) | RF05 - Exportar base JSON | Sprint 5 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us06"></span>[**US06**](#us06) | RF06 - Registrar prontuário SOAP | Sprint 2 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us07"></span>[**US07**](#us07) | RF07 - Histórico clínico | Sprint 3 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us08"></span>[**US08**](#us08) | RF08 - Assinar prontuário | Sprint 9| ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us09"></span>[**US09**](#us09) | RF09 - Exportar prontuário PDF | Sprint 5 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us10"></span>[**US10**](#us10) | RF10 - Visualizar calendário | Sprint 8 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us11"></span>[**US11**](#us11) | RF11 - Agendar consultas | Sprint 8 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us12"></span>[**US12**](#us12) | RF12 - Listar consultas do dia | Sprint 8 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us13"></span>[**US13**](#us13) | RF13 - Alterar status da consulta | Sprint 8 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us14"></span>[**US14**](#us14) | RF14 - Elaborar receita digital | Sprint 9 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us15"></span>[**US15**](#us15) | RF15 - Assinar receita | Sprint 9 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us16"></span>[**US16**](#us16) | RF16 - Emitir receita PDF | Sprint 9 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us18"></span>[**US18**](#us18) | RF18 - Histórico de receitas | Sprint 5 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us20"></span>[**US20**](#us20) | RF20 - Cadastrar médicos | Sprint 2 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us21"></span>[**US21**](#us21) | RF21 - Editar perfis de médicos | Sprint 1 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us22"></span>[**US22**](#us22) | RF22 - Inativar perfis de médicos | Sprint 1 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us23"></span>[**US23**](#us23) | RF23 - Buscar perfis de médicos | Sprint 1 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
+| <span id="ref-us24"></span>[**US24**](#us24) | RF24 - Consultar logs auditoria | Sprint 5 | ✅ Concluído | Aprovado | Aprovado | Validado com cliente |
 
 <span id="tabela-feedback"></span>
 
@@ -76,7 +76,7 @@ Esta tabela apresenta de forma consolidada todos os feedbacks coletados junto ao
 | **Sprint 9/10** | [US15](#us15) | Software Funcional (Assinatura Receita) | Solicitou o selo de assinatura no rodapé do documento de receita padrão. | Aprovado com ressalvas | Atualização do layout de exportação de receitas médicas em PDF no backlog para incluir chancela no rodapé. | **Aprovado com ressalvas** | [Ata](../atas-e-videos/sprint-9.md) / [Vídeo](https://youtu.be/zBuWdVirAcE) |
 | **Sprint 9** | [US16](#us16) | Software Funcional (Exportador PDF Receita) | Formato de receituário padrão aprovado na Review. | Aprovado | Nenhuma alteração de escopo exigida. | **Aprovado** | [Ata](../atas-e-videos/sprint-9.md) / [Vídeo](https://youtu.be/la-cM83mW_8) |
 | **Sprint 9** | [US17](#us17) | Requisito (Análise por IA) | Considerado recurso secundário em relação às barreiras regulatórias. | Rejeitado (Fora do MVP) | Nenhuma atividade de desenvolvimento executada. | **Rejeitado** | [Ata](../atas-e-videos/sprint-9.md) / [Vídeo](https://youtu.be/la-cM83mW_8) |
-| **Sprint 9** | [US18](#us18) | Software Funcional (Histórico Receitas) | Exibição das receitas anteriores integrada de forma fluida ao histórico do paciente. | Aprovado | Nenhuma alteração exigida. | **Aprovado** | [Ata](../atas-e-videos/sprint-9.md) / [Vídeo](https://youtu.be/la-cM83mW_8) |
+| **Sprint 5** | [US18](#us18) | Software Funcional (Histórico Receitas) | Exibição das receitas anteriores integrada de forma fluida ao histórico do paciente. | Aprovado | Nenhuma alteração exigida. | **Aprovado** | [Ata](../atas-e-videos/sprint-5.md) / [Vídeo (Corrompido)](../atas-e-videos/sprint-5.md#videos) |
 | **Sprint 9** | [US19](#us19) | Requisito (Termo TCLE) | Entendeu que o recurso é dispensável no MVP e pode ser contornado manualmente. | Rejeitado (Fora do MVP) | Nenhuma alteração efetuada. | **Rejeitado** | [Ata](../atas-e-videos/sprint-9.md) / [Vídeo](https://youtu.be/la-cM83mW_8) |
 | **Sprint 2** | [US20](#us20) | Requisito (Perfil de Médico) | Aprovado conforme a lógica proposta para a clínica piloto (administrador cadastra médicos). | Aprovado | Nossos padrões atendem. Nenhuma alteração exigida além da unificação do padrão CRM-UF. | **Aprovado** | [Ata](../atas-e-videos/sprint-2.md) / [Vídeo](https://youtu.be/hed-WqOa3yY) |
 | **Sprint 3** | [US20](#us20) | Software Funcional (Cadastro Médico) | Cadastro e fluxos operam perfeitamente. | Aprovado | Nenhuma alteração exigida. | **Aprovado** | [Ata](../atas-e-videos/sprint-3.md) / [Vídeo](https://youtu.be/pgax0OPZzBo) |
@@ -150,7 +150,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -199,7 +199,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -248,7 +248,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -259,7 +259,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     [:material-arrow-up-circle-outline: Voltar para a tabela](#ref-us03)
 
 <span id="us04"></span>
-??? success "US04 — Buscar Pacientes (Sprint 3)"
+??? success "US04 — Buscar Pacientes (Sprint 2)"
 
     * **Identificador:** [US04 / RF04](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
@@ -288,7 +288,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF04 → US04).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de busca em [Panel.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Panel.css).
+    * **Verificação (Equipe):** Verificado na Sprint 2 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de busca em [Panel.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Panel.css).
     * **Validação (Cliente):** Validado nas Reviews das Sprints 2 (Protótipo) e 3 (Software) pelo Dr. Rogério Duarte.
 
 
@@ -297,7 +297,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -348,7 +348,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -359,7 +359,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     [:material-arrow-up-circle-outline: Voltar para a tabela](#ref-us05)
 
 <span id="us06"></span>
-??? success "US06 — Registrar Prontuário Estruturado SOAP (Sprint 3)"
+??? success "US06 — Registrar Prontuário Estruturado SOAP (Sprint 2)"
 
     * **Identificador:** [US06 / RF06](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
@@ -392,7 +392,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE1 → CP1 → RF06 → US06).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes automatizados em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js) e interface de prontuário em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 2 com testes automatizados em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js) e interface de prontuário em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
 
@@ -401,7 +401,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -450,7 +450,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -501,7 +501,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | :--- | :--- |
     | **Issue** | [#26](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/26) |
     | **Pull Request** | [#26](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/26) |
-    | **Revisor** | `A ser preenchido` |
+    | **Revisor** | `Fábio` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:**
@@ -553,7 +553,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -603,7 +603,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | :--- | :--- |
     | **Issue** | [#27](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/27) |
     | **Pull Request** | [#27](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/27) |
-    | **Revisor** | `A ser preenchido` |
+    | **Revisor** | `Fábio` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Visualização semanal e navegação por datas homologada de forma amigável.
@@ -656,7 +656,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | :--- | :--- |
     | **Issue** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/28) |
     | **Pull Request** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/28) |
-    | **Revisor** | `A ser preenchido` |
+    | **Revisor** | `Fábio` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Validação de indisponibilidade e teleconsultas integrada com sucesso.
@@ -705,7 +705,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | :--- | :--- |
     | **Issue** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/28) |
     | **Pull Request** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/28) |
-    | **Revisor** | `A ser preenchido` |
+    | **Revisor** | `Fábio` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovada a listagem cronológica do dia no painel.
@@ -754,7 +754,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | :--- | :--- |
     | **Issue** | [#30](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/30) |
     | **Pull Request** | [#30](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/30) |
-    | **Revisor** | `A ser preenchido` |
+    | **Revisor** | `Fábio` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Estados de consulta (Agendado, Em atendimento, Finalizado) validados na Review.
@@ -806,7 +806,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -860,7 +860,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | :--- | :--- |
     | **Issue** | [#31](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/31) |
     | **Pull Request** | [#31](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/31) |
-    | **Revisor** | `A ser preenchido` |
+    | **Revisor** | `Fábio` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Solicitou o selo de assinatura no rodapé do documento de receita padrão.
@@ -912,7 +912,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -962,7 +962,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     [:material-arrow-up-circle-outline: Voltar para a tabela](#tabela-mvp)
 
 <span id="us18"></span>
-??? success "US18 — Histórico de Receitas do Paciente (Sprint 9)"
+??? success "US18 — Histórico de Receitas do Paciente (Sprint 5)"
 
     * **Identificador:** [US18 / RF18](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
@@ -991,8 +991,8 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF18 → US18).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 9 com teste de leitura IndexedDB local e visualização na aba de detalhes em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
-    * **Validação (Cliente):** Validada na Review da Sprint 9 pelo Dr. Rogério Duarte.
+    * **Verificação (Equipe):** Verificado na Sprint 5 com teste de leitura IndexedDB local e visualização na aba de detalhes em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
+    * **Validação (Cliente):** Validada na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
 
     #### :material-source-branch: Governança do Repositório
@@ -1000,7 +1000,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1050,7 +1050,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     [:material-arrow-up-circle-outline: Voltar para a tabela](#tabela-mvp)
 
 <span id="us20"></span>
-??? success "US20 — Cadastrar Médicos (Sprint 3)"
+??? success "US20 — Cadastrar Médicos (Sprint 2)"
 
     * **Identificador:** [US20 / RF20](backlog-de-produto.md)
     * **Status:** Concluído :material-check-decagram:
@@ -1082,7 +1082,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP6 → RF20 → US20).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e rotas administrativas no backend.
+    * **Verificação (Equipe):** Verificado na Sprint 2 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e rotas administrativas no backend.
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
 
@@ -1091,7 +1091,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1142,7 +1142,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1191,7 +1191,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1240,7 +1240,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1292,7 +1292,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     | Artefato | Link |
     | :--- | :--- |
     | **Issue** | `N/A — Sem Issue cadastrada` |
-    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Pull Request** | `N/A — Merge na branch dev` |
     | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1587,6 +1587,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 | 2026-07-01 | 1.6 | Adição da Tabela Consolidadora de Feedback de Validação por US com diferenciação de tipos de artefatos e links diretos para atas e vídeos das sprints correspondentes. | Prontuariantes |
 | 2026-07-01 | 1.7 | Correção e expansão de critérios de aceitação Gherkin para cobrir casos críticos solicitados no feedback (CPF duplicado, credenciais inválidas, anexo inválido, assinatura indisponível, falha de PDF e auditoria). | Prontuariantes |
 | 2026-07-01 | 1.7 | Correção de auditoria: inserção do bloco "Governança do Repositório" (Issue, PR e Revisor) na seção de rastreabilidade de cada uma das 22 USs do MVP, conforme exigência do DoD v1.6. | Prontuariantes |
+| 2026-07-01 | 1.8 | Correção das sprints de entrega para as USs 04, 06, 20 (alteradas para Sprint 2) e US18 (alterada para Sprint 5) no cronograma de acompanhamento e rastreabilidade para alinhamento com as atas de sprint. | Prontuariantes |
 
 
 <script>
