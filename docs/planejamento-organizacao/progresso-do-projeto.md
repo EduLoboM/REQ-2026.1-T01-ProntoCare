@@ -124,6 +124,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de cadastro em [Register/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Register/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Solicitou validação obrigatória e impeditiva do CPF e adição de campos de telefone e contato de emergência.
     * **Decisão:** Aprovado com ressalvas.
@@ -163,6 +172,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de edição em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovou o fluxo de edição direta no detalhe do paciente.
@@ -204,6 +222,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e hook lógico de inativação em [pacientes.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/pacientes.js#L112).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovada a inativação lógica para preservação de histórico clínico regulatório.
     * **Decisão:** Aprovado.
@@ -243,6 +270,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de busca em [Panel.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Panel.css).
     * **Validação (Cliente):** Validado nas Reviews das Sprints 2 (Protótipo) e 3 (Software) pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:**
@@ -286,6 +322,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 5 com testes de frontend em [offlineService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.test.js) e exportador em [offlineService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.js#L258).
     * **Validação (Cliente):** Validado na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovado formato padrão JSON para portabilidade de dados.
     * **Decisão:** Aprovado.
@@ -325,6 +370,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 3 com testes automatizados em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js) e interface de prontuário em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Solicitou que a edição de prontuários assinados não destrua o registro original, gerando um histórico/versão vinculada.
@@ -366,6 +420,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 3 com testes de responsividade e interface em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovado layout temporal cronológico do histórico assistencial.
     * **Decisão:** Aprovado.
@@ -405,6 +468,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 9/10 com testes integrados em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js) e componentes de assinatura no frontend em [AssinaturaModal.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/components/AssinaturaModal.jsx).
     * **Validação (Cliente):** Validada com sucesso na Review final da Sprint 9/10 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | [#26](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/26) |
+    | **Pull Request** | [#26](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/26) |
+    | **Revisor** | `A ser preenchido` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:**
@@ -449,6 +521,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 5 com testes de hash em [hashService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/hashService.test.js) e renderizador em [pdfExportService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/pdfExportService.js#L405).
     * **Validação (Cliente):** Validado na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Solicitou carimbo visual com o hash de integridade no rodapé do PDF gerado.
     * **Decisão:** Aprovado.
@@ -488,6 +569,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 8 com testes de frontend em [Agenda/index.test.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Agenda/index.test.jsx) e componente de agenda em [Agenda/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Agenda/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | [#27](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/27) |
+    | **Pull Request** | [#27](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/27) |
+    | **Revisor** | `A ser preenchido` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Visualização semanal e navegação por datas homologada de forma amigável.
@@ -529,6 +619,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 8 com testes de backend em [consultas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/consultas.test.js) e lógica em [consultas.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/consultas.js).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/28) |
+    | **Pull Request** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/28) |
+    | **Revisor** | `A ser preenchido` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Validação de indisponibilidade e teleconsultas integrada com sucesso.
     * **Decisão:** Aprovado.
@@ -568,6 +667,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 8 com testes de integração em [consultas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/consultas.test.js) e interface de painel em [PacientePanel.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacientePanel.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/28) |
+    | **Pull Request** | [#28](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/28) |
+    | **Revisor** | `A ser preenchido` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovada a listagem cronológica do dia no painel.
@@ -609,6 +717,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 8 com testes de backend em [consultas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/consultas.test.js) e controle em [consultas.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/consultas.js).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | [#30](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/30) |
+    | **Pull Request** | [#30](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/30) |
+    | **Revisor** | `A ser preenchido` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Estados de consulta (Agendado, Em atendimento, Finalizado) validados na Review.
     * **Decisão:** Aprovado.
@@ -648,6 +765,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 9 com análise funcional de campos de prescrição em [Prescricao/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Prescricao/index.jsx).
     * **Validação (Cliente):** Validado na Review/Planning da Sprint 9 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Solicitou layout de receita padrão contendo dados do consultório, médico (CRM) e paciente no topo.
@@ -689,6 +815,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 9/10 com testes de assinatura de receitas no controlador e interface de assinatura eletrônica qualificada.
     * **Validação (Cliente):** Validada na Review final da Sprint 9/10 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | [#31](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/issues/31) |
+    | **Pull Request** | [#31](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/pull/31) |
+    | **Revisor** | `A ser preenchido` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Solicitou o selo de assinatura no rodapé do documento de receita padrão.
     * **Decisão:** Aprovado.
@@ -728,6 +863,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 9 através do exportador local integrado de prescrições em [Prescricao/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Prescricao/index.jsx).
     * **Validação (Cliente):** Validada na Review da Sprint 9 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Formato de receituário padrão aprovado na Review.
@@ -808,6 +952,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 9 com teste de leitura IndexedDB local e visualização na aba de detalhes em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validada na Review da Sprint 9 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Exibição das receitas anteriores integrada de forma fluida ao histórico do paciente.
     * **Decisão:** Aprovado.
@@ -887,6 +1040,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e rotas administrativas no backend.
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:**
         * *Sprint 2:* Aprovado conforme a lógica proposta para a clínica piloto (administrador cadastra médicos).
@@ -929,6 +1091,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e métodos de controle em [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** CRM dos médicos deve exigir obrigatoriamente a unidade federativa (CRM-UF) para evitar duplicidade de registros.
     * **Decisão:** Aprovado com ressalvas.
@@ -968,6 +1139,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e lógica em [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Aprovada a suspensão lógica das credenciais dos profissionais.
@@ -1009,6 +1189,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e lógica em [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
+
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Filtros de busca por nome e CRM validados.
     * **Decisão:** Aprovado.
@@ -1048,6 +1237,15 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
     * **Verificação (Equipe):** Verificado na Sprint 5 com testes de logs de backend em [logs.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/logs.test.js) e lógica em [auditoria.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/helpers/auditoria.js).
     * **Validação (Cliente):** Validada na Review da Sprint 5 pelo Dr. Rogério Duarte.
+
+
+    #### :material-source-branch: Governança do Repositório
+
+    | Artefato | Link |
+    | :--- | :--- |
+    | **Issue** | `N/A — Sem Issue cadastrada` |
+    | **Pull Request** | `N/A — Commit direto em main` |
+    | **Revisor** | `N/A — Sem revisão por pares` |
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** O sistema grava logs corretamente, mas dados clínicos e informações sensíveis (CPF) de pacientes devem ser mascarados para o perfil admin.
@@ -1337,6 +1535,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 | 2026-06-30 | 1.4 | Transição de dropdowns HTML (`<details>`) para dropdowns nativos do Material for MkDocs (`???` e `??? success/danger`) indentados a 4 espaços, e substituição de todos os emojis por Material Icons oficiais (`:material-...:`). | Prontuariantes |
 | 2026-06-30 | 1.5 | Unificação do Sprint Backlog detalhado (USs, RNFs e revisões) diretamente no painel de progresso do projeto (`progresso/index.md`), eliminando arquivos redundantes. | Prontuariantes |
 | 2026-07-01 | 1.6 | Adição da Tabela Consolidadora de Feedback de Validação por US com diferenciação de tipos de artefatos e links diretos para atas e vídeos das sprints correspondentes. | Prontuariantes |
+| 2026-07-01 | 1.7 | Correção de auditoria: inserção do bloco "Governança do Repositório" (Issue, PR e Revisor) na seção de rastreabilidade de cada uma das 22 USs do MVP, conforme exigência do DoD v1.6. | Prontuariantes |
 
 
 <script>
