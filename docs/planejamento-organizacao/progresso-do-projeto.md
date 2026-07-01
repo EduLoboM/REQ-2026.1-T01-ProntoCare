@@ -37,15 +37,15 @@ Para garantir a qualidade do sistema ProntoCare, cada um dos requisitos não fun
 
 | ID | Requisito Não Funcional | Método de Verificação | Resultado | Evidência / Arquivos Relacionados |
 | :---: | :--- | :--- | :--- | :--- |
-| <span id="ref-rnf01"></span>[**RNF01**](#rnf01) | **Logs com hashing:** Registrar log rastreável com hashing em todas as ações de criação, edição e exclusão. | Execução de testes de integração automatizados (`Jest`) no backend e validação visual da aba de Logs/Integridade na tela do paciente. | **Aprovado** (Implementado e verificado) | - **Testes de Integração:** [logs.test.js](/REQ-2026.1-T01-ProntoCare/back/tests/logs.test.js) e [blockchain.test.js](/REQ-2026.1-T01-ProntoCare/back/tests/blockchain.test.js)<br>- **Lógica Backend:** [auditoria.js](/REQ-2026.1-T01-ProntoCare/back/src/helpers/auditoria.js) (hooks de log) e [blockchain.js](/REQ-2026.1-T01-ProntoCare/back/src/controllers/blockchain.js) (integração do prontuário)<br>- **Frontend Timeline:** [PacienteDetalhe/index.jsx](/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/index.jsx) (renderização dos logs e verificação da blockchain) |
-| <span id="ref-rnf02"></span>[**RNF02**](#rnf02) | **Criptografia de Credenciais:** Armazenar senhas de acesso criptografadas no banco usando `bcrypt`. | Verificação de criptografia no cadastro de usuários via testes automatizados no backend. | **Aprovado** (Implementado e verificado) | - **Criptografia:** [medicos.js](/REQ-2026.1-T01-ProntoCare/back/src/controllers/medicos.js#L54) e [pacientes.js](/REQ-2026.1-T01-ProntoCare/back/src/controllers/pacientes.js#L83)<br>- **Mascaramento:** [auditoria.js](/REQ-2026.1-T01-ProntoCare/back/src/helpers/auditoria.js#L83)<br>- **Testes de Autenticação:** [auth.test.js](/REQ-2026.1-T01-ProntoCare/back/tests/auth.test.js) |
-| <span id="ref-rnf03"></span>[**RNF03**](#rnf03) | **Operação Offline:** Funcionar localmente e salvar dados mesmo sem conexão (IndexedDB via Dexie.js). | Execução de testes de integração (`Vitest`) simulando ausência de conectividade e o uso de filas e atualizações otimistas. | **Aprovado** (Implementado e verificado) | - **Testes de Offline:** [offlineService.test.js](/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.test.js) (15 testes passando)<br>- **Serviço Local:** [offlineService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.js) (atualização otimista e controle de fila) |
-| <span id="ref-rnf04"></span>[**RNF04**](#rnf04) | **Backup Diário na Nuvem:** Rotina automática de backup diário dos dados para a nuvem quando houver conexão. | Análise do código da barra de conectividade e das rotinas offline. | **Aprovado** (Implementado e verificado) | - **Backup Local:** [offlineService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.js#L258-L317) (lógica de geração de backup JSON e restauração)<br>- **Interface UI:** [OfflineStatusBar.jsx](/REQ-2026.1-T01-ProntoCare/front/src/components/OfflineStatusBar.jsx#L127-L167) (importação/exportação na barra de status) |
-| <span id="ref-rnf05"></span>[**RNF05**](#rnf05) | **Conformidade CFM / SBIS:** Estar em conformidade com o NGS da SBIS e resoluções do CFM sobre prontuários. | Análise dos módulos de logs de auditoria e segurança. | **Aprovado** (Implementado e verificado) | - **Logs de Acesso:** [pacientes.js](/REQ-2026.1-T01-ProntoCare/back/src/controllers/pacientes.js#L59) (auditoria de visualizações)<br>- **Integridade:** [blockchain.js](/REQ-2026.1-T01-ProntoCare/back/src/controllers/blockchain.js) (logs e integridade no blockchain)<br>- **Assinatura Qualificada:** [AssinaturaModal.jsx](/REQ-2026.1-T01-ProntoCare/front/src/components/AssinaturaModal.jsx) |
-| <span id="ref-rnf06"></span>[**RNF06**](#rnf06) | **Responsividade de Interface:** Adaptar layout automaticamente de acordo com a resolução (Desktop, Tablet, Mobile). | Verificação visual das telas com alteração de viewport e análise de Media Queries no CSS. | **Aprovado** (Implementado e verificado) | - **Breakpoints de CSS:** [App.css](/REQ-2026.1-T01-ProntoCare/front/src/App.css#L67-L160) (layout geral), [Panel.css](/REQ-2026.1-T01-ProntoCare/front/src/pages/Panel.css#L763-L775) (painel), [styles.css](/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/styles.css#L901-L925) (detalhes) e [styles.css](/REQ-2026.1-T01-ProntoCare/front/src/pages/Register/styles.css#L188-L210) (formulários) |
-| <span id="ref-rnf07"></span>[**RNF07**](#rnf07)<span id="rnf07"></span> | **IA Assíncrona:** Chamadas à Inteligência Artificial devem ser assíncronas para não travar a interface de prescrição do usuário. | Análise do código da tela de prescrição (`Prescricao/index.jsx`). | **Não Implementado** | - **Código Prescrição:** [Prescricao/index.jsx](/REQ-2026.1-T01-ProntoCare/front/src/pages/Prescricao/index.jsx) (sem integrações de IA ativas) |
-| <span id="ref-rnf08"></span>[**RNF08**](#rnf08) | **Hash SHA-256 de PDF:** Gerar hash de integridade SHA-256 para prontuário exportado via Web Crypto API no cliente. | Exportação de documentos (PDF) no frontend com verificação do hash gerado na página e gravação na blockchain de integridade. | **Aprovado** (Implementado e verificado) | - **Geração de Hash:** [hashService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/hashService.js#L16-L41) e [pdfExportService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/pdfExportService.js#L405)<br>- **Cadeia Blockchain:** [blockchainService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/blockchainService.js#L81-L111)<br>- **Footer do PDF:** [pdfExportService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/pdfExportService.js#L306-L310) |
-| <span id="ref-rnf09"></span>[**RNF09**](#rnf09) | **Assinatura Digital ICP-Brasil:** Utilizar chaves públicas ICP-Brasil para assinaturas digitais, garantindo autoria, integridade e não-repúdio. | Testes de cifragem e integração com certificados A3 na emissão de receitas e prontuários. | **Aprovado** (Implementado e verificado) | - **Assinatura Digital:** [AssinaturaModal.jsx](/REQ-2026.1-T01-ProntoCare/front/src/components/AssinaturaModal.jsx)<br>- **Serviço Blockchain:** [blockchainService.js](/REQ-2026.1-T01-ProntoCare/front/src/services/blockchainService.js) |
+| <span id="ref-rnf01"></span>[**RNF01**](#rnf01) | **Logs com hashing:** Registrar log rastreável com hashing em todas as ações de criação, edição e exclusão. | Execução de testes de integração automatizados (`Jest`) no backend e validação visual da aba de Logs/Integridade na tela do paciente. | **Aprovado** (Implementado e verificado) | - **Testes de Integração:** [logs.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/logs.test.js) e [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js)<br>- **Lógica Backend:** [auditoria.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/helpers/auditoria.js) (hooks de log) e [blockchain.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/blockchain.js) (integração do prontuário)<br>- **Frontend Timeline:** [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx) (renderização dos logs e verificação da blockchain) |
+| <span id="ref-rnf02"></span>[**RNF02**](#rnf02) | **Criptografia de Credenciais:** Armazenar senhas de acesso criptografadas no banco usando `bcrypt`. | Verificação de criptografia no cadastro de usuários via testes automatizados no backend. | **Aprovado** (Implementado e verificado) | - **Criptografia:** [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js#L54) e [pacientes.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/pacientes.js#L83)<br>- **Mascaramento:** [auditoria.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/helpers/auditoria.js#L83)<br>- **Testes de Autenticação:** [auth.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/auth.test.js) |
+| <span id="ref-rnf03"></span>[**RNF03**](#rnf03) | **Operação Offline:** Funcionar localmente e salvar dados mesmo sem conexão (IndexedDB via Dexie.js). | Execução de testes de integração (`Vitest`) simulando ausência de conectividade e o uso de filas e atualizações otimistas. | **Aprovado** (Implementado e verificado) | - **Testes de Offline:** [offlineService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.test.js) (15 testes passando)<br>- **Serviço Local:** [offlineService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.js) (atualização otimista e controle de fila) |
+| <span id="ref-rnf04"></span>[**RNF04**](#rnf04) | **Backup Diário na Nuvem:** Rotina automática de backup diário dos dados para a nuvem quando houver conexão. | Análise do código da barra de conectividade e das rotinas offline. | **Aprovado** (Implementado e verificado) | - **Backup Local:** [offlineService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.js#L258-L317) (lógica de geração de backup JSON e restauração)<br>- **Interface UI:** [OfflineStatusBar.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/components/OfflineStatusBar.jsx#L127-L167) (importação/exportação na barra de status) |
+| <span id="ref-rnf05"></span>[**RNF05**](#rnf05) | **Conformidade CFM / SBIS:** Estar em conformidade com o NGS da SBIS e resoluções do CFM sobre prontuários. | Análise dos módulos de logs de auditoria e segurança. | **Aprovado** (Implementado e verificado) | - **Logs de Acesso:** [pacientes.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/pacientes.js#L59) (auditoria de visualizações)<br>- **Integridade:** [blockchain.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/blockchain.js) (logs e integridade no blockchain)<br>- **Assinatura Qualificada:** [AssinaturaModal.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/components/AssinaturaModal.jsx) |
+| <span id="ref-rnf06"></span>[**RNF06**](#rnf06) | **Responsividade de Interface:** Adaptar layout automaticamente de acordo com a resolução (Desktop, Tablet, Mobile). | Verificação visual das telas com alteração de viewport e análise de Media Queries no CSS. | **Aprovado** (Implementado e verificado) | - **Breakpoints de CSS:** [App.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/App.css#L67-L160) (layout geral), [Panel.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Panel.css#L763-L775) (painel), [styles.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/styles.css#L901-L925) (detalhes) e [styles.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Register/styles.css#L188-L210) (formulários) |
+| <span id="ref-rnf07"></span>[**RNF07**](#rnf07)<span id="rnf07"></span> | **IA Assíncrona:** Chamadas à Inteligência Artificial devem ser assíncronas para não travar a interface de prescrição do usuário. | Análise do código da tela de prescrição (`Prescricao/index.jsx`). | **Não Implementado** | - **Código Prescrição:** [Prescricao/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Prescricao/index.jsx) (sem integrações de IA ativas) |
+| <span id="ref-rnf08"></span>[**RNF08**](#rnf08) | **Hash SHA-256 de PDF:** Gerar hash de integridade SHA-256 para prontuário exportado via Web Crypto API no cliente. | Exportação de documentos (PDF) no frontend com verificação do hash gerado na página e gravação na blockchain de integridade. | **Aprovado** (Implementado e verificado) | - **Geração de Hash:** [hashService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/hashService.js#L16-L41) e [pdfExportService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/pdfExportService.js#L405)<br>- **Cadeia Blockchain:** [blockchainService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/blockchainService.js#L81-L111)<br>- **Footer do PDF:** [pdfExportService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/pdfExportService.js#L306-L310) |
+| <span id="ref-rnf09"></span>[**RNF09**](#rnf09) | **Assinatura Digital ICP-Brasil:** Utilizar chaves públicas ICP-Brasil para assinaturas digitais, garantindo autoria, integridade e não-repúdio. | Testes de cifragem e integração com certificados A3 na emissão de receitas e prontuários. | **Aprovado** (Implementado e verificado) | - **Assinatura Digital:** [AssinaturaModal.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/components/AssinaturaModal.jsx)<br>- **Serviço Blockchain:** [blockchainService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/blockchainService.js) |
 
 ---
 
@@ -84,7 +84,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF01 → US01).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/pacientes.test.js) e interface de cadastro em [Register/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Register/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de cadastro em [Register/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Register/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -124,7 +124,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF02 → US02).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/pacientes.test.js) e interface de edição em [PacienteDetalhe/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de edição em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -164,7 +164,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF03 → US03).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/pacientes.test.js) e hook lógico de inativação em [pacientes.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/pacientes.js#L112).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e hook lógico de inativação em [pacientes.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/pacientes.js#L112).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -204,7 +204,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF04 → US04).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [pacientes.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/pacientes.test.js) e interface de busca em [Panel.css](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Panel.css).
+    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [pacientes.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/pacientes.test.js) e interface de busca em [Panel.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Panel.css).
     * **Validação (Cliente):** Validado nas Reviews das Sprints 2 (Protótipo) e 3 (Software) pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -246,7 +246,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE1 → CP1 → RF05 → US05).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de frontend em [offlineService.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.test.js) e exportador em [offlineService.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.js#L258).
+    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de frontend em [offlineService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.test.js) e exportador em [offlineService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.js#L258).
     * **Validação (Cliente):** Validado na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -286,7 +286,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE1 → CP1 → RF06 → US06).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes automatizados em [blockchain.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/blockchain.test.js) e interface de prontuário em [PacienteDetalhe/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 3 com testes automatizados em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js) e interface de prontuário em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -326,7 +326,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP4 → RF07 → US07).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de responsividade e interface em [PacienteDetalhe/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de responsividade e interface em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -358,7 +358,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Estimabilidade:** Alta prioridade (PT=3.5), esforço técnico fatiado.
 
     #### :material-school-outline: Definition of Done (DoD)
-    * [x] **Validação Técnica e Testes:** Testes automatizados cobrindo geração de hash e cifragem de prontuário em [blockchain.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/blockchain.test.js).
+    * [x] **Validação Técnica e Testes:** Testes automatizados cobrindo geração de hash e cifragem de prontuário em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js).
     * [x] **Revisão Colaborativa:** Lógica base revisada por pares.
     * [x] **Garantia de Qualidade (QA):** Verificação de fluxo e interface com certificado digital padrão concluída.
     * [x] **Conformidade de Escopo:** Integração completa realizada no frontend e backend.
@@ -366,7 +366,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE5 → CP9 → RF08 → US08).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 9/10 com testes integrados em [blockchain.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/blockchain.test.js) e componentes de assinatura no frontend em [AssinaturaModal.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/components/AssinaturaModal.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 9/10 com testes integrados em [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js) e componentes de assinatura no frontend em [AssinaturaModal.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/components/AssinaturaModal.jsx).
     * **Validação (Cliente):** Validada com sucesso na Review final da Sprint 9/10 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -409,7 +409,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF09 → US09).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de hash em [hashService.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/hashService.test.js) e renderizador em [pdfExportService.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/pdfExportService.js#L405).
+    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de hash em [hashService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/hashService.test.js) e renderizador em [pdfExportService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/pdfExportService.js#L405).
     * **Validação (Cliente):** Validado na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -449,7 +449,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF10 → US10).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de frontend em [Agenda/index.test.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Agenda/index.test.jsx) e componente de agenda em [Agenda/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Agenda/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de frontend em [Agenda/index.test.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Agenda/index.test.jsx) e componente de agenda em [Agenda/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Agenda/index.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -489,7 +489,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF11 → US11).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de backend em [consultas.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/consultas.test.js) e lógica em [consultas.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/consultas.js).
+    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de backend em [consultas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/consultas.test.js) e lógica em [consultas.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/consultas.js).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -529,7 +529,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE5 → CP9 → RF12 → US12).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de integração em [consultas.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/consultas.test.js) e interface de painel em [PacientePanel.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/PacientePanel.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de integração em [consultas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/consultas.test.js) e interface de painel em [PacientePanel.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacientePanel.jsx).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -569,7 +569,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE5 → CP9 → RF13 → US13).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de backend em [consultas.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/consultas.test.js) e controle em [consultas.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/consultas.js).
+    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de backend em [consultas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/consultas.test.js) e controle em [consultas.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/consultas.js).
     * **Validação (Cliente):** Validado na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -609,7 +609,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE1 → CP1 → RF14 → US14).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 9 com análise funcional de campos de prescrição em [Prescricao/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Prescricao/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 9 com análise funcional de campos de prescrição em [Prescricao/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Prescricao/index.jsx).
     * **Validação (Cliente):** Validado na Review/Planning da Sprint 9 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -641,7 +641,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Estimabilidade:** Priorizado no backlog da Sprint 9 (PT=3.0).
 
     #### :material-school-outline: Definition of Done (DoD)
-    * [x] **Validação Técnica e Testes:** Testes automatizados de criptografia e validade jurídica de receitas em [receitas.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/receitas.test.js).
+    * [x] **Validação Técnica e Testes:** Testes automatizados de criptografia e validade jurídica de receitas em [receitas.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/receitas.test.js).
     * [x] **Revisão Colaborativa:** PR aprovado por pares e integrado no CI/CD.
     * [x] **Garantia de Qualidade (QA):** Usabilidade com certificados verificada de forma responsiva.
     * [x] **Conformidade de Escopo:** Selo de assinatura ativo e chancelas visíveis no PDF.
@@ -689,7 +689,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP3 → RF16 → US16).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 9 através do exportador local integrado de prescrições em [Prescricao/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Prescricao/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 9 através do exportador local integrado de prescrições em [Prescricao/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Prescricao/index.jsx).
     * **Validação (Cliente):** Validada na Review da Sprint 9 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -768,7 +768,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE2 → CP2 → RF18 → US18).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 9 com teste de leitura IndexedDB local e visualização na aba de detalhes em [PacienteDetalhe/index.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/index.jsx).
+    * **Verificação (Equipe):** Verificado na Sprint 9 com teste de leitura IndexedDB local e visualização na aba de detalhes em [PacienteDetalhe/index.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/index.jsx).
     * **Validação (Cliente):** Validada na Review da Sprint 9 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -847,7 +847,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP6 → RF20 → US20).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [medicos.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/medicos.test.js) e rotas administrativas no backend.
+    * **Verificação (Equipe):** Verificado na Sprint 3 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e rotas administrativas no backend.
     * **Validação (Cliente):** Validado na Review da Sprint 3 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -889,7 +889,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP6 → RF21 → US21).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/medicos.test.js) e métodos de controle em [medicos.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/medicos.js).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e métodos de controle em [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -929,7 +929,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP6 → RF22 → US22).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/medicos.test.js) e lógica em [medicos.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/medicos.js).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e lógica em [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -969,7 +969,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP6 → RF23 → US23).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/medicos.test.js) e lógica em [medicos.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/medicos.js).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de backend em [medicos.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/medicos.test.js) e lógica em [medicos.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/medicos.js).
     * **Validação (Cliente):** Validado na Review da Sprint 1 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1009,7 +1009,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
     * [x] **Rastreabilidade:** Mapeada a cadeia de valor (OE3 → CP7 → RF24 → US24).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de logs de backend em [logs.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/logs.test.js) e lógica em [auditoria.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/helpers/auditoria.js).
+    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de logs de backend em [logs.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/logs.test.js) e lógica em [auditoria.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/helpers/auditoria.js).
     * **Validação (Cliente):** Validada na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1048,7 +1048,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Interface de logs de integridade validada no frontend.
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 7 com testes automatizados em [logs.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/logs.test.js) e [blockchain.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/blockchain.test.js).
+    * **Verificação (Equipe):** Verificado na Sprint 7 com testes automatizados em [logs.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/logs.test.js) e [blockchain.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/blockchain.test.js).
     * **Validação (Cliente):** Validada na Review da Sprint 7 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1080,7 +1080,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Código revisado e integrado no pipeline.
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de autenticação em [auth.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/tests/auth.test.js).
+    * **Verificação (Equipe):** Verificado na Sprint 8 com testes de autenticação em [auth.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/tests/auth.test.js).
     * **Validação (Cliente):** Validada na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1113,13 +1113,13 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Verificação visual e responsiva da UI offline realizada pela equipe de QA.
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 6 com testes em [offlineService.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.test.js) (15 testes passando) e serviço [offlineService.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.js).
+    * **Verificação (Equipe):** Verificado na Sprint 6 com testes em [offlineService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.test.js) (15 testes passando) e serviço [offlineService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.js).
     * **Validação (Cliente):** Validada na Review da Sprint 6 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
     * **Feedback do Cliente:** Exportação atende. Para o modo offline, solicitou indicador visual explícito do estado de rede e sincronização.
     * **Decisão:** Aprovado com ressalvas (Sprint 5) / Aprovado (Sprint 6).
-    * **Ajuste Realizado:** Implementado o componente de barra de status `OfflineStatusBar` em [OfflineStatusBar.jsx](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/components/OfflineStatusBar.jsx) e opção de backup/exportação manual na barra.
+    * **Ajuste Realizado:** Implementado o componente de barra de status `OfflineStatusBar` em [OfflineStatusBar.jsx](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/components/OfflineStatusBar.jsx) e opção de backup/exportação manual na barra.
 
     [:material-arrow-up-circle-outline: Voltar para a tabela](#ref-rnf03)
 
@@ -1145,7 +1145,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Revisão da fila de sincronização pelo time de QA.
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 6 com o analisador de sincronização em [offlineService.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/offlineService.js#L258-L317).
+    * **Verificação (Equipe):** Verificado na Sprint 6 com o analisador de sincronização em [offlineService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/offlineService.js#L258-L317).
     * **Validação (Cliente):** Validada na Review da Sprint 6 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1177,7 +1177,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Documentação de compliance finalizada.
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 8 com análise de logs de acesso de prontuários em [pacientes.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/back/src/controllers/pacientes.js#L59) e gravação de chaves/integridade do blockchain.
+    * **Verificação (Equipe):** Verificado na Sprint 8 com análise de logs de acesso de prontuários em [pacientes.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/back/src/controllers/pacientes.js#L59) e gravação de chaves/integridade do blockchain.
     * **Validação (Cliente):** Validada na Review da Sprint 8 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1211,7 +1211,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Layout verificado em viewports mobile (360px), tablet (768px) e desktop (1024px+).
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de viewports no frontend e CSS customizado em [App.css](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/App.css#L67), [Panel.css](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Panel.css#L763), [styles.css](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/PacienteDetalhe/styles.css#L901) e [styles.css](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/pages/Register/styles.css#L188).
+    * **Verificação (Equipe):** Verificado na Sprint 1 com testes de viewports no frontend e CSS customizado em [App.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/App.css#L67), [Panel.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Panel.css#L763), [styles.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/PacienteDetalhe/styles.css#L901) e [styles.css](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/pages/Register/styles.css#L188).
     * **Validação (Cliente):** Validada pelo Dr. Rogério Duarte durante as reviews das Sprints 1 e 3.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
@@ -1244,7 +1244,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     * [x] Carimbo visual de integridade verificado pela equipe de QA.
 
     #### :material-shield-check-outline: Rastreabilidade, Verificação e Validação
-    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de hash em [hashService.test.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/hashService.js) e renderizador em [pdfExportService.js](file:///home/eduradolm/Documents/REQ-2026.1-T01-ProntoCare/front/src/services/pdfExportService.js#L405).
+    * **Verificação (Equipe):** Verificado na Sprint 5 com testes de hash em [hashService.test.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/hashService.js) e renderizador em [pdfExportService.js](https://github.com/mdsreq-fga-unb/REQ-2026.1-T01-ProntoCare/blob/main/front/src/services/pdfExportService.js#L405).
     * **Validação (Cliente):** Validada na Review da Sprint 5 pelo Dr. Rogério Duarte.
 
     #### :material-comment-text-multiple-outline: Consolidação do Feedback
