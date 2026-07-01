@@ -12,7 +12,7 @@ Durante o ciclo de desenvolvimento iterativo (ScrumXP), superamos os desafios de
 - **Total Entregue (DoD Completo e Funcional no prazo oficial):** 22 User Stories
 - **Total Pendente:** 0 User Stories
 
-> **Percentual de Conclusão do MVP:** Das 22 USs planejadas, atingimos **100% de conclusão do MVP letivo** com software validado funcionalmente pelo Product Owner (Dr. Rogério Duarte). Deste montante, apenas 6 USs seguiram o fluxo formal obrigatório de Issues/PRs (US08, 10, 11, 12, 13 e 15), enquanto as demais 16 USs foram desenvolvidas em branches próprias e integradas na branch dev após notificação de conclusão ao grupo, conforme justificado na Matriz de Dívida Técnica ([ver seção 9.4 do DoD](../visao-produto/DoR-DoD.md#94-matriz-operacional-de-entregas-sem-pull-request)).
+> **Percentual de Conclusão do MVP:** Das 22 USs planejadas, atingimos **100% de conclusão do MVP letivo** com software validado funcionalmente pelo Product Owner (Dr. Rogério Duarte). Deste montante, apenas 6 USs seguiram o fluxo formal obrigatório de Issues/PRs (US08, 10, 11, 12, 13 e 15), enquanto as demais 16 USs foram desenvolvidas em branches próprias e integradas na branch dev após notificação de conclusão ao grupo, conforme justificado na Matriz de Dívida Técnica ([ver Matriz Operacional de Entregas sem Pull Request](planejamento.md#matriz-operacional-de-entregas-sem-pull-request)).
 
 ---
 
