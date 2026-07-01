@@ -115,32 +115,30 @@ O MVP (Produto Mínimo Viável) do ProntoCare foi definido com base nos requisit
 
 ### Tabela de Definição do MVP
 
-| ID da US | Está no MVP? | Critério Técnico de Margem de Corte e Risco |
-| --- | --- | --- |
-| **US01** | **Sim** | **Elegibilidade Direta (Q1):** Alto valor (VN=5) com entrega rápida e previsível (PT=2.0). Risco zero para o cronograma. |
-| **US02** | **Sim** | **Elegibilidade Direta (Q1):** CRUD básico com baixo custo técnico (PT=2.0), necessário para consistência da base. |
-| **US03** | **Sim** | **Elegibilidade Direta (Q1):** Baixíssimo esforço de código (PT=1.5) para mitigar um risco crítico de segurança de acesso. |
-| **US04** | **Sim** | **Elegibilidade Direta (Q1):** Indexação elementar na camada de persistência com baixo impacto no cronograma (PT=2.0). |
-| **US05** | **Sim** | **Elegibilidade Direta (Q1):** Resolução do requisito de portabilidade dentro do teto do limite técnico aceitável (PT=2.5). |
-| **US06** | **Sim** | **Acompanhamento Crítico (Q2):** Core business do sistema (SOAP). Inclusão obrigatória pelo valor (VN=5), exigindo monitoramento estrito devido ao risco técnico elevado (PT=3.0). |
-| **US07** | **Sim** | **Acompanhamento Crítico (Q2):** Linha do tempo possui alta complexidade de interface (PT=3.0), mas é indispensável para a tomada de decisão clínica do MVP. |
-| **US08** | **Sim** | **Restrição Regulatória Mandatória (Q2):** Retém o maior risco técnico da sprint (PT=3.5), porém mantido por ser barreira legal intransponível (ICP-Brasil). |
-| **US09** | **Sim** | **Fatiamento de Escopo (Q2):** Geração de PDF (PT=3.0) necessária para a saída de dados, com escopo restrito ao layout estruturado padrão. |
-| **US10** | **Sim** | **Elegibilidade Direta (Q1):** Módulo temporal base com desenvolvimento previsível (PT=2.0) para viabilizar a jornada do médico. |
-| **US11** | **Sim** | **Acompanhamento Crítico (Q2):** Lógica de agendamento e conflito de horários eleva o custo (PT=3.0), mas é o motor que alimenta as visões da agenda. |
-| **US12** | **Sim** | **Elegibilidade Direta (Q1):** Visão diária simples com alto impacto operacional e baixo esforço de implementação (PT=2.0). |
-| **US13** | **Sim** | **Elegibilidade Direta (Q1):** Máquina de estados elementar para controle de fluxo da consulta com desenvolvimento rápido (PT=2.0). |
-| **US14** | **Sim** | **Acompanhamento Crítico (Q2):** Principal artefato de saída assistencial. Complexidade (PT=3.0) mitigada através do uso de esquemas de dados fixos. |
-| **US15** | **Sim** | **Restrição Regulatória Mandatória (Q2):** Par dependente da US14. Alta complexidade de criptografia (PT=3.0) aceita para garantir a validade jurídica das receitas. |
-| **US16** | **Sim** | **Elegibilidade Direta (Q1):** Exportação local simplificada da receita dentro do limiar técnico seguro (PT=2.5). |
-| **US17** | **Não** | **Exclusão por Ponto de Corte (Q4):** Reprovado nos dois limiares. Valor de negócio secundário (VN=3) e altíssimo risco de atraso (PT=4.0) para o prazo letivo. |
-| **US18** | **Sim** | **Elegibilidade Direta (Q1):** Histórico de receitas baseado em leitura de persistência local, com baixo esforço e alta segurança assistencial (PT=2.5). |
-| **US19** | **Não** | **Exclusão por Ponto de Corte (Q4):** Complexidade incompatível (PT=3.0) com o baixo valor imediato do recurso (VN=3). Substituído por processo manual fora do software. |
-| **US20** | **Sim** | **Fatiamento de Escopo (Q2):** Cadastro de médicos (PT=3.0) restrito estritamente à criação de credenciais básicas de segurança para a clínica piloto. |
-| **US21** | **Sim** | **Acompanhamento Crítico (Q2):** Alteração de permissões monitorada de perto para evitar furos na lógica de controle de acesso (RBAC). |
-| **US22** | **Sim** | **Acompanhamento Crítico (Q2):** Inativação de contas com custo técnico moderado (PT=3.0), mas essencial para a segurança de dados sensíveis. |
-| **US23** | **Sim** | **Fatiamento de Escopo (Q2):** Busca e listagem de profissionais limitada aos filtros essenciais para o controle administrativo inicial. |
-| **US24** | **Sim** | **Restrição de Compliance (Q2):** Registro de trilha de auditoria complexo (PT=3.0), mas compulsório para conformidade legal imediata com a LGPD. |
+| ID da US | Está no MVP? | Critério Técnico de Margem de Corte e Risco | Endpoint de Deploy |
+| --- | --- | --- | --- |
+| **US01** | **Sim** | **Elegibilidade Direta (Q1):** Alto valor (VN=5) com entrega rápida e previsível (PT=2.0). Risco zero para o cronograma. | [https://portalprontocare.netlify.app/register](https://portalprontocare.netlify.app/register) |
+| **US02** | **Sim** | **Elegibilidade Direta (Q1):** CRUD básico com baixo custo técnico (PT=2.0), necessário para consistência da base. | [https://portalprontocare.netlify.app/edit-paciente/:id](https://portalprontocare.netlify.app/edit-paciente/:id) |
+| **US03** | **Sim** | **Elegibilidade Direta (Q1):** Baixíssimo esforço de código (PT=1.5) para mitigar um risco crítico de segurança de acesso. | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US04** | **Sim** | **Elegibilidade Direta (Q1):** Indexação elementar na camada de persistência com baixo impacto no cronograma (PT=2.0). | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US05** | **Sim** | **Elegibilidade Direta (Q1):** Resolução do requisito de portabilidade dentro do teto do limite técnico aceitável (PT=2.5). | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US06** | **Sim** | **Acompanhamento Crítico (Q2):** Core business do sistema (SOAP). Inclusão obrigatória pelo valor (VN=5), exigindo monitoramento estrito devido ao risco técnico elevado (PT=3.0). | [https://portalprontocare.netlify.app/atendimento/:pacienteId](https://portalprontocare.netlify.app/atendimento/:pacienteId) |
+| **US07** | **Sim** | **Acompanhamento Crítico (Q2):** Linha do tempo possui alta complexidade de interface (PT=3.0), mas é indispensável para a tomada de decisão clínica do MVP. | [https://portalprontocare.netlify.app/paciente-detalhe/:id](https://portalprontocare.netlify.app/paciente-detalhe/:id) |
+| **US08** | **Sim** | **Restrição Regulatória Mandatória (Q2):** Retém o maior risco técnico da sprint (PT=3.5), porém mantido por ser barreira legal intransponível (ICP-Brasil). | [https://portalprontocare.netlify.app/paciente-detalhe/:id](https://portalprontocare.netlify.app/paciente-detalhe/:id) |
+| **US09** | **Sim** | **Fatiamento de Escopo (Q2):** Geração de PDF (PT=3.0) necessária para a saída de dados, com escopo restrito ao layout estruturado padrão. | [https://portalprontocare.netlify.app/paciente-detalhe/:id](https://portalprontocare.netlify.app/paciente-detalhe/:id) |
+| **US10** | **Sim** | **Elegibilidade Direta (Q1):** Módulo temporal base com desenvolvimento previsível (PT=2.0) para viabilizar a jornada do médico. | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US11** | **Sim** | **Acompanhamento Crítico (Q2):** Lógica de agendamento e conflito de horários eleva o custo (PT=3.0), mas é o motor que alimenta as visões da agenda. | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US12** | **Sim** | **Elegibilidade Direta (Q1):** Visão diária simples com alto impacto operacional e baixo esforço de implementação (PT=2.0). | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US13** | **Sim** | **Elegibilidade Direta (Q1):** Máquina de estados elementar para controle de fluxo da consulta com desenvolvimento rápido (PT=2.0). | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US14** | **Sim** | **Acompanhamento Crítico (Q2):** Principal artefato de saída assistencial. Complexidade (PT=3.0) mitigada através do uso de esquemas de dados fixos. | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US15** | **Sim** | **Restrição Regulatória Mandatória (Q2):** Par dependente da US14. Alta complexidade de criptografia (PT=3.0) aceita para garantir a validade jurídica das receitas. | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US16** | **Sim** | **Elegibilidade Direta (Q1):** Exportação local simplificada da receita dentro do limiar técnico seguro (PT=2.5). | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US18** | **Sim** | **Elegibilidade Direta (Q1):** Histórico de receitas baseado em leitura de persistência local, com baixo esforço e alta segurança assistencial (PT=2.5). | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US20** | **Sim** | **Fatiamento de Escopo (Q2):** Cadastro de médicos (PT=3.0) restrito estritamente à criação de credenciais básicas de segurança para a clínica piloto. | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US21** | **Sim** | **Acompanhamento Crítico (Q2):** Alteração de permissões monitorada de perto para evitar furos na lógica de controle de acesso (RBAC). | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US22** | **Sim** | **Acompanhamento Crítico (Q2):** Inativação de contas com custo técnico moderado (PT=3.0), mas essencial para a segurança de dados sensíveis. | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US23** | **Sim** | **Fatiamento de Escopo (Q2):** Busca e listagem de profissionais limitada aos filtros essenciais para o controle administrativo inicial. | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US24** | **Sim** | **Restrição de Compliance (Q2):** Registro de trilha de auditoria complexo (PT=3.0), mas compulsório para conformidade legal imediata com a LGPD. | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
 
 ### **10.2.1 Justificativa de Itens Regulatórios de Alta Complexidade no MVP**
 
@@ -181,3 +179,4 @@ Em resposta ao feedback de auditoria de requisitos do projeto ProntoCare, detalh
 | 2026-06-30 | 0.9 | Reformulação de todos os critérios de aceitação refinados na seção 10.3 para o padrão de especificação formal Gherkin (Dado/Quando/Então). | Prontuariantes |
 | 2026-07-01 | 1.0 | Adição da subseção 10.2.1 justificando os itens regulatórios de alta complexidade (US08, US15 e US24) mantidos no MVP. | Prontuariantes |
 | 2026-07-01 | 1.1 | Adição da seção 10.2.2 detalhando evidência de validação das USs clínicas pelo Dr. Rogério e o controle de DoR para entrada em sprint. | Prontuariantes |
+| 2026-07-01 | 1.2 | Inclusão de coluna com os endpoints de deploy (Netlify) na Tabela de Definição do MVP. | Prontuariantes |

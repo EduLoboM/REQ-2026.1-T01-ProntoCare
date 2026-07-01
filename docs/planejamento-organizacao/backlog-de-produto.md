@@ -40,32 +40,32 @@ O MVP foi composto pelas User Stories avaliadas como prioritárias (Quadrantes 1
 
 ### **Tabela Resumida do MVP**
 
-| ID da US | Requisito Relacionado | No MVP? | Categoria / Descrição Resumida |
-| :---: | :---: | :---: | :--- |
-| **US01** | **RF01** | Sim | Cadastro de pacientes |
-| **US02** | **RF02** | Sim | Edição de dados cadastrais |
-| **US03** | **RF03** | Sim | Inativação lógica de registros |
-| **US04** | **RF04** | Sim | Busca e listagem de pacientes |
-| **US05** | **RF05** | Sim | Exportação de base JSON (Portabilidade) |
-| **US06** | **RF06** | Sim | Prontuário SOAP estruturado |
-| **US07** | **RF07** | Sim | Linha do tempo / histórico assistencial |
-| **US08** | **RF08** | Sim | Assinatura digital ICP-Brasil de prontuários |
-| **US09** | **RF09** | Sim | Exportação estruturada em PDF |
-| **US10** | **RF10** | Sim | Agenda semanal de consultas |
-| **US11** | **RF11** | Sim | Marcação de consultas e teleconsultas |
-| **US12** | **RF12** | Sim | Listagem de atendimentos do dia |
-| **US13** | **RF13** | Sim | Gestão de status do atendimento |
-| **US14** | **RF14** | Sim | Emissão de receitas médicas digitais |
-| **US15** | **RF15** | Sim | Assinatura digital ICP-Brasil de receitas |
-| **US16** | **RF16** | Sim | Exportação da receita em PDF |
-| **US17** | **RF17** | Não | Análise de prescrições via Inteligência Artificial |
-| **US18** | **RF18** | Sim | Histórico de receitas médicas do paciente |
-| **US19** | **RF19** | Não | Emissão e assinatura de termo de consentimento (TCLE) |
-| **US20** | **RF20** | Sim | Cadastro administrativo de novos médicos |
-| **US21** | **RF21** | Sim | Edição e permissões de acesso médico (RBAC) |
-| **US22** | **RF22** | Sim | Inativação de perfis profissionais |
-| **US23** | **RF23** | Sim | Busca e listagem de profissionais médicos |
-| **US24** | **RF24** | Sim | Rastreabilidade e logs de auditoria (LGPD) |
+| ID da US | Requisito Relacionado | No MVP? | Categoria / Descrição Resumida | Endpoint de Deploy |
+| :---: | :---: | :---: | :--- | :--- |
+| **US01** | **RF01** | Sim | Cadastro de pacientes | [https://portalprontocare.netlify.app/register](https://portalprontocare.netlify.app/register) |
+| **US02** | **RF02** | Sim | Edição de dados cadastrais | [https://portalprontocare.netlify.app/edit-paciente/:id](https://portalprontocare.netlify.app/edit-paciente/:id) |
+| **US03** | **RF03** | Sim | Inativação lógica de registros | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US04** | **RF04** | Sim | Busca e listagem de pacientes | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US05** | **RF05** | Sim | Exportação de base JSON (Portabilidade) | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US06** | **RF06** | Sim | Prontuário SOAP estruturado | [https://portalprontocare.netlify.app/atendimento/:pacienteId](https://portalprontocare.netlify.app/atendimento/:pacienteId) |
+| **US07** | **RF07** | Sim | Linha do tempo / histórico assistencial | [https://portalprontocare.netlify.app/paciente-detalhe/:id](https://portalprontocare.netlify.app/paciente-detalhe/:id) |
+| **US08** | **RF08** | Sim | Assinatura digital ICP-Brasil de prontuários | [https://portalprontocare.netlify.app/paciente-detalhe/:id](https://portalprontocare.netlify.app/paciente-detalhe/:id) |
+| **US09** | **RF09** | Sim | Exportação estruturada em PDF | [https://portalprontocare.netlify.app/paciente-detalhe/:id](https://portalprontocare.netlify.app/paciente-detalhe/:id) |
+| **US10** | **RF10** | Sim | Agenda semanal de consultas | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US11** | **RF11** | Sim | Marcação de consultas e teleconsultas | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US12** | **RF12** | Sim | Listagem de atendimentos do dia | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US13** | **RF13** | Sim | Gestão de status do atendimento | [https://portalprontocare.netlify.app/medico](https://portalprontocare.netlify.app/medico) |
+| **US14** | **RF14** | Sim | Emissão de receitas médicas digitais | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US15** | **RF15** | Sim | Assinatura digital ICP-Brasil de receitas | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US16** | **RF16** | Sim | Exportação da receita em PDF | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US17** | **RF17** | Não | Análise de prescrições via Inteligência Artificial | — |
+| **US18** | **RF18** | Sim | Histórico de receitas médicas do paciente | [https://portalprontocare.netlify.app/prescricao/:pacienteId](https://portalprontocare.netlify.app/prescricao/:pacienteId) |
+| **US19** | **RF19** | Não | Emissão e assinatura de termo de consentimento (TCLE) | — |
+| **US20** | **RF20** | Sim | Cadastro administrativo de novos médicos | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US21** | **RF21** | Sim | Edição e permissões de acesso médico (RBAC) | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US22** | **RF22** | Sim | Inativação de perfis profissionais | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US23** | **RF23** | Sim | Busca e listagem de profissionais médicos | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
+| **US24** | **RF24** | Sim | Rastreabilidade e logs de auditoria (LGPD) | [https://portalprontocare.netlify.app/admin](https://portalprontocare.netlify.app/admin) |
 
 ---
 
@@ -85,3 +85,4 @@ O MVP foi composto pelas User Stories avaliadas como prioritárias (Quadrantes 1
 | 2026-07-01 | 1.0 | Adição da subseção 10.2.1 justificando os itens regulatórios de alta complexidade (US08, US15 e US24) mantidos no MVP. | Prontuariantes |
 | 2026-07-01 | 1.1 | Adição da seção 10.2.2 detalhando evidência de validação das USs clínicas pelo Dr. Rogério e o controle de DoR para entrada em sprint. | Prontuariantes |
 | 2026-07-01 | 2.0 | Separação em duas versões (completa para Visão de Produto e resumida para Planejamento-Organização starting at section 1). | Prontuariantes |
+| 2026-07-01 | 2.1 | Inclusão de coluna com os endpoints de deploy (Netlify) na Tabela Resumida do MVP. | Prontuariantes |

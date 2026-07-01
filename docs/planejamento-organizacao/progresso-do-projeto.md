@@ -119,6 +119,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 
     #### :material-scale-balance: Critérios de Aceitação (Gherkin)
     * [x] **Dado que** o médico edita o CPF do paciente no cadastro, **Quando** insiro o CPF "11111111111", **Então** o sistema recusa o salvamento de "11111111111" e exibe o erro "CPF inválido".
+    * [x] **Dado que** o médico realiza o cadastro de um paciente, **Quando** digita um CPF "123.456.789-00" já cadastrado para outro paciente, **Então** o sistema impede a gravação e exibe o erro "Paciente com este CPF já cadastrado".
     * [x] **Dado que** o médico realiza o cadastro de um paciente, **Quando** deixa os campos de telefone ou contato de emergência vazios, **Então** o sistema recusa o salvamento e exibe o erro "O campo de telefone/contato de emergência é obrigatório".
     * [x] **Dado que** o médico define o status do paciente no cadastro, **Quando** seleciona a opção "Ativo", **Então** o sistema salva o paciente com status "Ativo".
     * [x] **Dado que** o médico salva com sucesso um novo paciente, **Quando** o cadastro é concluído, **Então** o sistema gera a senha inicial "ProntoCare123!" e exibe as credenciais.
@@ -367,6 +368,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 
     #### :material-scale-balance: Critérios de Aceitação (Gherkin)
     * [x] **Dado que** o médico registra a ficha SOAP do paciente, **Quando** deixa um dos campos Subjetivo, Objetivo, Avaliação ou Plano vazio, **Então** o sistema impede o salvamento e exibe o erro "O campo [nome_do_campo] é obrigatório".
+    * [x] **Dado que** o médico tenta anexar um documento ao prontuário SOAP, **Quando** o arquivo excede o limite de 5MB ou possui formato diferente de PDF/Imagem, **Então** o sistema rejeita o upload e exibe o erro "Arquivo inválido ou excede o tamanho limite".
     * [x] **Dado que** o médico visualiza um prontuário com o status "Assinado", **Quando** clico nos botões de edição ou exclusão, **Então** o sistema bloqueia a ação e exibe o aviso "Este prontuário está assinado e não pode ser alterado".
     * [x] **Dado que** o médico necessita retificar um prontuário assinado, **Quando** gravo um aditivo explicativo, **Então** o sistema gera a versão "v2" vinculada à "v1" original na blockchain.
 
@@ -465,6 +467,7 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 
     #### :material-scale-balance: Critérios de Aceitação (Gherkin)
     * [x] **Dado que** o médico aciona a assinatura do prontuário, **Quando** clico em "Assinar", **Então** o sistema abre um modal com o resumo dos dados estruturados do SOAP para revisão prévia.
+    * [x] **Dado que** o médico tenta assinar digitalmente o prontuário, **Quando** o serviço de validação do certificado digital está indisponível ou inacessível (timeout de rede), **Então** o sistema cancela a operação e exibe a mensagem "Serviço de assinatura indisponível no momento. Tente novamente mais tarde".
     * [x] **Dado que** o médico insere um certificado digital no modal, **Quando** a data de validade do certificado é "31/12/2025" (expirado), **Então** o sistema rejeita o certificado e exibe o erro "Certificado expirado".
     * [x] **Dado que** o médico exporta o prontuário assinado, **Quando** o arquivo PDF é gerado, **Então** o sistema insere o rodapé contendo "Assinado digitalmente por Dr. Rogério Duarte - Hash SHA-256: e3b0c442...".
 
@@ -517,7 +520,8 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 
     #### :material-scale-balance: Critérios de Aceitação (Gherkin)
     * [x] **Dado que** o médico está na tela de histórico do paciente, **Quando** clico em "Exportar PDF", **Então** o sistema gera o arquivo "prontuario_joao.pdf" no formato A4 com o logo da clínica.
-    * [x] **Dado que** o médico abre o PDF exportado, **Quando** visualizo a folha, **Então** o sistema exibe no rodapé o hash "SHA-256: a1b2c3d4..." e a chancela de assinatura.
+    * [x] **Dado que** o médico abre o PDF exportado, **Quando** visualizo a folha, **Então** o sistema exibe no rodapé o hash "SHA-256: a1b2c3d4...".
+    * [x] **Dado que** o médico solicita a exportação do prontuário em PDF, **Quando** ocorre uma falha de memória local ou renderização do documento (erro do gerador), **Então** o sistema cancela a exportação e exibe o erro "Erro ao gerar o arquivo PDF. Tente novamente".
     * [x] **Dado que** a exportação do prontuário é iniciada, **Quando** o processamento ocorre no frontend, **Então** o navegador inicia o download automático de "prontuario_joao.pdf" sem recarregar a página.
 
     #### :material-clipboard-check-outline: Definition of Ready (DoR)
@@ -1290,6 +1294,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
     #### :material-scale-balance: Critérios de Aceitação (Gherkin)
     * [x] **Dado que** o médico realiza o salvamento de um prontuário clínico, **Quando** a operação de gravação é finalizada, **Então** o sistema registra na tabela de auditoria a linha contendo o timestamp, `medico_id`, o tipo "CRIAÇÃO" e o hash "SHA-256: f1e2d3...".
     * [x] **Dado que** o médico abre o prontuário do paciente "João da Silva", **Quando** visualizo a seção de integridade, **Então** o sistema renderiza uma linha do tempo com ícones verdes indicando a validação de hash bem-sucedida de cada registro.
+    * [x] **Dado que** o sistema executa a verificação dos hashes da trilha de logs, **Quando** um hash recalculado difere do valor persistido no banco de dados (detectando adulteração), **Então** o sistema exibe um alerta vermelho "Falha de auditoria: Registro corrompido ou modificado sem autorização".
 
     #### :material-clipboard-check-outline: Definition of Ready (DoR)
     * [x] Critérios de integridade definidos de forma clara.
@@ -1322,6 +1327,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 
     #### :material-scale-balance: Critérios de Aceitação (Gherkin)
     * [x] **Dado que** o usuário define a senha como "ProntoCare123!" no cadastro, **Quando** clico em salvar, **Então** o sistema armazena no banco de dados o valor gerado "$2b$12$Lh..." pelo algoritmo bcrypt.
+    * [x] **Dado que** o usuário tenta realizar login no sistema, **Quando** insere credenciais inválidas (usuário inexistente ou senha incorreta), **Então** o sistema recusa a autenticação e exibe o erro "Usuário ou senha inválidos".
     * [x] **Dado que** o usuário realiza login no sistema, **Quando** a requisição HTTP de autenticação é enviada, **Então** a senha trafega criptografada na camada HTTPS e o campo de senha no banco nunca é exposto em texto claro.
 
     #### :material-clipboard-check-outline: Definition of Ready (DoR)
@@ -1553,6 +1559,7 @@ Abaixo está listada a especificação detalhada de conformidade de cada requisi
 | 2026-06-30 | 1.4 | Transição de dropdowns HTML (`<details>`) para dropdowns nativos do Material for MkDocs (`???` e `??? success/danger`) indentados a 4 espaços, e substituição de todos os emojis por Material Icons oficiais (`:material-...:`). | Prontuariantes |
 | 2026-06-30 | 1.5 | Unificação do Sprint Backlog detalhado (USs, RNFs e revisões) diretamente no painel de progresso do projeto (`progresso/index.md`), eliminando arquivos redundantes. | Prontuariantes |
 | 2026-07-01 | 1.6 | Adição da Tabela Consolidadora de Feedback de Validação por US com diferenciação de tipos de artefatos e links diretos para atas e vídeos das sprints correspondentes. | Prontuariantes |
+| 2026-07-01 | 1.7 | Correção e expansão de critérios de aceitação Gherkin para cobrir casos críticos solicitados no feedback (CPF duplicado, credenciais inválidas, anexo inválido, assinatura indisponível, falha de PDF e auditoria). | Prontuariantes |
 | 2026-07-01 | 1.7 | Correção de auditoria: inserção do bloco "Governança do Repositório" (Issue, PR e Revisor) na seção de rastreabilidade de cada uma das 22 USs do MVP, conforme exigência do DoD v1.6. | Prontuariantes |
 
 
