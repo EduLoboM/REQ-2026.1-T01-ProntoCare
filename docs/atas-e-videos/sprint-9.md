@@ -61,9 +61,9 @@ acesse diretamente pelo link: [https://youtu.be/BH16kfEX7V0](https://youtu.be/BH
 | --- | :---: | :---: |
 | **[US15 / RF15]** - Assinatura digital da receita com certificado ICP-Brasil | ✅ | ✅ |
 | **[US08 / RF08]** - Assinatura digital do prontuário com certificado ICP-Brasil | ✅ | ✅ |
-| **Homologação Final** - Encerramento do MVP e Termo de Aceite | ✅ | ✅ |
+| **Homologação Final** - Encerramento do MVP e validação com o cliente | ✅ | ✅ |
 
-**Nota de Validação Clínica:** O Dr. Rogério Duarte realizou a homologação e validação final do sistema ProntoCare, assinando o termo de aceite de entrega do MVP e atestando a conformidade legal e clínica de todas as funcionalidades desenvolvidas.
+**Notas de Validação e Feedback Geral do Cliente:** A homologação e a validação final do sistema ProntoCare foram conduzidas pelo Dr. Rogério Duarte, que atestou a conformidade clínica e legal de todas as funcionalidades desenvolvidas. Com o deploy concluído, a plataforma já se encontra em fase de testes práticos pelo especialista, que chancelou o projeto de forma altamente positiva. O interesse contínuo do Dr. Rogério impulsiona os próximos passos do sistema: a busca por novas certificações, a expansão do suporte ao ICP-Brasil e a evolução da plataforma.
 
 #### Histórico de Revisões
 

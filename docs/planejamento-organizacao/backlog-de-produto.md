@@ -22,13 +22,12 @@ Embora a escala de priorização e a definição de limiares técnicos recomende
 
 ---
 
-## **2. Evidência de Validação Clínica e Controle de DoR das Sprints**
+## **2. Evidência de Validação das US Clínicas Críticas**
 
-Em resposta ao feedback de auditoria de requisitos do projeto ProntoCare, detalha-se a seguir a comprovação de validação clínica com o cliente e as regras para assegurar que histórias não entrassem em desenvolvimento sem a definição de prontidão (DoR) completa:
+Em resposta ao feedback de auditoria de requisitos do projeto ProntoCare, detalha-se a seguir a comprovação de validação clínica com o cliente das US Clínicas Críticas:
 
 * **Validação das USs Clínicas pelo Cliente:** A validação do escopo e dos critérios de aceitação de todas as histórias clínicas (SOAP, histórico clínico, receitas e segurança) foi realizada pelo Dr. Rogério Duarte de forma conjunta durante a **Reunião de Elicitação e Priorização do MVP (24/04/2026)**. Nessa oportunidade, o cliente atestou o valor das histórias e as classificou quanto ao valor de negócio, garantindo que o escopo clínico inicial estivesse plenamente homologado.
     * **Evidência Documentada:** [Ata da Reunião da Sprint 0](../atas-e-videos/sprint-0.md) e [Vídeo da Reunião de Elicitação no YouTube](https://youtu.be/QuqCF0-1avU).
-* **Identificação de USs que entraram em Sprint sem DoR completo:** Nenhuma User Story (US) de caráter clínico ou técnico iniciou desenvolvimento sem possuir a definição de prontidão (DoR) completa. O controle de qualidade de entrada foi garantido através da confirmação do DoR nos próprios requisitos funcionais de origem (RFs) correspondentes, onde todos os critérios de aceitação foram previamente estruturados, impedindo a admissão de itens inacabados ou não validados no Sprint Backlog.
 
 ---
 

@@ -121,11 +121,8 @@ Abaixo está listada a especificação completa de cada história de usuário (U
 
     #### :material-scale-balance: Critérios de Aceitação
 
-    **Fluxo Nominal (Caminho Feliz)**
-    * [x] O recepcionista grava o paciente no banco de dados e visualiza uma confirmação na interface após salvar o formulário com dados obrigatórios e formatos válidos. `[Teste Automatizado]`
-
-    **Cenários de Exceção (Casos Críticos)**
-    * [x] O recepcionista visualiza um erro de "CPF duplicado" e é impedido de concluir o cadastro ao tentar registrar um paciente com CPF já alocado. `[Teste Automatizado]`
+    * [x] O recepcionista grava o paciente no banco de dados e visualiza uma confirmação na interface após salvar o formulário com dados obrigatórios e formatos válidos.
+    * [x] O recepcionista visualiza um erro de "CPF duplicado" e é impedido de concluir o cadastro ao tentar registrar um paciente com CPF já alocado.
 
     #### :material-clipboard-check-outline: Definition of Ready (DoR)
     * [x] **Estrutura INVEST:** Declaração segue o padrão focado em valor e tamanho adequado.

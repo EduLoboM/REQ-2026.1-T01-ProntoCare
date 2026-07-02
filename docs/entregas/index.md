@@ -40,6 +40,15 @@ Navegue pelos vídeos de apresentação do projeto ProntoCare:
 
     :material-presentation-play: [Assistir Vídeo da Entrega 3](entrega-3.md)
 
+-   __Entrega 4__
+    *Concluído*
+
+    ---
+
+    Finalização do MVP com todos os requisitos desenvolvidos, deploy da aplicação, apresentação final do sistema e video de apresentação.
+
+    :material-presentation-play: [Assistir Vídeo da Entrega 4](entrega-4.md)
+
 </div>
 
 ---
