@@ -61,17 +61,17 @@ Durante o desenvolvimento inicial do projeto do ProntoCare, várias lições imp
 
 #### 11.4 Unidade 4
 
-1. **Especificação dos casos de uso**
+1. **Especificação dos critérios de aceitação**
 
-   - **Desafio:** Durante a elaboração das declarações e especificações dos casos de uso, a equipe identificou que funcionalidades críticas, como assinatura digital ICP-Brasil, conformidade com a LGPD, emissão de documentos clínicos e gerenciamento do status das consultas, exigiam um nível de detalhamento maior do que o inicialmente previsto. Em alguns casos, fluxos alternativos, exceções, pré-condições e regras de negócio não estavam suficientemente especificados, o que poderia gerar interpretações diferentes durante a implementação.
+   - **Desafio:** Durante a elaboração das declarações e especificações dos critérios de aceitação, a equipe identificou que funcionalidades críticas, como assinatura digital ICP-Brasil, conformidade com a LGPD, emissão de documentos clínicos e gerenciamento do status das consultas, exigiam um nível de detalhamento maior do que o inicialmente previsto. Em alguns casos, fluxos alternativos, exceções, pré-condições e regras de negócio não estavam suficientemente especificados, o que poderia gerar interpretações diferentes durante a implementação.
 
-   - **Ação de Melhoria:** A equipe passou a padronizar a especificação dos casos de uso utilizando um modelo único, documentando objetivo, atores, gatilho, pré-condições, pós-condições, fluxo principal, fluxos alternativos, exceções e regras de negócio. Essa padronização tornou os artefatos mais consistentes, facilitou a comunicação entre os membros da equipe e reduziu ambiguidades durante o desenvolvimento.
+   - **Ação de Melhoria:** A equipe passou a padronizar a especificação dos critérios de aceitação utilizando um modelo único, documentando objetivo, atores, gatilho, pré-condições, pós-condições, fluxo principal, fluxos alternativos, exceções e regras de negócio. Essa padronização tornou os artefatos mais consistentes, facilitou a comunicação entre os membros da equipe e reduziu ambiguidades durante o desenvolvimento.
 
-2. **Rastreabilidade entre requisitos e casos de uso**
+2. **Rastreabilidade entre requisitos e critérios de aceitação**
 
-   - **Desafio:** A evolução dos requisitos relacionados à conformidade regulatória (LGPD/CFM), assinatura digital ICP-Brasil e padronização dos documentos clínicos exigiu constantes atualizações na documentação. Em alguns momentos, alterações realizadas nos requisitos funcionais não eram refletidas imediatamente nos casos de uso e nas histórias de usuário, aumentando o risco de inconsistências entre os artefatos do projeto.
+   - **Desafio:** A evolução dos requisitos relacionados à conformidade regulatória (LGPD/CFM), assinatura digital ICP-Brasil e padronização dos documentos clínicos exigiu constantes atualizações na documentação. Em alguns momentos, alterações realizadas nos requisitos funcionais não eram refletidas imediatamente nos critérios de aceitação e nas histórias de usuário, aumentando o risco de inconsistências entre os artefatos do projeto.
 
-   - **Ação de Melhoria:** Como melhoria de processo, a equipe incorporou uma etapa de revisão de rastreabilidade ao final de cada sprint, verificando a consistência entre requisitos funcionais, casos de uso, histórias de usuário e backlog. Essa prática garantiu maior alinhamento entre documentação e implementação, além de fortalecer a conformidade com os requisitos regulatórios e reduzir retrabalho durante o desenvolvimento.
+   - **Ação de Melhoria:** Como melhoria de processo, a equipe incorporou uma etapa de revisão de rastreabilidade ao final de cada sprint, verificando a consistência entre requisitos funcionais, critérios de aceitação, histórias de usuário e backlog. Essa prática garantiu maior alinhamento entre documentação e implementação, além de fortalecer a conformidade com os requisitos regulatórios e reduzir retrabalho durante o desenvolvimento.
 
 
 #### Histórico de Revisões
@@ -86,4 +86,4 @@ Durante o desenvolvimento inicial do projeto do ProntoCare, várias lições imp
 | 2026-04-13 | 0.6 | Últimas revisões antes da primeira entrega. | Prontuariantes |
 | 2026-05-03 | 0.7 | Inclusão de lição aprendida sobre a adequação e reestruturação do cronograma com base em feedback e prazo letivo. | Prontuariantes |
 | 2026-06-15 | 0.8 | Inclusão de lições aprendidas sobre a granularidade e qualidade dos requisitos, integridade da cadeia de rastreabilidade e validação prévia de requisitos com o cliente. | Prontuariantes |
-| 2026-07-01 | 0.9 | Inclusão das lições aprendidas da Unidade 4, abordando a padronização da especificação dos casos de uso e o fortalecimento da rastreabilidade entre requisitos, casos de uso e backlog. | Prontuariantes |
+| 2026-07-01 | 0.9 | Inclusão das lições aprendidas da Unidade 4, abordando a padronização da especificação dos critérios de aceitação e o fortalecimento da rastreabilidade entre requisitos, critérios de aceitação e backlog. | Prontuariantes |

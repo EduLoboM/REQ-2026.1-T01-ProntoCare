@@ -43,11 +43,17 @@
 
 acesse diretamente pelo link: [https://youtu.be/la-cM83mW_8](https://youtu.be/la-cM83mW_8)
 
-### Sprint 9 Review & Entrega Final
+### Sprint 9 Review
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zBuWdVirAcE?si=aB3W2IWoNniKbpb7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_ty7EAA6-Uk?si=aCchmqVE1lgvLgoj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-acesse diretamente pelo link: [https://youtu.be/zBuWdVirAcE](https://youtu.be/zBuWdVirAcE)
+acesse diretamente pelo link: [https://youtu.be/_ty7EAA6-Uk](https://youtu.be/_ty7EAA6-Uk)
+
+### Entrega Final
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BH16kfEX7V0?si=q-iR4s-Xtu1xxzlE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+acesse diretamente pelo link: [https://youtu.be/BH16kfEX7V0](https://youtu.be/BH16kfEX7V0)
 
 ## Entrega Final - 02/07/2026
 
